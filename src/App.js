@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
-import BottomNavigationBar from './components/BottomNavigationBar';
-import ButtonAppBar from './components/ButtonAppBar';
+import BottomNavigationBar from './components/BottomNavigationBar/BottomNavigationBar';
+import ButtonAppBar from './components/BottomNavigationBar/ButtonAppBar';
 import HomePage from './features/home/pages/index';
 import Search from './features/search/pages/index';
 import QrPage from './features/qrcode/pages/index';

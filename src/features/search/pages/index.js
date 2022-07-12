@@ -1,14 +1,28 @@
 import React from 'react'
+import '../../../components/ComboBox/index';
+import ComboBox from '../../../components/ComboBox/index';
 
 const Search = () => {
+  const listName = [
+    {
+      title: "nhà xe Trung Trực",
+    },
+    {
+      title: "nhà xe Hữu Trưởng",
+    },
+    {
+      title: "nhà xe Huê Như",
+    },
+    {
+      title: "nhà xe Thiện Toàn",
+    },
+    {
+      title: "nhà xe Xuân Vũ",
+    },
+  ]
   return (
     <div>
-        <p>Search</p>
-        <p>Search</p>
-        <p>Search</p>
-        <p>Search</p>
-        <p>Search</p>
-        <p>Search</p>
+      <ComboBox listName={listName} />
     </div>
   )
 }
