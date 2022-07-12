@@ -11,15 +11,16 @@ const QrPage = () => {
 
   const handleScanCam = (result) => {
     if (result) {
-      setScanResult(result);
+      window.open(result.text);
+      setScanResult(result.text);
     }
   }
 
   return (
     <div className="App">
-    <QrReader delay={300} style={{ width: '100px' }} onError={handleErrorCam} onScan={handleScanCam}></QrReader>
-    <h3> Scanned by webcam code: {scanResult}</h3>
-  </div>
+      <QrReader delay={1000} style={{ width: '100px' }} onError={handleErrorCam} onResult={handleScanCam}></QrReader>
+      <h3> Scanned by webcam code: {scanResult}</h3>
+    </div>
   )
 }
 
