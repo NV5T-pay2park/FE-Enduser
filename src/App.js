@@ -1,23 +1,23 @@
+import { Route, Routes } from 'react-router-dom';
+import BottomNavigationBar from './components/BottomNavigationBar';
+import ButtonAppBar from './components/ButtonAppBar';
+import HomePage from './features/Home/HomePage';
 import logo from './logo.svg';
-import './App.css';
+import Search from './features/Search/Search';
+import QrPage from './features/Qr/QrPage';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ButtonAppBar/>
+
+      <Routes>
+        <Route path='/' element={<HomePage/>}/>
+        <Route path='/qr' element={<QrPage/>}/>
+        <Route path='/search' element={<Search/>}/>
+      </Routes>
+      <BottomNavigationBar  />
     </div>
   );
 }
