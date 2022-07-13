@@ -1,12 +1,12 @@
-import { AppBar } from '@mui/material'
+import { AppBar, Toolbar } from '@mui/material'
 import { Box } from '@mui/system'
 import React from 'react'
 
 const ButtonAppBar = () => {
   return (
     <Box>
-        <AppBar>
-            Appbar
+        <AppBar position="static" >
+        <Toolbar>App bar</Toolbar>
         </AppBar>
     </Box>
   )
