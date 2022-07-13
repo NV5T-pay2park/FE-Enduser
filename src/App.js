@@ -1,9 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
 import BottomNavigationBar from './components/BottomNavigationBar/BottomNavigationBar';
 import ButtonAppBar from './components/BottomNavigationBar/ButtonAppBar';
-import HomePage from './features/home/pages/index';
-import Search from './features/search/pages/index';
-import QrPage from './features/qrcode/pages/index';
+import HomePage from './pages/home/pages/index';
+import Search from './pages/search/pages/index';
+import QrPage from './pages/qrcode/pages/index';
 
 function App() {
   return (
