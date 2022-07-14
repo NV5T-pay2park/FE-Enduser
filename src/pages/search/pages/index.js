@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import '../../../components/ComboBox/index';
 import ComboBox from '../../../components/ComboBox/index';
 import ListCard from '../../../components/ListCard/index';
+import Box from '@mui/material/Box';
+import { flexbox } from '@mui/system';
 // import '../../../models/Garage';
 
 const Search = () => {
@@ -123,9 +125,11 @@ const Search = () => {
   }
 
   return (
-    <div>
+    <div style={{ flexDirection: 'row', maxHeight: 'calc(100vh - 112px)' }}>
+
       <ComboBox listName={DataGarage} handleChoose={handleChoose} />
       <ListCard list={DisplayDataGarage} />
+
     </div>
   )
 }

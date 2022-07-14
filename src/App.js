@@ -8,6 +8,7 @@ import HistoryTicketPage from './pages/histoticket/pages';
 import { Box } from '@mui/material';
 import TicketMini from './components/Ticket/TicketMini';
 
+
 function App() {
   return (
     <Box>
