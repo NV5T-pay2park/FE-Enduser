@@ -1,22 +1,24 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import React from 'react'
+import QrTicket from './QrTicket'
 
 const Ticket = () => {
   return (
     <Card sx={{ maxWidth: '80vw', height: '70vh', marginTop: '0px', borderRadius: '20px', minWidth: '80vw' }} variant="outlined">
       <CardContent>
         <Typography gutterBottom variant="h5" component="div" align="center">
-          Vé Xe
+          Thẻ Giữ Xe
         </Typography>
       </CardContent>
       <Box alignItems="center" justifyContent="center" display="flex">
-        <CardMedia
+        {/* <CardMedia
           component="img"
           sx={{height: 140, width: 140}}
           image="./qr.jpeg"
           alt="qrcode"
-        />
+        /> */}
+        <QrTicket/>
       </Box>
       <CardContent>
         <Typography gutterBottom variant="h8" component="div" align='center' color='red'>
