@@ -20,18 +20,18 @@ const BottomNavigationBar = () => {
   const navigate = useNavigate();
 
   return (
-          <BottomNavigation
-            showLabels
-            sx={{width: '100%', position: 'absolute', bottom: 0}}
-            value={value}
-            onChange={(event, newValue) => {
-              setValue(newValue);
-            }}
-          >
-            <BottomNavigationAction label="Ticket" icon={<BookOnlineIcon />} onClick={() => navigate('/')}/>
-            <BottomNavigationAction icon={<QrCodeScannerIcon />} onClick={() => navigate('/qr')} className={css.qr}/>
-            <BottomNavigationAction label="Search" icon={<LocationSearchingOutlinedIcon />} onClick={() => navigate('/search')}/>
-          </BottomNavigation>
+    <BottomNavigation
+      showLabels
+      sx={{ width: '100%', position: 'sticky', bottom: 0 }}
+      value={value}
+      onChange={(event, newValue) => {
+        setValue(newValue);
+      }}
+    >
+      <BottomNavigationAction label="Ticket" icon={<BookOnlineIcon />} onClick={() => navigate('/')} />
+      <BottomNavigationAction icon={<QrCodeScannerIcon />} onClick={() => navigate('/qr')} className={css.qr} />
+      <BottomNavigationAction label="Search" icon={<LocationSearchingOutlinedIcon />} onClick={() => navigate('/search')} />
+    </BottomNavigation>
   )
 }
 

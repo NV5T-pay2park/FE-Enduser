@@ -5,9 +5,9 @@ import React from 'react'
 const ButtonAppBar = () => {
   return (
     <Box>
-        <AppBar position="static" >
+      <AppBar style={{ top: 0, position: 'sticky' }}>
         <Toolbar>App bar</Toolbar>
-        </AppBar>
+      </AppBar>
     </Box>
   )
 }

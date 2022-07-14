@@ -5,6 +5,7 @@ import HomePage from './pages/home/pages/index';
 import Search from './pages/search/pages/index';
 import QrPage from './pages/qrcode/pages/index';
 
+
 function App() {
   return (
     <div className="container">

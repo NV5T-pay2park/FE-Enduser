@@ -17,8 +17,8 @@ const QrPage = () => {
   }
 
   return (
-    <div>
-      <QrReader delay={1000} style={{ width: '100%', height: '100%' }} onError={handleErrorCam} onResult={handleScanCam}></QrReader>
+    <div style={{ backgroundColor: 'red', height: 'calc(100vh - 112px)' }}>
+      <QrReader delay={1000} style={{ width: '100%', height: '100%', backgroundColor: 'red' }} onError={handleErrorCam} onResult={handleScanCam}></QrReader>
 
     </div>
   )

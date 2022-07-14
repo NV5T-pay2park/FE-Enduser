@@ -6,6 +6,7 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import ListItem from '@mui/material/ListItem';
+import Paper from '@mui/material/Paper';
 
 ListCard.propTypes = {
     list: PropTypes.array,
@@ -13,9 +14,13 @@ ListCard.propTypes = {
 
 function ListCard({ list }) {
 
+    var myStyle = {
+        maxHeight: 'calc(100vh - 162px)',
+        overflow: 'auto',
+    }
     return (
-        <div>
-            <List sx={{ width: '100%', maxWidth: 1000, bgcolor: 'background.paper' }}>
+        <Paper>
+            <List style={myStyle} sx={{ width: '100%', maxWidth: 1000, bgcolor: 'background.paper' }}>
                 {list.map((value) => {
                     const labelId = `checkbox-list-secondary-label-${value.id}`;
                     return (
@@ -37,7 +42,7 @@ function ListCard({ list }) {
                     )
                 })}
             </List>
-        </div>
+        </Paper>
     );
 }
 
