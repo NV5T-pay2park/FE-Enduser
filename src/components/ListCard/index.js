@@ -15,12 +15,12 @@ ListCard.propTypes = {
 function ListCard({ list }) {
 
     var myStyle = {
-        maxHeight: 'calc(100vh - 162px)',
+        height: 'calc(100vh - 162px)',
         overflow: 'auto',
     }
     return (
-        <Paper>
-            <List style={myStyle} sx={{ width: '100%', maxWidth: 1000, bgcolor: 'background.paper' }}>
+        <Paper style={myStyle}>
+            <List sx={{ width: '100%', maxWidth: 1000, bgcolor: 'background.paper' }}>
                 {list.map((value) => {
                     const labelId = `checkbox-list-secondary-label-${value.id}`;
                     return (

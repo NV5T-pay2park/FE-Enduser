@@ -111,13 +111,9 @@ const Search = () => {
   const [DisplayDataGarage, setDataGarage] = useState(DataGarage);
 
   const handleChoose = (str) => {
-    if (str === '') {
-      setDataGarage(DataGarage);
-      return;
-    }
     var tempData = []
     for (let i = 0; i < DataGarage.length; i++) {
-      if (DataGarage[i].name === str) {
+      if (DataGarage[i].name === str || typeof str !== 'string') {
         tempData.push(DataGarage[i])
       }
     }

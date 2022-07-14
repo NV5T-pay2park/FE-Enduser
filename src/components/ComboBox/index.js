@@ -19,14 +19,14 @@ function ComboBox({ listName, handleChoose }) {
 
     return (
         <div>
-            <Stack spacing={2} sx={{ width: '70%' }}>
+            <Stack spacing={2} sx={{ width: '100%', marginTop: 0.25, marginBottom: 0.75 }}>
                 <Autocomplete
                     value={chooseString}
                     id="free-solo-demo"
                     freeSolo
                     onChange={(event, value) => handleChooseValue(value)}
                     options={listName.map((option) => option.name)}
-                    renderInput={(params) => <TextField {...params} label="Tìm kiếm nhà xe" />}
+                    renderInput={(params) => <TextField {...params} size="small" label="Tìm kiếm nhà xe" />}
                 />
             </Stack>
         </div>
