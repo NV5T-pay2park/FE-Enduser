@@ -32,6 +32,7 @@ const BottomNavigationBar = () => {
       <BottomNavigationAction icon={<QrCodeScannerIcon />} onClick={() => navigate('/qr')} className={css.qr} />
       <BottomNavigationAction label="Search" icon={<LocationSearchingOutlinedIcon />} onClick={() => navigate('/search')} />
     </BottomNavigation>
+
   )
 }
 
