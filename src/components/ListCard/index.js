@@ -7,6 +7,7 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import ListItem from '@mui/material/ListItem';
 import Paper from '@mui/material/Paper';
+import Card from '../Card/index';
 
 ListCard.propTypes = {
     list: PropTypes.array,
@@ -30,13 +31,7 @@ function ListCard({ list }) {
 
 
                             <ListItemButton>
-                                <ListItemAvatar>
-                                    <Avatar
-                                        src={`/src/img/Garage/img.png`}
-                                    >
-                                    </Avatar>
-                                </ListItemAvatar>
-                                <ListItemText id={labelId} primary={value.name} secondary={value.address}></ListItemText>
+                                <Card value={value}></Card>
                             </ListItemButton>
                         </ListItem>
                     )
