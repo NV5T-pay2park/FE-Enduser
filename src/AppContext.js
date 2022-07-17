@@ -1,4 +1,4 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect, useLayoutEffect } from "react";
 
 const AppContext = createContext()
 
@@ -7,9 +7,8 @@ function AppProvider({children}) {
     const [ticketList, setTicketList] = useState([])
     
     const insertTicket = (ticket) => {
-        setTicketList(prevList => {
-            prevList = [ticket, ...prevList]
-        })
+        // setTicketList(prevList => [ticket, prevList])
+        setTicketList(prevList => [ticket].concat(prevList))
     }
 
     const value = {

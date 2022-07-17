@@ -4,6 +4,9 @@ import React from 'react'
 import QrTicket from './QrTicket'
 
 const Ticket = ({ticketData}) => {
+
+  console.log(ticketData)
+
   return (
     <Card sx={{ maxWidth: '80vw', height: '70vh', marginTop: '0px', borderRadius: '20px', minWidth: '80vw' }} variant="outlined">
       <CardContent>
