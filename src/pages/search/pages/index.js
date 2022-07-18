@@ -8,7 +8,6 @@ import { flexbox } from '@mui/system';
 import { DataGarage } from '../../../models/Garage';
 
 const Search = () => {
-
  
   const [DisplayDataGarage, setDataGarage] = useState(DataGarage);
 
@@ -23,7 +22,7 @@ const Search = () => {
   }
 
   return (
-    <div style={{ flexDirection: 'row', maxHeight: 'calc(100vh - 112px)' }}>
+    <div style={{ flexDirection: 'row', height: 'calc(100vh - 112px)' }}>
 
       <ComboBox listName={DataGarage} handleChoose={handleChoose} />
       <ListCard list={DisplayDataGarage} />
