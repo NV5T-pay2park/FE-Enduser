@@ -13,7 +13,9 @@ const HistoryTicketPage = () => {
   };
 
   return (
-    <Box sx={{height: '90vh'}}>
+    <div style={ {flexDirection: 'row', maxHeight: 'calc(100vh - 112px)' }}>
+
+    {/* <Box sx={{height: 'calc(100vh - 112px)'}}> */}
       <TabContext value={value}>
         <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
           <TabList onChange={handleChange} aria-label="lab API tabs example" centered variant="fullWidth">
@@ -22,12 +24,15 @@ const HistoryTicketPage = () => {
           </TabList>
         </Box>
         <TabPanel value="1" sx={{ bgcolor: '#f6f7f8', height: 'calc(100vh - 160px)'}}>
-            <ListTicket/>
-          </TabPanel>
-        <TabPanel value="2">Item Two</TabPanel>
+            <ListTicket status="unpaid"/>
+        </TabPanel>
+        <TabPanel value="2" sx={{ bgcolor: '#f6f7f8', height: 'calc(100vh - 160px)'}}>
+            <ListTicket status="paid"/>
+        </TabPanel>
       </TabContext>  
-    </Box>
+    {/* </Box> */}
 
+    </div>
   )
 }
 
