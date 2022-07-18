@@ -4,6 +4,7 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import { useLocation, useParams } from 'react-router-dom';
 import {DataGarage} from '../../models/Garage';
+import Paper from '@mui/material/Paper';
 
 
 PaperCard.propTypes = {
@@ -20,8 +21,8 @@ function PaperCard() {
     }
   
   return (
-    <div style={ {flexDirection: 'row', maxHeight: 'calc(100vh - 112px)' }}>
-    <Card sx={{ maxWidth: '80vw', height: '70vh', marginTop: '0px', borderRadius: '20px', minWidth: '80vw', align: "center",  }} variant="outlined">
+    <Paper style={ {height: 'calc(100vh - 112px)', display: 'flex', justifyContent: 'center'}}>
+    <Card sx={{ maxWidth: '85vw', height: '70vh', marginTop: '30px', borderRadius: '20px', minWidth: '85vw'}} variant="outlined">
       <CardContent>
         <Typography gutterBottom variant="h6" component="div" align="center">
           Thông tin chi tiết
@@ -31,7 +32,7 @@ function PaperCard() {
         <Avatar sx={{ width: 80, height: 80 }}>
               </Avatar>
       </Box>
-      <CardContent style={{ lineHeight: "24px" }}>
+      <CardContent style={{ lineHeight: "28px" }}>
         <Typography gutterBottom variant="h8" component="div" align='center' >
           <b>{v.name}</b> 
         </Typography>
@@ -45,10 +46,16 @@ function PaperCard() {
           <b> Giờ làm việc: </b> {v.timeWorking}
         </Typography>
         <Typography variant='h7'>
-         <b> Trạng thái: </b>{v.status === "available" ? <div style={{color:'green'}}> Còn chỗ</div> : <div style={{color: 'red'}}> Hết chỗ</div> }
+         <b> Trạng thái: </b>{v.status === "available" ? <text style={{color:'green'}}> Còn chỗ</text> : <text style={{color: 'red'}}> Hết chỗ</text> }
         </Typography>
         <Typography variant="h7" component="div" paragraph>
           <b> Mô tả: </b> {v.discription}
+        </Typography>
+        <Typography variant='h7' component="div" paragraph>
+          <b> Điều khoản sử dụng: </b>
+        </Typography>
+        <Typography variant="h7" component="div" paragraph> 
+          <b> Hướng dẫn sử dụng: </b>
         </Typography>
       </CardContent>
       {/* <CardActions>
@@ -56,7 +63,7 @@ function PaperCard() {
         <Button size="small">Learn More</Button>
       </CardActions> */}
     </Card>
-    </div>
+    </Paper>
   )
 }
 
