@@ -8,6 +8,7 @@ import HistoryTicketPage from './pages/histoticket/pages';
 import { Box } from '@mui/material';
 import TicketMini from './components/Ticket/TicketMini';
 import QrTicket from './components/Ticket/QrTicket';
+import PaperCard from './components/PaperCard';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path='/history' element={<HistoryTicketPage />} />
         <Route path='/mini' element={<TicketMini />} />
         <Route path='/qrimg' element={<QrTicket />} />
+        <Route path='/search/detail/:value' element={<PaperCard />} />
       </Routes>
       <BottomNavigationBar />
     </Box>

@@ -7,6 +7,9 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import ListItem from '@mui/material/ListItem';
 import Paper from '@mui/material/Paper';
+import Card from '../Card/index';
+import PaperCard from '../PaperCard';
+import { useNavigate } from 'react-router-dom';
 
 ListCard.propTypes = {
     list: PropTypes.array,
@@ -17,10 +20,14 @@ function ListCard({ list }) {
     var myStyle = {
         height: 'calc(100vh - 162px)',
         overflow: 'auto',
+        bgcolor: 'f6f7f8',
     }
+
+    const navigate = useNavigate();
+
     return (
         <Paper style={myStyle}>
-            <List sx={{ width: '100%', maxWidth: 1000, bgcolor: 'background.paper' }}>
+            <List sx={{ width: '100%', maxWidth: 1000, bgcolor: 'f6f7f8' }}>
                 {list.map((value) => {
                     const labelId = `checkbox-list-secondary-label-${value.id}`;
                     return (
@@ -29,14 +36,8 @@ function ListCard({ list }) {
                         >
 
 
-                            <ListItemButton>
-                                <ListItemAvatar>
-                                    <Avatar
-                                        src={`/src/img/Garage/img.png`}
-                                    >
-                                    </Avatar>
-                                </ListItemAvatar>
-                                <ListItemText id={labelId} primary={value.name} secondary={value.address}></ListItemText>
+                            <ListItemButton onClick={() => navigate('/search/detail/:' + value.id)}>
+                                <Card value={value} ></Card>
                             </ListItemButton>
                         </ListItem>
                     )
