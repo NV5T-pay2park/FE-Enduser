@@ -11,29 +11,42 @@ import "swiper/css/pagination";
 
 // import required modules
 import { Pagination } from "swiper";
-import { Box, Container, Grid, Typography } from '@mui/material';
+import { Box, Button, Container, Grid, Typography } from '@mui/material';
 import styles from './style.css';
 import { AppContext } from '../../../AppContext';
 import NotFoundCard from '../../../components/notFoundCard';
+import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
 
   const context = useContext(AppContext)
-  
+  const navigate = useNavigate()
+  const [isFirstTime, setIsFirstTime] = useState(true)
+
   useLayoutEffect(() => {
     console.log("call fetch data in home")
-    fetch('https://jsonplaceholder.typicode.com/users')
-    .then(res => res.json())
-    .then(posts => {
-      context.setTicketList(posts)
-    })
+    // fetch('https://jsonplaceholder.typicode.com/users')
+    // .then(res => res.json())
+    // .then(posts => {
+    //   context.setTicketList(posts)
+    // })
+
+    const getTickets = async () => {
+      const res = await fetch('https://jsonplaceholder.typicode.com/users')
+      const data = await res.json()
+      await context.setTicketList(data)
+    }
+    getTickets()
+    setIsFirstTime(false)
   }, [])
 
   const ticketElements = context.ticketList.map(ticket =><SwiperSlide key={ticket.id}><Ticket ticketData={ticket}/></SwiperSlide>)
   const notFoundElement = <SwiperSlide><NotFoundCard/></SwiperSlide>
+  const emptyElement = <SwiperSlide><Box></Box></SwiperSlide>
+  console.log("render is firsttime: " + isFirstTime)
 
   return (
-    <Container sx={{ backgroundColor: '#008FE5', height: '90vh'}}>
+    <Container sx={{ backgroundColor: '#008FE5', height: 'calc(100vh - 112px)'}}>
         <Swiper
           spaceBetween={150}
           pagination={{
@@ -42,13 +55,17 @@ const HomePage = () => {
           }}
           modules={[Pagination]}
         >
-          { context.ticketList.length <= 0 ?
+          { isFirstTime ? emptyElement : context.ticketList.length <= 0 ?
             notFoundElement :
             ticketElements
           }
           
           {/* {ticketElements} */}
         </Swiper>
+        <Box textAlign='center' alignItems='center'>
+            <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/history')}>Xem tất cả</Button>
+        </Box>
+        
     </Container>
   )
 }
