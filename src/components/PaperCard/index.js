@@ -23,7 +23,7 @@ function PaperCard() {
 
   const navigate = useNavigate();
   return (
-    <Paper style={ {height: 'calc(100vh - 112px)', display: 'flex', justifyContent: 'center'}}>
+    <Paper style={ {height: 'calc(100vh - 112px)', display: 'flex', justifyContent: 'center', backgroundColor: '#f6f7f8'}}>
       <Stack>
     <Card sx={{ maxWidth: '85vw', height: '70vh', marginTop: '30px', borderRadius: '20px', minWidth: '85vw'}} variant="outlined">
       <CardContent>
