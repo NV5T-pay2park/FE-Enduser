@@ -75,7 +75,7 @@ const ListTicket = ({status}) => {
   
   
   return (
-      <List sx={{ width: '100%', maxWidth: 500, bgcolor: '#f6f7f8', maxHeight: 'calc(100vh - 210px)', overflow: 'auto'}}>
+      <List sx={{ width: '100%', maxWidth: 500, bgcolor: '#f6f7f8', maxHeight: 'calc(100vh - 154px)', overflow: 'auto'}}>
         {tickets}   
       </List>
   )

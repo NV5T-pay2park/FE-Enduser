@@ -22,7 +22,7 @@ const Search = () => {
   }
 
   return (
-    <div style={{ flexDirection: 'row', height: 'calc(100vh - 112px)' }}>
+    <div style={{ flexDirection: 'row', height: 'calc(100vh - 56px)' }}>
 
       <ComboBox listName={DataGarage} handleChoose={handleChoose} />
       <ListCard list={DisplayDataGarage} />
