@@ -12,7 +12,7 @@ const TicketCheckout = () => {
   // console.log("ticket test: " + JSON.stringify(ticketDataTest))
 
   return (
-    <Container sx={{ backgroundColor: '#008FE5', height: 'calc(100vh - 112px)', display: "flex", justifyContent: "center", alignItems: "center"}}>
+    <Container sx={{ backgroundColor: '#008FE5', height: 'calc(100vh - 56px)', display: "flex", justifyContent: "center", alignItems: "center"}}>
 
       <Card sx={{ maxWidth: '80vw', height: '70vh', marginTop: '0px', borderRadius: '20px', minWidth: '80vw' }} variant="outlined">
         <CardContent>

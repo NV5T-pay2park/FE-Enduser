@@ -46,7 +46,7 @@ const HomePage = () => {
   console.log("render is firsttime: " + isFirstTime)
 
   return (
-    <Container sx={{ backgroundColor: '#008FE5', height: 'calc(100vh - 112px)'}}>
+    <Container sx={{ backgroundColor: '#008FE5', height: 'calc(100vh - 56px)'}}>
         <Swiper
           spaceBetween={150}
           pagination={{

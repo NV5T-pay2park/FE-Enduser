@@ -76,7 +76,7 @@ const QrPage = () => {
 
 
   return (
-    <div style={{ backgroundColor: 'white', height: 'calc(100vh - 112px)', justifyContent: 'center', justifyItems: 'center', alignItems: 'center'}}>
+    <div style={{ backgroundColor: 'white', height: 'calc(100vh - 56px)', justifyContent: 'center', justifyItems: 'center', alignItems: 'center'}}>
       { showLoading && <LoadingIndicator />}
       {/* <QrReader facingMode={facingMode} delay={1000} style={{ width: '100%', height: '100%', backgroundColor: 'white' }} onError={handleErrorCam} onResult={handleScanCam}></QrReader> */}
       
