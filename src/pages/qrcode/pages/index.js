@@ -37,6 +37,8 @@ const QrPage = () => {
     window.ZLP.Device().openCamera().then(res => alert(JSON.stringify(res)))
   }
 
+  requestCamera()
+
   const handleErrorCam = (error) => {
     console.log(error);
   }
