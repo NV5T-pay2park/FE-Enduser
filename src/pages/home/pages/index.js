@@ -32,8 +32,14 @@ const HomePage = () => {
     // })
 
     const getTickets = async () => {
+      if (window.ZaloPay.isZaloPay) {
+        window.ZaloPay.showLoading();
+      }
       const res = await fetch('https://jsonplaceholder.typicode.com/users')
       const data = await res.json()
+      if (window.ZaloPay.isZaloPay) {
+        window.ZaloPay.hideLoading();
+      }
       await context.setTicketList(data)
     }
     getTickets()
@@ -43,7 +49,6 @@ const HomePage = () => {
   const ticketElements = context.ticketList.map(ticket =><SwiperSlide key={ticket.id}><Ticket ticketData={ticket}/></SwiperSlide>)
   const notFoundElement = <SwiperSlide><NotFoundCard/></SwiperSlide>
   const emptyElement = <SwiperSlide><Box></Box></SwiperSlide>
-  console.log("render is firsttime: " + isFirstTime)
 
   return (
     <Container sx={{ backgroundColor: '#008FE5', height: 'calc(100vh - 56px)'}}>
