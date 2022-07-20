@@ -65,7 +65,6 @@ const HomePage = () => {
         <Box textAlign='center' alignItems='center'>
             <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/history')}>Xem tất cả</Button>
         </Box>
-        
     </Container>
   )
 }

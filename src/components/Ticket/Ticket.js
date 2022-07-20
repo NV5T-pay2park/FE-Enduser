@@ -1,11 +1,13 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import QrTicket from './QrTicket'
 
 const Ticket = ({ticketData}) => {
 
   //console.log(ticketData)
+  const navigate = useNavigate()
 
   return (
     <Card sx={{ maxWidth: '80vw', height: '70vh', marginTop: '0px', borderRadius: '20px', minWidth: '80vw' }} variant="outlined">
@@ -15,13 +17,13 @@ const Ticket = ({ticketData}) => {
         </Typography>
       </CardContent>
       <Box alignItems="center" justifyContent="center" display="flex">
-        {/* <CardMedia
+        <CardMedia
           component="img"
           sx={{height: 140, width: 140}}
-          image="./qr.jpeg"
+          image="./toro_cry_rmbg.png"
           alt="qrcode"
-        /> */}
-        <QrTicket data={ticketData}/>
+        />
+        {/* <QrTicket data={ticketData}/> */}
       </Box>
       <CardContent>
         <Typography gutterBottom variant="h8" component="div" align='center' color='red'>
@@ -34,10 +36,11 @@ const Ticket = ({ticketData}) => {
           Giờ vào: 23h59p
         </Typography>
       </CardContent>
-      {/* <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions> */}
+     
+      <Box alignItems="center" justifyContent="center" display="flex">
+          <Button size='small' variant="outlined" sx={{align: 'center'}} onClick={() => navigate('/ticket/checkout', { state: ticketData})}>Thanh Toán</Button>
+      </Box>
+  
     </Card>
   )
 }
