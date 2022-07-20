@@ -28,13 +28,14 @@ class Test extends Component {
 
         return (
             <div>
-                <QrReader
+                <button onClick={() => window.ZLP.Device().scanQRCode().then(res => alert(JSON.stringify(res)))}>abc</button>
+                {/* <QrReader
                     delay={this.state.delay}
                     style={previewStyle}
                     onError={this.handleError}
                     onScan={this.handleScan}
                 />
-                <p>{this.state.result}</p>
+                <p>{this.state.result}</p> */}
             </div>
         )
     }
