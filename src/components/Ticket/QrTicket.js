@@ -4,6 +4,7 @@ import { QRCode } from 'react-qrcode-logo';
 const QrTicket = ({data}) => {
 
   const json = JSON.stringify({
+    "data": data.id,
     "userId": 452452,
     "parkingId": 1231,
     "time": 1435134513,
@@ -12,7 +13,7 @@ const QrTicket = ({data}) => {
   return (
     // <QRCode value="https://zalopay.vn" eyeRadius={5} size='140' removeQrCodeBehindLogo="true" logoImage='https://play-lh.googleusercontent.com/yHmIm7FYKe_dW2WHTwWizp2p_gt7_ctdpCUevX654E1dsj5c9McWO03k_S6PPLG_DNz7' logoWidth='40' logoHeight='40' bgColor='#FFFFFF'/>
     <QRCode 
-      value="https://zalopay.vn" 
+      value={data}
       eyeRadius={[
         { // top/left eye
           outer: [10, 10, 0, 10],
