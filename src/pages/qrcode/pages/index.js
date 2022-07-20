@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useRef } from 'react'
 import { useState, useEffect } from 'react';
 import { QrReader } from 'react-qr-reader';
 import { useNavigate } from 'react-router-dom';
@@ -6,9 +6,19 @@ import { AppContext } from '../../../AppContext';
 import LoadingIndicator from '../../../components/LoadingIndicator';
 
 
+// test QR-Scanner
+import QrScanner from 'react-qr-scanner'
+import { Button } from '@mui/material';
+import { Box } from '@mui/system';
 
 const QrPage = () => {
 
+  // begin - test qr-scanner
+  // const qrRef = useRef(null);
+  const [facingMode, setFacingMode] = useState("environment")
+
+
+  // end - test qr-scanner
   const context = useContext(AppContext)
   const navigate = useNavigate();
 
@@ -52,10 +62,19 @@ const QrPage = () => {
     }
   }
 
+  const handleSwitchCam = () => {
+    console.log("before switch cam: " + facingMode)
+    setFacingMode(facingMode == 'environment' ? 'user' : 'environment')
+  }
+
+
   return (
     <div style={{ backgroundColor: 'white', height: 'calc(100vh - 112px)', justifyContent: 'center', justifyItems: 'center', alignItems: 'center'}}>
       { showLoading && <LoadingIndicator />}
-      <QrReader delay={1000} style={{ width: '100%', height: '100%', backgroundColor: 'white' }} onError={handleErrorCam} onResult={handleScanCam}></QrReader>
+      <QrReader facingMode={facingMode} delay={1000} style={{ width: '100%', height: '100%', backgroundColor: 'white' }} onError={handleErrorCam} onResult={handleScanCam}></QrReader>
+      <Box textAlign='center' alignItems='center'>
+        <Button onClick={handleSwitchCam}>Switch Cam</Button>
+      </Box>
     </div>
   )
 }

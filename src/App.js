@@ -9,6 +9,7 @@ import { Box } from '@mui/material';
 import TicketMini from './components/Ticket/TicketMini';
 import QrTicket from './components/Ticket/QrTicket';
 import PaperCard from './components/PaperCard';
+import Map from './components/Map/';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path='/mini' element={<TicketMini />} />
         <Route path='/qrimg' element={<QrTicket />} />
         <Route path='/search/detail/:value' element={<PaperCard />} />
+        <Route path='/googlemap/:value' element={<Map />} />
       </Routes>
       <BottomNavigationBar />
     </Box>

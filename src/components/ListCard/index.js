@@ -20,14 +20,14 @@ function ListCard({ list }) {
     var myStyle = {
         height: 'calc(100vh - 162px)',
         overflow: 'auto',
-        bgcolor: 'f6f7f8',
+        bgcolor: '#f6f7f8',
     }
 
     const navigate = useNavigate();
 
     return (
         <Paper style={myStyle}>
-            <List sx={{ width: '100%', maxWidth: 1000, bgcolor: 'f6f7f8' }}>
+            <List sx={{ width: '100%', maxWidth: 1000, bgcolor: '#f6f7f8' }}>
                 {list.map((value) => {
                     const labelId = `checkbox-list-secondary-label-${value.id}`;
                     return (

@@ -1,10 +1,11 @@
-import { Avatar, Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material'
+import { Avatar, Button, Card, Stack, CardContent, CardMedia, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import React from 'react'
 import PropTypes from 'prop-types';
 import { useLocation, useParams } from 'react-router-dom';
 import {DataGarage} from '../../models/Garage';
 import Paper from '@mui/material/Paper';
+import { useNavigate } from 'react-router-dom';
 
 
 PaperCard.propTypes = {
@@ -19,9 +20,11 @@ function PaperCard() {
       v = DataGarage[i];
       break;
     }
-  
+
+  const navigate = useNavigate();
   return (
-    <Paper style={ {height: 'calc(100vh - 112px)', display: 'flex', justifyContent: 'center'}}>
+    <Paper style={ {height: 'calc(100vh - 112px)', display: 'flex', justifyContent: 'center', backgroundColor: '#f6f7f8'}}>
+      <Stack>
     <Card sx={{ maxWidth: '85vw', height: '70vh', marginTop: '30px', borderRadius: '20px', minWidth: '85vw'}} variant="outlined">
       <CardContent>
         <Typography gutterBottom variant="h6" component="div" align="center">
@@ -63,6 +66,12 @@ function PaperCard() {
         <Button size="small">Learn More</Button>
       </CardActions> */}
     </Card>
+    <Button variant="contained" sx={{marginTop: 5 }} onClick={() => {
+        navigate('/googlemap/:' + v.id);
+    }}>
+    Hiển thị bản đồ
+    </Button>
+    </Stack>
     </Paper>
   )
 }
