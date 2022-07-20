@@ -33,6 +33,10 @@ const QrPage = () => {
   //const [ticketData, setTicketData] = useState({})
   //let ticketData
 
+  const requestCamera = () => {
+    window.ZLP.Device().openCamera().then(res => alert(JSON.stringify(res)))
+  }
+
   const handleErrorCam = (error) => {
     console.log(error);
   }
