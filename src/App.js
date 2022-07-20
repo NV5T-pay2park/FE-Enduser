@@ -11,6 +11,7 @@ import QrTicket from './components/Ticket/QrTicket';
 import PaperCard from './components/PaperCard';
 import Map from './components/Map/';
 import TicketCheckout from './components/Ticket/TicketCheckout';
+import Test from "./test";
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Route path='/search/detail/:value' element={<PaperCard />} />
         <Route path='/googlemap/:value' element={<Map />} />
         <Route path='/ticket/checkout' element={<TicketCheckout />} />
+        <Route path='/test-qr' element={<Test />} />
       </Routes>
       <BottomNavigationBar />
     </Box>
