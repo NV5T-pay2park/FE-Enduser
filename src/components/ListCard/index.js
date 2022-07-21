@@ -10,6 +10,7 @@ import Paper from '@mui/material/Paper';
 import Card from '../Card/index';
 import PaperCard from '../PaperCard';
 import { useNavigate } from 'react-router-dom';
+import ParkingCard from '../Card/ParkingCard';
 
 ListCard.propTypes = {
     list: PropTypes.array,
@@ -37,7 +38,8 @@ function ListCard({ list }) {
 
 
                             <ListItemButton onClick={() => navigate('/search/detail/:' + value.id)}>
-                                <Card value={value} ></Card>
+                                {/* <Card value={value} ></Card> */}
+                                <ParkingCard value={value}/>
                             </ListItemButton>
                         </ListItem>
                     )
