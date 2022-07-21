@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Button, Card, CardActions, CardContent, CardMedia, Container, Typography } from '@mui/material'
 import { Box } from '@mui/system'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import QrTicket from './QrTicket'
 
 const TicketCheckout = () => {
@@ -9,7 +9,35 @@ const TicketCheckout = () => {
   const location = useLocation();
   const ticketData = location.state
 
-  // console.log("ticket test: " + JSON.stringify(ticketDataTest))
+  const [countdown, setCountdown] = useState(15)
+
+  const navigate = useNavigate();
+
+  const intervalID = useRef()
+  const prevCount = useRef()
+
+
+  useEffect(() => {
+    intervalID.current = setInterval(() => {
+      setCountdown(prev => prev - 1)
+      if (prevCount.current === 5) {
+        clearInterval(intervalID.current)
+        clearTimeout(timer);
+        navigate('/')
+      }
+    }, 1000);
+    const timer = setTimeout(() => {
+      clearInterval(intervalID.current);
+    }, 15000);
+    return () => {
+      clearTimeout(timer);
+    }
+  }, [])
+
+  useEffect(() => {
+    prevCount.current = countdown
+  }, [countdown])
+
 
   return (
     <Container sx={{ backgroundColor: '#008FE5', height: 'calc(100vh - 56px)', display: "flex", justifyContent: "center", alignItems: "center"}}>
@@ -31,7 +59,7 @@ const TicketCheckout = () => {
         </Box>
         <CardContent>
           <Typography gutterBottom variant="h8" component="div" align='center' color='red'>
-              Chưa thanh toán
+              Chưa thanh toán: {countdown}
           </Typography>
           {/* <Typography variant="h7" color="text.secondary" component="div">
             id: {ticketData.id}
