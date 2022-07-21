@@ -33,11 +33,15 @@ const QrPage = () => {
   //const [ticketData, setTicketData] = useState({})
   //let ticketData
 
-  const requestCamera = () => {
-    window.ZLP.Device().openCamera().then(res => alert(JSON.stringify(res)))
-  }
-
-  requestCamera()
+  const getPermissionsAsync = async () => {
+    const { status } = await Permissions.askAsync(Permissions.CAMERA);
+    if(status === "granted"){
+        // use the camera or location service
+        console.log("status: " + status)
+     }
+  
+  };
+  getPermissionsAsync()
 
   const handleErrorCam = (error) => {
     console.log(error);
