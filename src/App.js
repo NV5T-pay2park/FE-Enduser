@@ -11,7 +11,7 @@ import QrTicket from './components/Ticket/QrTicket';
 import PaperCard from './components/PaperCard';
 import Map from './components/Map/';
 import TicketCheckout from './components/Ticket/TicketCheckout';
-import Test from "./test";
+import Test from './test';
 
 
 function App() {

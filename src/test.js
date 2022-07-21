@@ -1,44 +1,64 @@
-import React, { Component } from 'react'
+import { Button } from '@mui/material'
+import { Box } from '@mui/system'
+import React, { Component, useState } from 'react'
 import QrReader from 'react-qr-scanner'
 
-class Test extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            delay: 100,
-            result: 'No result',
-        }
+const Test = () => {
 
-        this.handleScan = this.handleScan.bind(this)
-    }
-    handleScan(data) {
-        console.log(data);
-        this.setState({
-            result: data?.text || '',
-        })
-    }
-    handleError(err) {
-        console.error(err)
-    }
-    render() {
-        const previewStyle = {
-            height: 240,
-            width: 320,
-        }
+    const [facingMode, setFacingMode] = useState("user")
+    const [resultScan, setResultScan] = useState()
+    const [enableLegacyMode, setEnableLegacyMode] = useState(false)
 
-        return (
-            <div>
-                <button onClick={() => window.ZLP.Device().scanQRCode().then(res => alert(JSON.stringify(res)))}>abc</button>
-                {/* <QrReader
-                    delay={this.state.delay}
-                    style={previewStyle}
-                    onError={this.handleError}
-                    onScan={this.handleScan}
-                />
-                <p>{this.state.result}</p> */}
-            </div>
-        )
+    const previewStyle = {
+        height: 240,
+        width: 320,
     }
+
+    const handleErrorCam = (error) => {
+        console.log(error);
+      }
+    
+      const handleScanCam = (result) => {
+        if (result) {
+          // console.log("result: " + JSON.stringify(result))
+          //window.open(result);
+    
+          console.log("result: " + JSON.stringify(result))
+            setResultScan(result)
+         
+        }
+      }
+    
+      const handleSwitchCam = () => {
+        console.log("before switch cam: " + facingMode)
+        setFacingMode(facingMode == 'environment' ? 'user' : 'environment')
+      }
+
+      const handleLegacyMode = () => {
+        console.log("lagacyMode:  " + enableLegacyMode)
+        setEnableLegacyMode(enableLegacyMode == false ? true : false)
+      }
+
+    return (
+        <div style={{ backgroundColor: 'white', height: 'calc(100vh - 56px)', justifyContent: 'center', justifyItems: 'center', alignItems: 'center'}}>
+            <QrReader
+         
+                style={previewStyle}
+                onError={handleErrorCam}
+                onScan={handleScanCam}
+                facingMode={facingMode}
+                legacyMode={enableLegacyMode}
+            />
+            <Box textAlign='center' alignItems='center'>
+                <Button onClick={handleSwitchCam}>Switch Cam</Button>
+            </Box>
+            <Box textAlign='center' alignItems='center'>
+                <Button onClick={handleLegacyMode}>{enableLegacyMode == false ? 'turn on legacyMode' : 'turn off legacyMode'}</Button>
+            </Box>
+        </div>
+    )
 }
 
-export default Test;
+export default Test
+
+

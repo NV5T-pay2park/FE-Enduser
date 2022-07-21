@@ -100,7 +100,7 @@ const QrPage = () => {
         <Button onClick={handleSwitchCam}>Switch Cam</Button>
       </Box>
       <Box textAlign='center' alignItems='center'>
-        <Button onClick={() => navigate('/test-qr')}>TrucJ test other cam</Button>
+        <Button onClick={() => navigate('/test-qr')}>Test qr-scanner lib</Button>
       </Box>
     </div>
   )
