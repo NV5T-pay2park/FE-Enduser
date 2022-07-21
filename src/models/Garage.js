@@ -6,7 +6,7 @@
       capacity: 60,
       address: '280 Lê Hồng Phong, phường 7, quận 5',
       phone: '0274114118',
-      timeWorking: '9:00 - 22:00',
+      timeWorking: '4:00 - 23:30',
       discription: '',
     },
     {
@@ -16,7 +16,7 @@
       capacity: 60,
       address: '30 Lý Chính Thắng, phường 2, quận 3',
       phone: '0274114118',
-      timeWorking: '9:00 - 22:00',
+      timeWorking: '8:00 - 22:00',
       discription: '',
     },
     {
@@ -26,7 +26,7 @@
       capacity: 60,
       address: '11 Nguyễn Văn Linh, phường Bình Phương, quận 7',
       phone: '0274114118',
-      timeWorking: '9:00 - 22:00',
+      timeWorking: '7:00 - 17:00',
       discription: '',
     },
     {
@@ -36,7 +36,7 @@
       capacity: 60,
       address: '69 Phạm Văn Đồng, phường Linh Trung, quận Thủ Đức',
       phone: '0274114118',
-      timeWorking: '9:00 - 22:00',
+      timeWorking: '6:00 - 22:00',
       discription: '',
     },
     {

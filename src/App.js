@@ -12,6 +12,7 @@ import PaperCard from './components/PaperCard';
 import Map from './components/Map/';
 import TicketCheckout from './components/Ticket/TicketCheckout';
 import Test from './test';
+import ParkingDetail from './components/PaperCard/ParkingDetail';
 
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
         <Route path='/history' element={<HistoryTicketPage />} />
         <Route path='/mini' element={<TicketMini />} />
         <Route path='/qrimg' element={<QrTicket />} />
-        <Route path='/search/detail/:value' element={<PaperCard />} />
+        <Route path='/search/detail/:value' element={<ParkingDetail />} />
         <Route path='/googlemap/:value' element={<Map />} />
         <Route path='/ticket/checkout' element={<TicketCheckout />} />
         <Route path='/test-qr' element={<Test />} />
