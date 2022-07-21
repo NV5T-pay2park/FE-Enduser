@@ -1,7 +1,8 @@
 import { Button } from '@mui/material'
 import { Box } from '@mui/system'
 import React, { Component, useState } from 'react'
-import QrReader from 'react-qr-scanner'
+// import QrReader from 'react-qr-scanner'
+import QrReader from 'modern-react-qr-reader'
 
 const Test = () => {
 
@@ -42,8 +43,7 @@ const Test = () => {
     return (
         <div style={{ backgroundColor: 'white', height: 'calc(100vh - 56px)', justifyContent: 'center', justifyItems: 'center', alignItems: 'center'}}>
             <QrReader
-         
-                style={previewStyle}
+                style={{ width: '100%' }}
                 onError={handleErrorCam}
                 onScan={handleScanCam}
                 facingMode={facingMode}
