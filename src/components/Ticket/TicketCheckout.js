@@ -3,6 +3,7 @@ import { Button, Card, CardActions, CardContent, CardMedia, Container, Typograph
 import { Box } from '@mui/system'
 import { useLocation, useNavigate } from 'react-router-dom'
 import QrTicket from './QrTicket'
+import axios from 'axios'
 
 const TicketCheckout = () => {
 
@@ -14,23 +15,36 @@ const TicketCheckout = () => {
   const navigate = useNavigate();
 
   const intervalID = useRef()
+  const timeoutID = useRef()
   const prevCount = useRef()
 
+  const fetchPaymentCheckout = () => {
+    axios.get(`https://jsonplaceholder.typicode.com/posts/t`)
+    .then(res => {
+      const post = res.data;
+      console.log(post)
+      stopPingRequest()
+    })
+    .catch(error => console.log("err: " + error));
+  }
+
+  const stopPingRequest = () => {
+    clearInterval(intervalID.current)
+    clearTimeout(timeoutID.current);
+    navigate('/')
+  }
 
   useEffect(() => {
     intervalID.current = setInterval(() => {
+      fetchPaymentCheckout()                // ping request
       setCountdown(prev => prev - 1)
-      if (prevCount.current === 5) {
-        clearInterval(intervalID.current)
-        clearTimeout(timer);
-        navigate('/')
-      }
     }, 1000);
-    const timer = setTimeout(() => {
+    timeoutID.current = setTimeout(() => {
       clearInterval(intervalID.current);
+      navigate('/')
     }, 15000);
     return () => {
-      clearTimeout(timer);
+      clearTimeout(timeoutID.current);
     }
   }, [])
 
@@ -58,8 +72,8 @@ const TicketCheckout = () => {
           <QrTicket data={ticketData}/>
         </Box>
         <CardContent>
-          <Typography gutterBottom variant="h8" component="div" align='center' color='red'>
-              Chưa thanh toán: {countdown}
+          <Typography gutterBottom component="div" align='center' color='black' fontSize={12}>
+              Ẩn thông tin sau: {countdown}s
           </Typography>
           {/* <Typography variant="h7" color="text.secondary" component="div">
             id: {ticketData.id}
