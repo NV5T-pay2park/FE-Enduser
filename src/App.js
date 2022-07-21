@@ -21,7 +21,7 @@ function App() {
 
       <Routes>
         <Route path='/' element={<HomePage />} />
-        <Route path='/qr' element={<QrPage />} />
+        <Route path='/qr' element={<Test />} />
         <Route path='/search' element={<Search />} />
         <Route path='/history' element={<HistoryTicketPage />} />
         <Route path='/mini' element={<TicketMini />} />
