@@ -25,6 +25,7 @@ const UserPage = () => {
   const getUserZaloPayInfo2 = () => {
     if (window.ZaloPay.isZaloPay) {
       const info = window.ZaloPay.getUserInfo().then(result => {
+        setData(result)
         window.ZaloPay.showDialog({
           title: "User Info: ",
           message: "Inside User Info: " + JSON.stringify(result),
@@ -44,6 +45,7 @@ const UserPage = () => {
 
   const getUserZLPInfo = () => {
       const info = window.ZLP.User().getUserInfo()
+      setData(info)
       window.ZaloPay.showDialog({
         title: "User Info: ",
         message: "User Info: " + JSON.stringify(info),
@@ -54,6 +56,7 @@ const UserPage = () => {
 
   const getUserZLPInfo2 = () => {
     const info = window.ZLP.User().getUserInfo().then(value => { 
+      setData(value)
       window.ZaloPay.showDialog({
         title: "User Info: ",
         message: "Inside User Info: " + JSON.stringify(value),
@@ -67,6 +70,7 @@ const UserPage = () => {
 
   const getUserToken = () => {
     const info = window.ZLP.User().getOTToken().then(value => {
+      setData(value)
       window.ZaloPay.showDialog({
         title: "User Token: ",
         message: "Inside User Token: " + JSON.stringify(value),
@@ -87,7 +91,7 @@ const UserPage = () => {
         message: "QR response: " + JSON.stringify(value),
         button: "OK"
       });
-      setData(value)
+      // setData(value)
       return value 
     })
     // console.log("Info: " + JSON.stringify(info))
@@ -109,7 +113,7 @@ const UserPage = () => {
         message: "QR response: " + JSON.stringify(value),
         button: "OK"
       });
-      setData(value)
+      // setData(value)
       return value 
     })
     // console.log("Info: " + JSON.stringify(info))
@@ -122,6 +126,11 @@ const UserPage = () => {
     }
     const info = window.ZLP.Device().scanQRCode(param).then(value => {
       setData(value)
+      window.ZaloPay.showDialog({
+        title: "QR response",
+        message: "QR response: " + JSON.stringify(value),
+        button: "OK"
+      });
       return value 
     })
     // console.log("Info: " + JSON.stringify(info))
@@ -132,6 +141,11 @@ const UserPage = () => {
     const scanType = 'qrCode'
     const info = window.ZLP.Device().scanQRCode(needResult, scanType).then(value => {
       setData(value)
+      window.ZaloPay.showDialog({
+        title: "QR response",
+        message: "QR response: " + JSON.stringify(value),
+        button: "OK"
+      });
       return value 
     })
   }
