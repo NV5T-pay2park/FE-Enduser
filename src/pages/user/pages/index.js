@@ -27,7 +27,7 @@ const UserPage = () => {
       const info = window.ZaloPay.getUserInfo().then(result => {
         window.ZaloPay.showDialog({
           title: "User Info: ",
-          message: "Inside User Info: " + JSON.stringify(value),
+          message: "Inside User Info: " + JSON.stringify(result),
           button: "OK"
         });  
         return result
