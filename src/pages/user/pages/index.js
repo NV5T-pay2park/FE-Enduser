@@ -22,12 +22,59 @@ const UserPage = () => {
       }
   }
 
+  const getUserZaloPayInfo2 = () => {
+    if (window.ZaloPay.isZaloPay) {
+      const info = window.ZaloPay.getUserInfo().then(result => {return result})
+      window.ZaloPay.showDialog({
+        title: "User Info: ",
+        message: "User Info: " + JSON.stringify(info),
+        button: "OK"
+      });
+    } else {
+      console.log("isZaloPay2: " + window.ZaloPay.isZaloPay)
+    }
+}
+
+  const getUserZLPInfo = () => {
+      const info = window.ZLP.User().getUserInfo()
+      window.ZaloPay.showDialog({
+        title: "User Info: ",
+        message: "User Info: " + JSON.stringify(info),
+        button: "OK"
+      });
+      console.log("call ZLP.getUserInfo()")
+  }
+
+  const getUserZLPInfo2 = () => {
+    const info = window.ZLP.User().getUserInfo().then(value => { return value; })
+    window.ZaloPay.showDialog({
+      title: "User Info: ",
+      message: "User Info: " + JSON.stringify(info),
+      button: "OK"
+    });
+    console.log("call ZLP.getUserInfo()2")
+  }
+
+  const getUserToken = () => {
+    const info = window.ZLP.User().getOTToken().then(value => { return value; })
+    window.ZaloPay.showDialog({
+      title: "User Token: ",
+      message: "User Token: " + JSON.stringify(info),
+      button: "OK"
+    });
+    console.log("call ZLP.getUserToken()")
+  }
 
   return (
     <Container sx={{ backgroundColor: '#008FE5', height: 'calc(100vh - 56px)'}}>
 
         <Box>User</Box>
-        <Button onClick={getUserZaloPayInfo} variant="contained" color='secondary'>Get Info</Button>
+        <Button onClick={getUserZaloPayInfo} variant="contained" color='secondary'>ZaloPay.getUserInfo()</Button>
+        <Button onClick={getUserZaloPayInfo2} variant="contained" color='secondary'>ZaloPay.getUserInfo() with then</Button>
+
+        <Button onClick={getUserZLPInfo} variant="contained" color='secondary' sx={{marginTop: 1}}>ZLP.getUserInfo()</Button>
+        <Button onClick={getUserZLPInfo2} variant="contained" color='secondary' sx={{marginTop: 1}}>ZLP.getUserInfo() with then</Button>
+
 
     </Container>
   )
