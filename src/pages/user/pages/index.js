@@ -81,11 +81,48 @@ const UserPage = () => {
 
   const scanQR = () => {
     const info = window.ZLP.Device().scanQRCode({ needResult: 1, scanType: 'qrCode'}).then(value => {
+      setData(value)
       window.ZaloPay.showDialog({
         title: "QR response",
         message: "QR response: " + JSON.stringify(value),
         button: "OK"
       });
+      setData(value)
+      return value 
+    })
+    console.log("Info: " + JSON.stringify(info))
+  }
+
+  const scanQR2 = () => {
+    const info = window.ZLP.Device().scanQRCode({ needResult: 1, scanType: 'qrCode'}).then(value => {
+      setData(value)
+      return value 
+    })
+    console.log("Info: " + JSON.stringify(info))
+  }
+
+  const scanQR3 = () => {
+    const info = window.ZLP.Device().scanQRCode(1, 'qrCode').then(value => {
+      setData(value)
+      window.ZaloPay.showDialog({
+        title: "QR response",
+        message: "QR response: " + JSON.stringify(value),
+        button: "OK"
+      });
+      setData(value)
+      return value 
+    })
+    console.log("Info: " + JSON.stringify(info))
+  }
+
+  const scanQR4 = () => {
+    const param = {
+      needResult: 1,
+      scanType: 'qrCode'
+    }
+    const info = window.ZLP.Device().scanQRCode(param).then(value => {
+      setData(value)
+      
       setData(value)
       return value 
     })
@@ -104,6 +141,9 @@ const UserPage = () => {
         <Button onClick={getUserToken} variant="contained" color='secondary' sx={{marginTop: 1}}>ZLP.getUserToken() with then</Button>
 
         <Button onClick={scanQR} variant="contained" color='secondary' sx={{marginTop: 1}}>ScanQR</Button>
+        <Button onClick={scanQR2} variant="contained" color='secondary' sx={{marginTop: 1}}>ScanQR2</Button>
+        <Button onClick={scanQR3} variant="contained" color='secondary' sx={{marginTop: 1}}>ScanQR3</Button>
+        <Button onClick={scanQR4} variant="contained" color='secondary' sx={{marginTop: 1}}>ScanQR3</Button>
 
         <Box>{JSON.stringify(data)}</Box>        
 
