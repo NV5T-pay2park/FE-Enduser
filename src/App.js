@@ -14,6 +14,7 @@ import TicketCheckout from './components/Ticket/TicketCheckout';
 import Test from './test';
 import ParkingDetail from './components/PaperCard/ParkingDetail';
 import UserPages from './pages/user/pages';
+import Markers from './components/Map/markers';
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
         <Route path='/ticket/checkout' element={<TicketCheckout />} />
         <Route path='/test-qr' element={<Test />} />
         <Route path='/user' element={<UserPages />} />
+        <Route path='/markers' element={<Markers/>} />
       </Routes>
       <BottomNavigationBar />
     </Box>
