@@ -1,12 +1,12 @@
 import { Button } from '@mui/material'
 import { Box, Container } from '@mui/system'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { AppContext } from '../../../AppContext'
 
 const UserPage = () => {
 
   const context = useContext(AppContext)
-
+  const [data, setData] = useState({})
 
   // UserInfo: { access_token: string; display_name: string; id: string; phone?: number | string; zlp_id: string }
   const getUserZaloPayInfo = () => {
@@ -72,7 +72,7 @@ const UserPage = () => {
         message: "Inside User Token: " + JSON.stringify(value),
         button: "OK"
       });
-    
+      
       return value 
     })
 
@@ -86,7 +86,7 @@ const UserPage = () => {
         message: "QR response: " + JSON.stringify(value),
         button: "OK"
       });
-    
+      setData(value)
       return value 
     })
     console.log("Info: " + JSON.stringify(info))
@@ -105,7 +105,7 @@ const UserPage = () => {
 
         <Button onClick={scanQR} variant="contained" color='secondary' sx={{marginTop: 1}}>ScanQR</Button>
 
-        
+        <Box>{JSON.stringify(data)}</Box>        
 
     </Container>
   )
