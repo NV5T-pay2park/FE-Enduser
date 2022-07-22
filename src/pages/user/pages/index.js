@@ -24,7 +24,14 @@ const UserPage = () => {
 
   const getUserZaloPayInfo2 = () => {
     if (window.ZaloPay.isZaloPay) {
-      const info = window.ZaloPay.getUserInfo().then(result => {return result})
+      const info = window.ZaloPay.getUserInfo().then(result => {
+        window.ZaloPay.showDialog({
+          title: "User Info: ",
+          message: "Inside User Info: " + JSON.stringify(value),
+          button: "OK"
+        });  
+        return result
+      })
       window.ZaloPay.showDialog({
         title: "User Info: ",
         message: "User Info: " + JSON.stringify(info),
@@ -46,7 +53,14 @@ const UserPage = () => {
   }
 
   const getUserZLPInfo2 = () => {
-    const info = window.ZLP.User().getUserInfo().then(value => { return value; })
+    const info = window.ZLP.User().getUserInfo().then(value => { 
+      window.ZaloPay.showDialog({
+        title: "User Info: ",
+        message: "Inside User Info: " + JSON.stringify(value),
+        button: "OK"
+      });  
+      return value; 
+    })
     window.ZaloPay.showDialog({
       title: "User Info: ",
       message: "User Info: " + JSON.stringify(info),
@@ -56,7 +70,15 @@ const UserPage = () => {
   }
 
   const getUserToken = () => {
-    const info = window.ZLP.User().getOTToken().then(value => { return value; })
+    const info = window.ZLP.User().getOTToken().then(value => {
+      window.ZaloPay.showDialog({
+        title: "User Token: ",
+        message: "Inside User Token: " + JSON.stringify(value),
+        button: "OK"
+      });
+    
+      return value 
+    })
     window.ZaloPay.showDialog({
       title: "User Token: ",
       message: "User Token: " + JSON.stringify(info),
@@ -74,6 +96,7 @@ const UserPage = () => {
 
         <Button onClick={getUserZLPInfo} variant="contained" color='secondary' sx={{marginTop: 1}}>ZLP.getUserInfo()</Button>
         <Button onClick={getUserZLPInfo2} variant="contained" color='secondary' sx={{marginTop: 1}}>ZLP.getUserInfo() with then</Button>
+        <Button onClick={getUserToken} variant="contained" color='secondary' sx={{marginTop: 1}}>ZLP.getUserToken() with then</Button>
 
 
     </Container>
