@@ -6,7 +6,7 @@ import { AppContext } from '../../../AppContext'
 const UserPage = () => {
 
   const context = useContext(AppContext)
-  const [data, setData] = useState({})
+  const [data, setData] = useState({data: "nothing"})
 
   // UserInfo: { access_token: string; display_name: string; id: string; phone?: number | string; zlp_id: string }
   const getUserZaloPayInfo = () => {
@@ -122,11 +122,20 @@ const UserPage = () => {
     }
     const info = window.ZLP.Device().scanQRCode(param).then(value => {
       setData(value)
-      
-      setData(value)
       return value 
     })
     console.log("Info: " + JSON.stringify(info))
+  }
+
+  const scanQR5 = () => {
+    const needResult = 1
+    const scanType = 'qrCode'
+    
+    const info = window.ZLP.Device().scanQRCode(needResult, scanType).then(value => {
+      setData(value)
+      return value 
+    })
+    
   }
 
   return (
@@ -143,8 +152,10 @@ const UserPage = () => {
         <Button onClick={scanQR} variant="contained" color='secondary' sx={{marginTop: 1}}>ScanQR</Button>
         <Button onClick={scanQR2} variant="contained" color='secondary' sx={{marginTop: 1}}>ScanQR2</Button>
         <Button onClick={scanQR3} variant="contained" color='secondary' sx={{marginTop: 1}}>ScanQR3</Button>
-        <Button onClick={scanQR4} variant="contained" color='secondary' sx={{marginTop: 1}}>ScanQR3</Button>
+        <Button onClick={scanQR4} variant="contained" color='secondary' sx={{marginTop: 1}}>ScanQR4</Button>
+        <Button onClick={scanQR5} variant="contained" color='secondary' sx={{marginTop: 1}}>ScanQR5</Button>
 
+        <Button onClick={() => setData("hihi")}>Update value data</Button>
         <Box>{JSON.stringify(data)}</Box>        
 
     </Container>
