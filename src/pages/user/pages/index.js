@@ -32,11 +32,11 @@ const UserPage = () => {
         });  
         return result
       })
-      window.ZaloPay.showDialog({
-        title: "User Info: ",
-        message: "User Info: " + JSON.stringify(info),
-        button: "OK"
-      });
+      // window.ZaloPay.showDialog({
+      //   title: "User Info: ",
+      //   message: "User Info: " + JSON.stringify(info),
+      //   button: "OK"
+      // });
     } else {
       console.log("isZaloPay2: " + window.ZaloPay.isZaloPay)
     }
@@ -61,11 +61,11 @@ const UserPage = () => {
       });  
       return value; 
     })
-    window.ZaloPay.showDialog({
-      title: "User Info: ",
-      message: "User Info: " + JSON.stringify(info),
-      button: "OK"
-    });
+    // window.ZaloPay.showDialog({
+    //   title: "User Info: ",
+    //   message: "User Info: " + JSON.stringify(info),
+    //   button: "OK"
+    // });
     console.log("call ZLP.getUserInfo()2")
   }
 
@@ -79,11 +79,11 @@ const UserPage = () => {
     
       return value 
     })
-    window.ZaloPay.showDialog({
-      title: "User Token: ",
-      message: "User Token: " + JSON.stringify(info),
-      button: "OK"
-    });
+    // window.ZaloPay.showDialog({
+    //   title: "User Token: ",
+    //   message: "User Token: " + JSON.stringify(info),
+    //   button: "OK"
+    // });
     console.log("call ZLP.getUserToken()")
   }
 
