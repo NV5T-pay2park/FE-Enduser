@@ -1,5 +1,6 @@
-import React from 'react'
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import {React, useState} from 'react'
+import { DirectionsRenderer, DirectionsService, GoogleMap, LoadScript} from '@react-google-maps/api';
+
 
 const containerStyle = {
   width: '100%',
@@ -7,40 +8,51 @@ const containerStyle = {
 };
 
 const center = {
-  lat: 10.757769,
-  lng: 106.746053
+  lat: 10.75766401459632,
+   lng:106.74603203425715
 };
 
+const destination = {
+  lat: 10.739992847744777, 
+  lng: 106.72301089610434
+}
+
 function Map() {
-  const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: "AIzaSyCuIMJTEeifSs3ISPf2WOCsoiMjsuurP5w"
-  })
 
-  const [map, setMap] = React.useState(null)
+  var [direction, setDirection] = useState(null);
 
-  const onLoad = React.useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds(center);
-    map.fitBounds(bounds);
-    setMap(map)
-  }, [])
+  const Direction = (response) => {
+      if (response != null) {
+        setDirection(response);
+      }
+  }
 
-  const onUnmount = React.useCallback(function callback(map) {
-    setMap(null)
-  }, [])
-
-  return isLoaded ? (
+  
+  return ( 
+  <LoadScript
+      googleMapsApiKey="AIzaSyCuIMJTEeifSs3ISPf2WOCsoiMjsuurP5w"
+    >
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={8}
-        onLoad={onLoad}
-        onUnmount={onUnmount}
+        zoom={16}
       >
-        { /* Child components, such as markers, info windows, etc. */ }
-        <></>
+        <DirectionsService
+          options={{ 
+                destination: destination,
+                origin: center ,
+                travelMode: 'DRIVING'
+          }}
+          callback={Direction}
+        />
+      
+        <DirectionsRenderer
+          options={{ 
+              directions: direction
+          }}
+        />
       </GoogleMap>
-  ) : <></>
+    </LoadScript>)
 }
 
-export default React.memo(Map);
+export default Map;
