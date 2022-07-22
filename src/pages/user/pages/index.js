@@ -49,7 +49,7 @@ const UserPage = () => {
         message: "User Info: " + JSON.stringify(info),
         button: "OK"
       });
-      console.log("call ZLP.getUserInfo()")
+      // console.log("call ZLP.getUserInfo()")
   }
 
   const getUserZLPInfo2 = () => {
@@ -62,7 +62,7 @@ const UserPage = () => {
       return value; 
     })
 
-    console.log("call ZLP.getUserInfo()2")
+    // console.log("call ZLP.getUserInfo()2")
   }
 
   const getUserToken = () => {
@@ -76,11 +76,11 @@ const UserPage = () => {
       return value 
     })
 
-    console.log("call ZLP.getUserToken()")
+    // console.log("call ZLP.getUserToken()")
   }
 
   const scanQR = () => {
-    const info = window.ZLP.Device().scanQRCode({ needResult: 1, scanType: 'qrCode'}).then(value => {
+    const info = window.ZLP.Device().scanQRCode({ "needResult": 1, "scanType": 'qrCode'}).then(value => {
       setData(value)
       window.ZaloPay.showDialog({
         title: "QR response",
@@ -90,15 +90,15 @@ const UserPage = () => {
       setData(value)
       return value 
     })
-    console.log("Info: " + JSON.stringify(info))
+    // console.log("Info: " + JSON.stringify(info))
   }
 
   const scanQR2 = () => {
-    const info = window.ZLP.Device().scanQRCode({ needResult: 1, scanType: 'qrCode'}).then(value => {
+    const info = window.ZLP.Device().scanQRCode({ "needResult": 1, "scanType": 'qrCode'}).then(value => {
       setData(value)
       return value 
     })
-    console.log("Info: " + JSON.stringify(info))
+    // console.log("Info: " + JSON.stringify(info))
   }
 
   const scanQR3 = () => {
@@ -112,7 +112,7 @@ const UserPage = () => {
       setData(value)
       return value 
     })
-    console.log("Info: " + JSON.stringify(info))
+    // console.log("Info: " + JSON.stringify(info))
   }
 
   const scanQR4 = () => {
@@ -124,18 +124,16 @@ const UserPage = () => {
       setData(value)
       return value 
     })
-    console.log("Info: " + JSON.stringify(info))
+    // console.log("Info: " + JSON.stringify(info))
   }
 
   const scanQR5 = () => {
     const needResult = 1
     const scanType = 'qrCode'
-    
     const info = window.ZLP.Device().scanQRCode(needResult, scanType).then(value => {
       setData(value)
       return value 
     })
-    
   }
 
   return (
