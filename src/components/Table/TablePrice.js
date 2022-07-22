@@ -201,7 +201,7 @@ export default function TablePrice() {
           },
           {
             width: 120,
-            label: 'Trên 8h tiếp theo',
+            label: 'trên 8h',
             dataKey: 'carbs',
             numeric: true,
           },

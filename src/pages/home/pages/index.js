@@ -21,16 +21,10 @@ const HomePage = () => {
 
   const context = useContext(AppContext)
   const navigate = useNavigate()
-  const [isFirstTime, setIsFirstTime] = useState(true)
+  const isFirstTime = useRef(true)
 
   useLayoutEffect(() => {
-    console.log("call fetch data in home")
-    // fetch('https://jsonplaceholder.typicode.com/users')
-    // .then(res => res.json())
-    // .then(posts => {
-    //   context.setTicketList(posts)
-    // })
-
+    isFirstTime.current = false
     const getTickets = async () => {
       if (window.ZaloPay.isZaloPay) {
         window.ZaloPay.showLoading();
@@ -43,7 +37,6 @@ const HomePage = () => {
       await context.setTicketList(data)
     }
     getTickets()
-    setIsFirstTime(false)
   }, [])
 
   const ticketElements = context.ticketList.map(ticket =><SwiperSlide key={ticket.id}><Ticket ticketData={ticket}/></SwiperSlide>)
@@ -60,12 +53,10 @@ const HomePage = () => {
           }}
           modules={[Pagination]}
         >
-          { isFirstTime ? emptyElement : context.ticketList.length <= 0 ?
+          { isFirstTime.current ? emptyElement : context.ticketList.length <= 0 ?
             notFoundElement :
             ticketElements
           }
-          
-          {/* {ticketElements} */}
         </Swiper>
         <Box textAlign='center' alignItems='center'>
             <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/history')}>Xem tất cả</Button>

@@ -8,7 +8,7 @@ import Paper from '@mui/material/Paper';
 import { useNavigate } from 'react-router-dom';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
-import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 import AssistantDirectionOutlinedIcon from '@mui/icons-material/AssistantDirectionOutlined';
 import TablePrice from '../Table/TablePrice';
 
@@ -27,22 +27,6 @@ function ParkingDetail() {
       break;
     }
 
-    function createData(name, calories, fat, carbs, protein) {
-      return { name, calories, fat, carbs, protein };
-    }
-    
-    const rows = [
-      createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-      createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-      createData('Eclair', 262, 16.0, 24, 6.0),
-      createData('Cupcake', 305, 3.7, 67, 4.3),
-      createData('Gingerbread', 356, 16.0, 49, 3.9),
-    ];
-    
-    
-    
-
-  
   const navigate = useNavigate();
   return (
     <Paper style={ {height: 'calc(100vh - 56px)', display: 'flex', justifyContent: 'center', backgroundColor: '#f6f7f8'}}>
@@ -63,18 +47,18 @@ function ParkingDetail() {
                 </Typography>
                 <Stack direction="row" marginTop={1}>
                   <LocationOnOutlinedIcon sx={{color: '#4286F6', marginRight: "12px"}}/>
-                  <Typography fontSize={14} component="div">{v.address}</Typography>
+                  <Typography fontSize={14} component="div" sx={{color: '#ACB3BA'}}>{v.address}</Typography>
                 </Stack>
                 <Stack direction="row" marginTop={1}>
                   <AccessTimeOutlinedIcon sx={{color: '#4286F6', marginRight: "12px"}}/>
                   <Typography fontSize={14} component="div">
-                      {v.status === "available" ? <text style={{color:'green'}}> Còn chỗ</text> : <text style={{color: 'red'}}> Hết chỗ</text> }
+                      {v.status === "available" ? <text style={{color:'green', fontWeight: 'bold'}}> Còn chỗ</text> : <text style={{color: 'red', fontWeight: 'bold'}}> Hết chỗ</text> }
                   </Typography>
-                  <Typography fontSize={14} component="div" marginLeft={1}>{v.timeWorking} giờ</Typography>
+                  <Typography fontSize={14} component="div" marginLeft={1} sx={{color: '#ACB3BA'}}>{v.timeWorking} giờ</Typography>
                 </Stack>
                 <Stack direction="row" marginTop={1}>
-                  <LocalPhoneIcon sx={{color: '#4286F6', marginRight: "12px"}}/>
-                  <Typography fontSize={14} component="div">{v.phone}</Typography>
+                  <LocalPhoneOutlinedIcon sx={{color: '#4286F6', marginRight: "12px"}}/>
+                  <Typography fontSize={14} component="div" sx={{color: '#ACB3BA'}}>{v.phone}</Typography>
                 </Stack>
                 {/* <Typography variant="h7" component="div" paragraph>
                   <b> Mô tả: </b> {v.discription}
