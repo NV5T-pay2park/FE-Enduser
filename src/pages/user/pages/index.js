@@ -61,11 +61,7 @@ const UserPage = () => {
       });  
       return value; 
     })
-    // window.ZaloPay.showDialog({
-    //   title: "User Info: ",
-    //   message: "User Info: " + JSON.stringify(info),
-    //   button: "OK"
-    // });
+
     console.log("call ZLP.getUserInfo()2")
   }
 
@@ -79,12 +75,21 @@ const UserPage = () => {
     
       return value 
     })
-    // window.ZaloPay.showDialog({
-    //   title: "User Token: ",
-    //   message: "User Token: " + JSON.stringify(info),
-    //   button: "OK"
-    // });
+
     console.log("call ZLP.getUserToken()")
+  }
+
+  const scanQR = () => {
+    const info = window.ZLP.Device().scanQRCode({ needResult: 1, scanType: 'qrCode'}).then(value => {
+      window.ZaloPay.showDialog({
+        title: "QR response",
+        message: "QR response: " + JSON.stringify(value),
+        button: "OK"
+      });
+    
+      return value 
+    })
+    console.log("Info: " + JSON.stringify(info))
   }
 
   return (
@@ -98,6 +103,9 @@ const UserPage = () => {
         <Button onClick={getUserZLPInfo2} variant="contained" color='secondary' sx={{marginTop: 1}}>ZLP.getUserInfo() with then</Button>
         <Button onClick={getUserToken} variant="contained" color='secondary' sx={{marginTop: 1}}>ZLP.getUserToken() with then</Button>
 
+        <Button onClick={scanQR} variant="contained" color='secondary' sx={{marginTop: 1}}>ScanQR</Button>
+
+        
 
     </Container>
   )
