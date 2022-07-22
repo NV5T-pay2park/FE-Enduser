@@ -13,8 +13,8 @@ const UserPage = () => {
       if (window.ZaloPay.isZaloPay) {
         const info = window.ZaloPay.getUserInfo()
         window.ZaloPay.showDialog({
-          title: "User Info: " + JSON.stringify(info),
-          message: `"Test"`,
+          title: "User Info: ",
+          message: "User Info: " + JSON.stringify(info),
           button: "OK"
         });
       } else {
