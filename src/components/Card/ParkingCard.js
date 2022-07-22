@@ -29,9 +29,9 @@ const ParkingCard = ({ value }) => {
     {/* sx={{ flex: '1 0 auto' }} */}   
         <Box sx={{padding: 0, height: 110}}>
             <CardContent sx={{padding: "1px"}}>
-                {value.status === "available" ? <Typography component="div" fontSize={13} color="#06BE04" fontWeight={"lightWeight"} marginTop={1}>
+                {value.status === "available" ? <Typography component="div" fontSize={12} color="#06BE04" fontWeight={"bold"} marginTop={1}>
                     Còn chỗ
-                </Typography> : <Typography component="div" fontSize={13} color="red" fontWeight={"lightWeight"} marginTop={1}>
+                </Typography> : <Typography component="div" fontSize={12} color="red" fontWeight={"bold"} marginTop={1}>
                     Hết chỗ
                 </Typography>}
                 <Typography fontSize={15} component="div" marginTop="1px" fontWeight={"bold"}>
