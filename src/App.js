@@ -13,6 +13,7 @@ import Map from './components/Map/';
 import TicketCheckout from './components/Ticket/TicketCheckout';
 import Test from './test';
 import ParkingDetail from './components/PaperCard/ParkingDetail';
+import UserPages from './pages/user/pages';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Route path='/googlemap/:value' element={<Map />} />
         <Route path='/ticket/checkout' element={<TicketCheckout />} />
         <Route path='/test-qr' element={<Test />} />
+        <Route path='/user' element={<UserPages />} />
       </Routes>
       <BottomNavigationBar />
     </Box>

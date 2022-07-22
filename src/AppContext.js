@@ -5,7 +5,8 @@ const AppContext = createContext()
 function AppProvider({children}) {
 
     const [ticketList, setTicketList] = useState([])
-    
+    const [userInfo, setUserInfo] = useState({})
+
     const insertTicket = (ticket) => {
         // setTicketList(prevList => [ticket, prevList])
         setTicketList(prevList => [ticket].concat(prevList))
@@ -15,6 +16,8 @@ function AppProvider({children}) {
         ticketList,
         setTicketList,
         insertTicket,
+        userInfo,
+        setUserInfo,
     }
 
     return (
