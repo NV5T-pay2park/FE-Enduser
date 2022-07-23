@@ -36,20 +36,23 @@ const QrPage = () => {
   const scanWithZaloPayQR = () => {
     if (window.ZaloPay.isZaloPay) {
       const info = window.ZLP.Device().scanQRCode({ "needResult": 1, "scanType": 'qrCode'}).then(value => {        
-        window.ZaloPay.showDialog({
-          title: "QR response",
-          message: "QR response: " + JSON.stringify(value),
-          button: "OK"
-        });
+        // window.ZaloPay.showDialog({
+        //   title: "QR response",
+        //   message: "QR response: " + JSON.stringify(value),
+        //   button: "OK"
+        // });
         return value 
       })
-      console("info")
-      console(info)
+      // console("info")
+      // console(info)
       setScanResult(info)
     }
   }
-  scanWithZaloPayQR()
+  
 
+  useEffect(() => {
+    scanWithZaloPayQR()
+  }, [scanResult])
 
 
   // const getPermissionsAsync = async () => {
