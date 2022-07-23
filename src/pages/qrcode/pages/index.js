@@ -33,15 +33,34 @@ const QrPage = () => {
   //const [ticketData, setTicketData] = useState({})
   //let ticketData
 
-  const getPermissionsAsync = async () => {
-    const { status } = await Permissions.askAsync(Permissions.CAMERA);
-    if(status === "granted"){
-        // use the camera or location service
-        console.log("status: " + status)
-     }
+  const scanWithZaloPayQR = () => {
+    if (window.ZaloPay.isZaloPay) {
+      const info = window.ZLP.Device().scanQRCode({ "needResult": 1, "scanType": 'qrCode'}).then(value => {        
+        window.ZaloPay.showDialog({
+          title: "QR response",
+          message: "QR response: " + JSON.stringify(value),
+          button: "OK"
+        });
+        return value 
+      })
+      console("info")
+      console(info)
+      setScanResult(info)
+    }
+  }
+  scanWithZaloPayQR()
+
+
+
+  // const getPermissionsAsync = async () => {
+  //   const { status } = await Permissions.askAsync(Permissions.CAMERA);
+  //   if(status === "granted"){
+  //       // use the camera or location service
+  //       console.log("status: " + status)
+  //    }
   
-  };
-  getPermissionsAsync()
+  // };
+  // getPermissionsAsync()
 
   const handleErrorCam = (error) => {
     console.log(error);
@@ -51,10 +70,12 @@ const QrPage = () => {
     if (result) {
       // console.log("result: " + JSON.stringify(result))
       //window.open(result);
-
+      console.log("result")
+      console.log(result)
       const json2 = '{"id": 100, "name": "Leanne Graham", "username": "Bret", "email": "Sincere@april.biz", "address": { "street": "Kulas Light", "suite": "Apt. 556", "city": "Gwenborough", "zipcode": "92998-3874", "geo": { "lat": "-37.3159", "lng": "81.1496" }}, "phone": "1-770-736-8031 x56442", "website": "hildegard.org", "company": { "name": "Romaguera-Crona", "catchPhrase": "Multi-layered client-server neural-net", "bs": "harness real-time e-markets"}}'
       const obj = JSON.parse(json2);
       let parkingId = obj.id
+      
       //setParkingId(obj.parkingId)
 
       if (parkingId !== undefined) {
@@ -106,6 +127,7 @@ const QrPage = () => {
       <Box textAlign='center' alignItems='center'>
         <Button onClick={() => navigate('/test-qr')}>Test qr-scanner lib</Button>
       </Box>
+      <Box>{JSON.stringify(scanResult)}</Box>        
     </div>
   )
 }
