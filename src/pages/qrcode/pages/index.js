@@ -52,7 +52,7 @@ const QrPage = () => {
 
   useEffect(() => {
     scanWithZaloPayQR()
-  }, [scanResult])
+  }, [])
 
 
   // const getPermissionsAsync = async () => {
