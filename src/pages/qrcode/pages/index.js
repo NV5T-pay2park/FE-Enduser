@@ -41,7 +41,7 @@ const QrPage = () => {
         //   message: "QR response: " + JSON.stringify(value),
         //   button: "OK"
         // });
-        setScanResult(info)
+        setScanResult(value)
 
         return value 
       })
