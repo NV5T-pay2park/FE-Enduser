@@ -43,12 +43,12 @@ const QrPage = () => {
         // });
         const scanObject = JSON.parse(value)
         let parkingId = scanObject.page
-        // setScanResult(parkingId)
-        // window.ZaloPay.showDialog({
-        //   title: "QR response",
-        //   message: "QR response: " + JSON.stringify(value),
-        //   button: "OK"
-        // });
+        setScanResult(parkingId)
+        window.ZaloPay.showDialog({
+          title: "QR response",
+          message: "QR response: " + JSON.stringify(scanObject) + "---id: " + parkingId + "raw: " + JSON.stringify(value),
+          button: "OK"
+        });
         if (parkingId !== undefined) {
           const json2 = '{"id": 100, "name": "Leanne Graham", "username": "Bret", "email": "Sincere@april.biz", "address": { "street": "Kulas Light", "suite": "Apt. 556", "city": "Gwenborough", "zipcode": "92998-3874", "geo": { "lat": "-37.3159", "lng": "81.1496" }}, "phone": "1-770-736-8031 x56442", "website": "hildegard.org", "company": { "name": "Romaguera-Crona", "catchPhrase": "Multi-layered client-server neural-net", "bs": "harness real-time e-markets"}}'
           const obj = JSON.parse(json2);
