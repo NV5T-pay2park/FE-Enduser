@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext, useLayoutEffect, useRef } from 'react'
 import { useState, useEffect } from 'react';
 // import { QrReader } from 'react-qr-reader';
 import { useNavigate } from 'react-router-dom';
@@ -73,7 +73,7 @@ const QrPage = () => {
   }
   
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     scanWithZaloPayQR()
 
   }, [])
@@ -132,6 +132,26 @@ const QrPage = () => {
     setFacingMode(facingMode == 'environment' ? 'user' : 'environment')
   }
 
+  const showManualQr = () => {
+    return (
+      <div>
+          <QrReader
+              delay={300}
+              onError={handleErrorCam}
+              onScan={handleScanCam}
+              style={{ width: '100%' }}
+              facingMode={facingMode}
+              />
+          <Box textAlign='center' alignItems='center'>
+            <Button onClick={handleSwitchCam}>Switch Cam</Button>
+          </Box>
+          <Box textAlign='center' alignItems='center'>
+            <Button onClick={() => navigate('/test-qr')}>Test qr-scanner lib</Button>
+          </Box>
+          <Box>{JSON.stringify(scanResult)}</Box>     
+      </div>
+    )
+  }
 
   return (
     <div style={{ backgroundColor: 'white', height: 'calc(100vh - 56px)', justifyContent: 'center', justifyItems: 'center', alignItems: 'center'}}>
@@ -139,7 +159,9 @@ const QrPage = () => {
       {/* <QrReader facingMode={facingMode} delay={1000} style={{ width: '100%', height: '100%', backgroundColor: 'white' }} onError={handleErrorCam} onResult={handleScanCam}></QrReader> */}
       
       { /* test qr-camet */ }
-      <QrReader
+      
+      {!window.ZaloPay.isZaloPay ? showManualQr() : () => {navigate('/')}}
+      {/* <QrReader
           delay={300}
           onError={handleErrorCam}
           onScan={handleScanCam}
@@ -154,7 +176,7 @@ const QrPage = () => {
       <Box textAlign='center' alignItems='center'>
         <Button onClick={() => navigate('/test-qr')}>Test qr-scanner lib</Button>
       </Box>
-      <Box>{JSON.stringify(scanResult)}</Box>        
+      <Box>{JSON.stringify(scanResult)}</Box>         */}
     </div>
   )
 }
