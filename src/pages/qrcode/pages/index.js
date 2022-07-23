@@ -43,10 +43,10 @@ const QrPage = () => {
         // });
         const scanObject = JSON.parse(value)
         let parkingId = scanObject.page
-        setScanResult(parkingId)
+        // setScanResult(parkingId)
         window.ZaloPay.showDialog({
           title: "QR response",
-          message: "QR response: " + JSON.stringify(scanObject) + "---id: " + parkingId + "raw: " + JSON.stringify(value),
+          message: "QR response: " + JSON.stringify(scanObject) + "---id: " + parkingId + "---raw: " + JSON.stringify(value),
           button: "OK"
         });
         if (parkingId !== undefined) {
