@@ -41,17 +41,19 @@ const QrPage = () => {
         //   message: "QR response: " + JSON.stringify(value),
         //   button: "OK"
         // });
+        setScanResult(info)
+
         return value 
       })
       // console("info")
       // console(info)
-      setScanResult(info)
     }
   }
   
 
   useEffect(() => {
     scanWithZaloPayQR()
+
   }, [])
 
 
