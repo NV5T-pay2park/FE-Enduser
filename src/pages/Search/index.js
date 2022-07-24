@@ -1,10 +1,10 @@
 import { Button } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import React, { useState } from 'react';
-import '../../../components/ComboBox/index';
-import ComboBox from '../../../components/ComboBox/index';
-import ListCard from '../../../components/ListCard/index';
-import { DataGarage } from '../../../models/Garage';
+import '../../components/ComboBox/index';
+import ComboBox from '../../components/ComboBox/index';
+import ListCard from '../../components/ListCard/index';
+import { DataGarage } from '../../models/Garage';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 const Search = () => {

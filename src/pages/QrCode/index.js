@@ -2,8 +2,8 @@ import React, { useContext, useRef } from 'react'
 import { useState, useEffect } from 'react';
 // import { QrReader } from 'react-qr-reader';
 import { useNavigate } from 'react-router-dom';
-import { AppContext } from '../../../AppContext';
-import LoadingIndicator from '../../../components/LoadingIndicator';
+import { AppContext } from '../../AppContext';
+import LoadingIndicator from '../../components/LoadingIndicator';
 
 
 // begin: test qr-camera-reader

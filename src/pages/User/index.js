@@ -1,7 +1,7 @@
 import { Button } from '@mui/material'
 import { Box, Container } from '@mui/system'
 import React, { useContext, useState } from 'react'
-import { AppContext } from '../../../AppContext'
+import { AppContext } from '../../AppContext'
 
 const UserPage = () => {
 

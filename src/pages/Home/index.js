@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useLayoutEffect, } from 'react'
-import Ticket from '../../../components/Ticket/Ticket'
+import Ticket from '../../features/Tickets/Ticket';
 import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -13,8 +13,8 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper";
 import { Box, Button, Container, Grid, Typography } from '@mui/material';
 import styles from './style.css';
-import { AppContext } from '../../../AppContext';
-import NotFoundCard from '../../../components/notFoundCard';
+import { AppContext } from '../../AppContext';
+import NotFoundCard from '../../components/NotFoundCard';
 import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {

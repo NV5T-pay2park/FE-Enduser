@@ -1,10 +1,7 @@
-import { Box, makeStyles, Tab } from '@mui/material'
 import { TabContext, TabList, TabPanel } from '@mui/lab'
-import React from 'react'
-import { useState } from 'react'
-import Ticket from '../../../components/Ticket/Ticket'
-import ListTicket from '../../../components/Ticket/ListTicket'
-import { calculateNewValue } from '@testing-library/user-event/dist/utils'
+import { Box, Tab } from '@mui/material'
+import React, { useState } from 'react'
+import ListTicket from '../../features/Tickets/ListTicket'
 
 const HistoryTicketPage = () => {
   const [value, setValue] = useState('1');
