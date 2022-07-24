@@ -52,7 +52,7 @@ const QrPage = () => {
         if (parkingId !== undefined) {
           const json2 = '{"id": 100, "name": "Leanne Graham", "username": "Bret", "email": "Sincere@april.biz", "address": { "street": "Kulas Light", "suite": "Apt. 556", "city": "Gwenborough", "zipcode": "92998-3874", "geo": { "lat": "-37.3159", "lng": "81.1496" }}, "phone": "1-770-736-8031 x56442", "website": "hildegard.org", "company": { "name": "Romaguera-Crona", "catchPhrase": "Multi-layered client-server neural-net", "bs": "harness real-time e-markets"}}'
           const obj = JSON.parse(json2);
-          setShowLoading(true)
+ 
         
       
           const headers = { 'Content-Type': 'application/json' }
@@ -60,7 +60,7 @@ const QrPage = () => {
               .then(response => response.json())
               .then(data => {
                 let ticketData = obj
-                setShowLoading(true)
+              
                 context.insertTicket(ticketData)
                 
                 navigate('/')
@@ -73,10 +73,10 @@ const QrPage = () => {
   }
   
 
-  useLayoutEffect(() => {
-    scanWithZaloPayQR()
+  // useLayoutEffect(() => {
+  //   scanWithZaloPayQR()
 
-  }, [])
+  // }, [])
 
 
   // const getPermissionsAsync = async () => {
