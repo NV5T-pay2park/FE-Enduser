@@ -46,7 +46,7 @@ const HomePage = () => {
         }
         await context.setTicketList(mockData.data)
       }catch(err){
-        console.error(err);
+        console.error("error: " + err);
         if (window.ZaloPay.isZaloPay) {
           window.ZaloPay.hideLoading();
         }
