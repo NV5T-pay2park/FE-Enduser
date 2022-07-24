@@ -8,7 +8,6 @@ import Avatar from '@mui/material/Avatar';
 import ListItem from '@mui/material/ListItem';
 import Paper from '@mui/material/Paper';
 import Card from '../Card/index';
-import PaperCard from '../PaperCard';
 import { useNavigate } from 'react-router-dom';
 import ParkingCard from '../Card/ParkingCard';
 
@@ -35,8 +34,6 @@ function ListCard({ list }) {
                         <ListItem key={value.id}
                             disablePadding
                         >
-
-
                             <ListItemButton onClick={() => navigate('/search/detail/:' + value.id)}>
                                 {/* <Card value={value} ></Card> */}
                                 <ParkingCard value={value}/>
