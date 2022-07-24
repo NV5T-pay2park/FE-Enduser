@@ -52,7 +52,7 @@ const HomePage = () => {
         }
         await context.setTicketList([])
       }
-      // const apiResponseData = await fetch('http://localhost:8080/api/getTicketByEndUserId?endUserID=7')
+      // const apiResponseData = await fetch(Constant.SERVER_BASE_URL + '/api/getTicketByEndUserId?endUserID=7')
       // const ticketListDataJSON = await apiResponseData.json()
       // const ticketListData = ticketListDataJSON.data
       // console.log("home api response: ")
