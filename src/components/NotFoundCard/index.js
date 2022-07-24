@@ -1,10 +1,48 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material'
 import { Box } from '@mui/system'
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { AppContext } from '../../AppContext'
+
+const mockData = {"status":"OK","message":"Success","data":[{"id":18,"checkInTime":"2022-07-18T07:27:48Z","checkOutTime":null,"licensePlates":"77C1-44094","vehicleType":{"id":1,"vehicleTypeName":"Xe máy","hibernateLazyInitializer":{}},"endUser":{"id":2,"firstName":"Partypooper009","lastName":"throwaway217217","gender":0,"phone":"0790529870","email":"throwaway217217@gmail.com"},"parkingLot":{"id":6,"parkingLotName":"Hiệp Phú","numberSlot":101,"numberSlotRemaining":101,"address":"Bình Chiểu, Thành phố Thủ Đức, TPHCM","status":0,"merchant":{"id":1,"name":"Thành phố Thủ Đức","represent":"Lee4an","email":"Lee4an@gmail.com","phone":"0906094163","hibernateLazyInitializer":{}},"lat":10.884166717529297,"ing":106.73027801513672,"timeOpen":5,"timeClose":22,"phoneNumber":"982347126","hibernateLazyInitializer":{}}},{"id":25,"checkInTime":"2022-07-24T17:03:51Z","checkOutTime":null,"licensePlates":"77C1-67567","vehicleType":{"id":1,"vehicleTypeName":"Xe máy","hibernateLazyInitializer":{}},"endUser":{"id":2,"firstName":"Partypooper009","lastName":"throwaway217217","gender":0,"phone":"0790529870","email":"throwaway217217@gmail.com"},"parkingLot":{"id":4,"parkingLotName":"Bến Nghé","numberSlot":71,"numberSlotRemaining":71,"address":"Linh Trung, Thành phố Thủ Đức, TPHCM","status":0,"merchant":{"id":1,"name":"Thành phố Thủ Đức","represent":"Lee4an","email":"Lee4an@gmail.com","phone":"0906094163","hibernateLazyInitializer":{}},"lat":10.86388874053955,"ing":106.78277587890625,"timeOpen":5,"timeClose":22,"phoneNumber":"982347126","hibernateLazyInitializer":{}}}]}
+
 const NotFoundCard = () => {
 
-const navigate = useNavigate();
+  const navigate = useNavigate();
+  const context = useContext(AppContext);
+
+  const scanWithZaloPayQR = () => {
+    if (window.ZaloPay.isZaloPay) {
+      const info = window.ZLP.Device().scanQRCode({ "needResult": 1, "scanType": 'qrCode'}).then(value => {        
+        let parkingId = value.page
+        window.ZaloPay.showDialog({
+          title: "QR response",
+          message: "QR response: " + "---id: " + parkingId + "---raw: " + JSON.stringify(value),
+          button: "OK"
+        });
+        if (parkingId !== undefined) {
+          const json2 = '{"id": 100, "name": "Leanne Graham", "username": "Bret", "email": "Sincere@april.biz", "address": { "street": "Kulas Light", "suite": "Apt. 556", "city": "Gwenborough", "zipcode": "92998-3874", "geo": { "lat": "-37.3159", "lng": "81.1496" }}, "phone": "1-770-736-8031 x56442", "website": "hildegard.org", "company": { "name": "Romaguera-Crona", "catchPhrase": "Multi-layered client-server neural-net", "bs": "harness real-time e-markets"}}'
+          const obj = JSON.parse(json2);
+          window.ZaloPay.showLoading()
+        
+      
+          const headers = { 'Content-Type': 'application/json' }
+          fetch('https://jsonplaceholder.typicode.com/posts/1', { headers })
+              .then(response => response.json())
+              .then(data => {
+                let ticketData = obj
+                window.ZaloPay.hideLoading()
+                //context.insertTicket(ticketData)
+                context.insertTicket(mockData.data)
+                navigate('/')
+              })
+        }
+        return value 
+      })
+    } else {
+      navigate('/qr')
+    }
+  }
 
   return (
     <Card sx={{ maxWidth: '80vw', height: '70vh', marginTop: '0px', borderRadius: '20px', minWidth: '80vw' }} variant="outlined">
@@ -28,7 +66,7 @@ const navigate = useNavigate();
       <Typography sx={{fontSize: 13}} color="text.secondary" component="div">
         Quét mã checkin để gửi xe
       </Typography>
-      <Button onClick={() => {navigate('/qr')}} align='center' variant="contained" fullWidth="true" sx={{backgroundColor: '#008fe5', maxWidth: 290, marginTop: 10}}>Quét mã QR</Button>
+      <Button onClick={scanWithZaloPayQR} align='center' variant="contained" fullWidth="true" sx={{backgroundColor: '#008fe5', maxWidth: 290, marginTop: 10}}>Quét mã QR</Button>
     </CardContent>
   </Card>
   )

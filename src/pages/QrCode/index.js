@@ -14,7 +14,7 @@ import { Box } from '@mui/system';
 
 
 // end: test qr-camera-reader
-
+const mockNewTicket = {"id":101,"checkInTime":"2022-07-18T07:27:48Z","checkOutTime":null,"licensePlates":"77C1-44094","vehicleType":{"id":1,"vehicleTypeName":"Xe máy","hibernateLazyInitializer":{}},"endUser":{"id":2,"firstName":"Partypooper009","lastName":"throwaway217217","gender":0,"phone":"0790529870","email":"throwaway217217@gmail.com"},"parkingLot":{"id":6,"parkingLotName":"Hiệp Phú","numberSlot":101,"numberSlotRemaining":101,"address":"Bình Chiểu, Thành phố Thủ Đức, TPHCM","status":0,"merchant":{"id":1,"name":"Thành phố Thủ Đức","represent":"Lee4an","email":"Lee4an@gmail.com","phone":"0906094163","hibernateLazyInitializer":{}},"lat":10.884166717529297,"ing":106.73027801513672,"timeOpen":5,"timeClose":22,"phoneNumber":"982347126","hibernateLazyInitializer":{}}}
 
 const QrPage = () => {
 
@@ -61,7 +61,7 @@ const QrPage = () => {
               .then(data => {
                 let ticketData = obj
               
-                context.insertTicket(ticketData)
+                context.insertTicket(mockNewTicket)
                 
                 navigate('/')
               })
@@ -115,7 +115,7 @@ const QrPage = () => {
             .then(data => {
               let ticketData = obj
               setShowLoading(true)
-              context.insertTicket(ticketData)
+              context.insertTicket(mockNewTicket)
               
               navigate('/')
             })

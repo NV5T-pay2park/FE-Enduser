@@ -44,6 +44,7 @@ const TicketCheckout = () => {
       navigate('/')
     }, 15000);
     return () => {
+      clearInterval(intervalID.current)
       clearTimeout(timeoutID.current);
     }
   }, [])
