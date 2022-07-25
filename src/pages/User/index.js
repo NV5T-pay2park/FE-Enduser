@@ -105,20 +105,6 @@ const UserPage = () => {
     // console.log("Info: " + JSON.stringify(info))
   }
 
-  const scanQR3 = () => {
-    const info = window.ZLP.Device().scanQRCode(1, 'qrCode').then(value => {
-      setData(value)
-      window.ZaloPay.showDialog({
-        title: "QR response",
-        message: "QR response: " + JSON.stringify(value),
-        button: "OK"
-      });
-      // setData(value)
-      return value 
-    })
-    // console.log("Info: " + JSON.stringify(info))
-  }
-
   const scanQR4 = () => {
     const param = {
       needResult: 1,
@@ -136,39 +122,106 @@ const UserPage = () => {
     // console.log("Info: " + JSON.stringify(info))
   }
 
-  const scanQR5 = () => {
-    const needResult = 1
-    const scanType = 'qrCode'
-    const info = window.ZLP.Device().scanQRCode(needResult, scanType).then(value => {
+
+  // get app info
+  const getAppZaloPayInfo = () => {
+    if (window.ZaloPay.isZaloPay) {
+      setData(window.ZaloPay.getAppZaloPayInfo)
+    } else {
+      setData("called getAppUserInfo")
+    }
+
+    // console.log("call ZLP.getUserInfo()2")
+  }
+
+  const getUserZalPayInfo2 = () => {
+    const info = window.ZaloPay.getUserInfo().then(value => { 
       setData(value)
       window.ZaloPay.showDialog({
-        title: "QR response",
-        message: "QR response: " + JSON.stringify(value),
+        title: "User Info: ",
+        message: "ZaloPay User Info: " + JSON.stringify(value),
         button: "OK"
-      });
-      return value 
+      });  
+      return value; 
     })
+
+    // console.log("call ZLP.getUserInfo()2")
   }
+
+  const getUserZPIinfo3 = () => {
+    const info = window.ZPI_ZPA_SDK.getProfile().then(value => { 
+      setData(value)
+      window.ZaloPay.showDialog({
+        title: "User Info: ",
+        message: "ZaloPay User Info: " + JSON.stringify(value),
+        button: "OK"
+      });  
+      return value; 
+    })
+
+    // console.log("call ZLP.getUserInfo()2")
+  }
+
+
+
+  // test order
+  const ZlpPayOrder = () => {
+    const zpTransToken = "22072500000075601sNQ8o"
+    const info = window.ZLP.Payment(zpTransToken).payOrder().then(value => { 
+      setData(value)
+      window.ZaloPay.showDialog({
+        title: "User Info: ",
+        message: "ZaloPay User Info: " + JSON.stringify(value),
+        button: "OK"
+      });  
+      return value; 
+    })
+
+    // console.log("call ZLP.getUserInfo()2")
+  }
+
+  const ZlpPayOrderV2 = () => {
+    const zpTransToken = "22072500000075601sNQ8o"
+    const info = window.ZLP.Payment(zpTransToken).payOrderV2().then(value => { 
+      setData(value)
+      window.ZaloPay.showDialog({
+        title: "User Info: ",
+        message: "ZaloPay User Info: " + JSON.stringify(value),
+        button: "OK"
+      });  
+      return value; 
+    })
+
+    // console.log("call ZLP.getUserInfo()2")
+  }
+
 
   return (
     <Container sx={{ backgroundColor: '#008FE5', height: 'calc(100vh - 56px)'}}>
 
         <Box>User</Box>
-        <Button onClick={getUserZaloPayInfo} variant="contained" color='secondary'>ZaloPay.getUserInfo()</Button>
-        <Button onClick={getUserZaloPayInfo2} variant="contained" color='secondary'>ZaloPay.getUserInfo() with then</Button>
-
         <Button onClick={getUserZLPInfo} variant="contained" color='secondary' sx={{marginTop: 1}}>ZLP.getUserInfo()</Button>
         <Button onClick={getUserZLPInfo2} variant="contained" color='secondary' sx={{marginTop: 1}}>ZLP.getUserInfo() with then</Button>
         <Button onClick={getUserToken} variant="contained" color='secondary' sx={{marginTop: 1}}>ZLP.getUserToken() with then</Button>
 
         <Button onClick={scanQR} variant="contained" color='secondary' sx={{marginTop: 1}}>ScanQR</Button>
         <Button onClick={scanQR2} variant="contained" color='secondary' sx={{marginTop: 1}}>ScanQR2</Button>
-        <Button onClick={scanQR3} variant="contained" color='secondary' sx={{marginTop: 1}}>ScanQR3</Button>
         <Button onClick={scanQR4} variant="contained" color='secondary' sx={{marginTop: 1}}>ScanQR4</Button>
-        <Button onClick={scanQR5} variant="contained" color='secondary' sx={{marginTop: 1}}>ScanQR5</Button>
+
+        <Box>test get app info</Box>
+        <Button onClick={getAppZaloPayInfo} variant="contained" color='secondary' sx={{marginTop: 1}}>getAppZaloPayInfo</Button>
+        <Button onClick={getUserZalPayInfo2} variant="contained" color='secondary' sx={{marginTop: 1}}>getUserZalPayInfo2</Button>
+        <Button onClick={getUserZPIinfo3} variant="contained" color='secondary' sx={{marginTop: 1}}>getUserZPIinfo3</Button>
+        
+        <Box>test oder</Box>
+        <Button onClick={ZlpPayOrder} variant="contained" color='secondary' sx={{marginTop: 1}}>ZlpPayOrder</Button>
+        <Button onClick={ZlpPayOrderV2} variant="contained" color='secondary' sx={{marginTop: 1}}>ZlpPayOrderV2</Button>
+        <Button onClick={getUserZPIinfo3} variant="contained" color='secondary' sx={{marginTop: 1}}>getUserZPIinfo3</Button>
+        
+
 
         <Button onClick={() => setData("hihi")}>Update value data</Button>
-        <Box>{JSON.stringify(data)}</Box>        
+        <Box>Data: {JSON.stringify(data)}</Box>        
 
     </Container>
   )
