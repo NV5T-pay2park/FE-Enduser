@@ -231,6 +231,60 @@ const UserPage = () => {
     // console.log("call ZLP.getUserInfo()2")
   }
 
+  const ZlpPayOrderV5 = () => {
+    const zpTransToken = "22072500000075601sNQ8o"
+    const info = window.ZLP.Payment().payOrderV2({
+      appid: 999888,
+      zptranstoken: "22072500000075601sNQ8o"
+      }, cb)
+
+    var cb = function (data) {
+      window.ZaloPay.showDialog({
+        title: "Checkout Info: ",
+        message: "status: " + JSON.stringify(data),
+        button: "OK"
+      }); 
+    };
+    // console.log("call ZLP.getUserInfo()2")
+  }
+
+  const ZlpPayOrderV6 = () => {
+    const zpTransToken = "22072500000075601sNQ8o"
+    const info = window.ZLP.Payment().payOrderV2({
+      appid: 999888,
+      zptranstoken: "gOAWGD_NK4DFoq0mTA0iTw"
+      }, cb)
+
+    var cb = function (data) {
+      window.ZaloPay.showDialog({
+        title: "Checkout Info: ",
+        message: "status: " + JSON.stringify(data),
+        button: "OK"
+      }); 
+    };
+    // console.log("call ZLP.getUserInfo()2")
+  }
+
+  const ZlpPayOrderV7 = () => {
+    const zpTransToken = "22072500000075601sNQ8o"
+    const info = window.ZLP.Payment().payOrderV2({
+      appid: 3,
+      zptranstoken: "gOAWGD_NK4DFoq0mTA0iTw"
+      }, cb)
+
+    var cb = function (data) {
+      window.ZaloPay.showDialog({
+        title: "Checkout Info: ",
+        message: "status: " + JSON.stringify(data),
+        button: "OK"
+      }); 
+    };
+    // console.log("call ZLP.getUserInfo()2")
+  }
+
+
+
+
   return (
     <Container sx={{ backgroundColor: '#008FE5', height: 'calc(100vh - 56px)'}}>
 
@@ -253,6 +307,9 @@ const UserPage = () => {
         <Button onClick={ZlpPayOrderV2} variant="contained" color='secondary' sx={{marginTop: 1}}>ZlpPayOrderV2</Button>
         <Button onClick={ZlpPayOrder3} variant="contained" color='secondary' sx={{marginTop: 1}}>ZlpPayOrder3withAppId</Button>
         <Button onClick={ZlpPayOrderV4} variant="contained" color='secondary' sx={{marginTop: 1}}>ZlpPayOrderV4</Button>
+        <Button onClick={ZlpPayOrderV5} variant="contained" color='secondary' sx={{marginTop: 1}}>ZlpPayOrderV5</Button>
+        <Button onClick={ZlpPayOrderV6} variant="contained" color='secondary' sx={{marginTop: 1}}>ZlpPayOrderV6</Button>
+        <Button onClick={ZlpPayOrderV7} variant="contained" color='secondary' sx={{marginTop: 1}}>ZlpPayOrderV7</Button>
         
 
 
