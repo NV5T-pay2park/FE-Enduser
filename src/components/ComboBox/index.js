@@ -19,7 +19,7 @@ function ComboBox({ listName, handleChoose }) {
 
     return (
         <div>
-            <Stack spacing={2} sx={{ width: '100%', marginTop: 0.25, marginBottom: 0.75 }}>
+            <Stack spacing={2} sx={{ width: '100%', marginTop: 0.5, marginBottom: 0.75 }}>
                 <Autocomplete
                     value={chooseString}
                     id="free-solo-demo"
