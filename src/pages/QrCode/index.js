@@ -18,15 +18,11 @@ const mockNewTicket = {"id":101,"checkInTime":"2022-07-18T07:27:48Z","checkOutTi
 
 const QrPage = () => {
 
-  // begin - test qr-scanner
-  // const qrRef = useRef(null);
-  const [facingMode, setFacingMode] = useState("user")
-
-
-  // end - test qr-scanner
   const context = useContext(AppContext)
   const navigate = useNavigate();
 
+  // const qrRef = useRef(null);
+  const [facingMode, setFacingMode] = useState("user")
   const [scanResult, setScanResult] = useState('');
   const [showLoading, setShowLoading] = useState(false);
   //const [parkingId, setParkingId] = useState()
@@ -124,9 +120,16 @@ const QrPage = () => {
         //   endUserID: 2,
         //   parkingLotID: 4
         // });
-        axios.post(Constant.SERVER_BASE_URL + '/api/checkIn', {
-          endUserID: 2,
-          parkingLotID: 4
+
+        const param = JSON.stringify({
+          "endUserID": 2,
+          "parkingLotID": 4
+        })
+
+        axios.post(Constant.SERVER_BASE_URL + '/api/checkIn', param, {
+          headers: {
+          'Content-Type': 'application/json'
+          }
         })
         .then(function (response) {
           console.log("response localhost: " + response);

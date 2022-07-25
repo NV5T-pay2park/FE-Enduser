@@ -65,10 +65,10 @@ const BottomNavigationBar = () => {
         setValue(newValue);
       }}
     >
-      <BottomNavigationAction label="Ticket" icon={<BookOnlineIcon />} onClick={() => navigate('/')} />
+      <BottomNavigationAction label="Vé" icon={<BookOnlineIcon />} onClick={() => navigate('/')} />
       {/* <BottomNavigationAction icon={<QrCodeScannerIcon />} onClick={() => navigate('/qr')} className={css.qr} /> */}
       <BottomNavigationAction icon={<QrCodeScannerIcon />} onClick={scanWithZaloPayQR} className={css.qr} />
-      <BottomNavigationAction label="Search" icon={<LocationSearchingOutlinedIcon />} onClick={() => navigate('/search')} />
+      <BottomNavigationAction label="Tìm kiếm" icon={<LocationSearchingOutlinedIcon />} onClick={() => navigate('/search')} />
     </BottomNavigation>
 
   )
