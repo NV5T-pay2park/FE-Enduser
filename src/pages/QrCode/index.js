@@ -129,12 +129,13 @@ const QrPage = () => {
           parkingLotID: 4
         })
         .then(function (response) {
-          console.log("response: " + response);
+          console.log("response localhost: " + response);
           context.insertTicket(mockNewTicket)
           navigate('/')
         })
         .catch(function (error) {
           console.log("error: " + error);
+          context.insertTicket(mockNewTicket)
           navigate('/')
         });
       }

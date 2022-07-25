@@ -45,11 +45,14 @@ const NotFoundCard = () => {
           })
           .then(function (response) {
             console.log("response: " + response);
+            window.ZaloPay.hideLoading()
+
             context.insertTicket(mockNewTicket)
             navigate('/')
           })
           .catch(function (error) {
             // console.log("error: " + error);
+            window.ZaloPay.hideLoading()
             window.ZaloPay.showDialog({
               title: "QR response",
               message: "QR response: " + JSON.stringify(error),
