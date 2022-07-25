@@ -5,19 +5,19 @@ import 'react-swipe-to-delete-component/dist/swipe-to-delete.css';
 import SwipeItemListCard from './SwipeItemListCard';
 import ItemListCard from './ItemListCard';
 
-import * as TicketService from './ticketService'
+import * as Service from './ticketService'
 
 const ListTicket = ({status}) => {
 
   const context = useContext(AppContext)
-  const filterTickets = TicketService.getCheckedNullList(context.ticketList).filter((ticket) => { 
+  const filterTickets = Service.getCheckedNullList(context.ticketList).filter((ticket) => { 
     // return ticket.status == {status}
     ticket.status = ticket.id % 2===0 ? 'paid' : 'unpaid'
     ticket.money = Math.floor(Math.random()*10 + 1)*1000
     return ticket.status === status
 
   })
-  const tickets = TicketService.getCheckedNullList(filterTickets).map(ticket => {
+  const tickets = Service.getCheckedNullList(filterTickets).map(ticket => {
     if (ticket.status === 'paid') {
       return <SwipeItemListCard ticket={ticket}/>
     } else {
