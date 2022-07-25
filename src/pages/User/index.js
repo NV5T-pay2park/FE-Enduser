@@ -465,7 +465,7 @@ const UserPage = () => {
         <Button onClick={ZlpPayOrderV14} variant="contained" color='secondary' sx={{marginTop: 1}}>ZlpPayOrderV14</Button>
         <Button onClick={ZlpPayOrderV15} variant="contained" color='secondary' sx={{marginTop: 1}}>ZlpPayOrderV15</Button>
         
-
+        <Button onClick={() => {window.location.href = "https://socialsb.zalopay.vn/spa/merchant/pay?c=1&c_time=1658742327&order=eyJhcHBpZCI6OTk5ODg4LCJ6cHRyYW5zdG9rZW4iOiIyMjA3MjUwMDAwMDAwODYwOTJaNzBUIn0%3D"}} variant="contained" color='secondary' sx={{marginTop: 1}}>href link</Button>
 
         <Button onClick={() => setData("hihi")}>Update value data</Button>
         <Box>Data: {JSON.stringify(data)}</Box>        
