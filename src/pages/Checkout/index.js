@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Button, Card, CardActions, CardContent, CardMedia, Container, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import { useLocation, useNavigate } from 'react-router-dom'
-import QrTicket from './QrTicket'
+import QrTicket from '../../features/Tickets/QrTicket'
 import axios from 'axios'
 
 const TicketCheckout = () => {

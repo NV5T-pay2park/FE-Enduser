@@ -6,10 +6,9 @@ import Search from './pages/Search/index';
 import QrPage from './pages/QrCode/index';
 import HistoryTicketPage from './pages/History/index';
 import { Box } from '@mui/material';
-import TicketMini from './features/Tickets/TicketMini';
 import QrTicket from './features/Tickets/QrTicket';
 import Map from './pages/Map/index';
-import TicketCheckout from './features/Tickets/TicketCheckout';
+import TicketCheckout from './pages/Checkout';
 import Test from './test';
 import ParkingDetail from './components/PaperCard/ParkingDetail';
 import UserPages from './pages/User/index';
@@ -26,7 +25,6 @@ function App() {
         <Route path='/qr' element={<QrPage />} />
         <Route path='/search' element={<Search />} />
         <Route path='/history' element={<HistoryTicketPage />} />
-        <Route path='/mini' element={<TicketMini />} />
         <Route path='/qrimg' element={<QrTicket />} />
         <Route path='/search/detail/:value' element={<ParkingDetail />} />
         <Route path='/googlemap/:value' element={<Map />} />
