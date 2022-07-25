@@ -329,139 +329,103 @@ const UserPage = () => {
   }
 
   const ZlpPayOrderV10 = () => {
-    const zpTransToken = "22072500000075601sNQ8o"
+    const zpTransToken = "220725000002870SV3uZvs"
     window.ZLP.Payment().payOrderV2({
       appid: 3,
       zptranstoken: "gOAWGD_NK4DFoq0mTA0iTw"
       }, cb)
 
       var cb = function (data) {
-        if (typeof data === "object") {
-          if (data.error === 1) {
-            alert("Thanh toán đơn hàng thành công");
-            // Merchant Server gọi truy vấn trạng thái đơn hàng để lấy kết quả thanh toán.
-          } else if (data.error === 4) {
-            alert("Người dùng huỷ việc thanh toán đơn hàng");
-          } else {
-            alert("Thanh toán đơn hàng thất bại với mã lỗi " + data.errorCode);
-            // Khi thanh toán thất bại, có thể xem nguyên nhân chi tiết trong bảng mã lỗi
-          }
-        }
+        window.ZaloPay.showDialog({
+          title: "Checkout Info: ",
+          message: "status: " + JSON.stringify(data),
+          button: "OK"
+        }); 
       };
     // console.log("call ZLP.getUserInfo()2")
   }
 
   const ZlpPayOrderV11 = () => {
-    const zpTransToken = "22072500000075601sNQ8o"
+    const zpTransToken = "220725000002870SV3uZvs"
     window.ZaloPay.payOrder({
       appid: 999888,
-      zptranstoken: "22072500000075601sNQ8o"
+      zptranstoken: "220725000002870SV3uZvs"
       }, cb)
 
       var cb = function (data) {
-        if (typeof data === "object") {
-          if (data.error === 1) {
-            alert("Thanh toán đơn hàng thành công");
-            // Merchant Server gọi truy vấn trạng thái đơn hàng để lấy kết quả thanh toán.
-          } else if (data.error === 4) {
-            alert("Người dùng huỷ việc thanh toán đơn hàng");
-          } else {
-            alert("Thanh toán đơn hàng thất bại với mã lỗi " + data.errorCode);
-            // Khi thanh toán thất bại, có thể xem nguyên nhân chi tiết trong bảng mã lỗi
-          }
-        }
+        window.ZaloPay.showDialog({
+          title: "Checkout Info: ",
+          message: "status: " + JSON.stringify(data),
+          button: "OK"
+        }); 
       };
     // console.log("call ZLP.getUserInfo()2")
   }
 
   const ZlpPayOrderV12 = () => {
-    const zpTransToken = "22072500000075601sNQ8o"
+    const zpTransToken = "220725000002870SV3uZvs"
     window.ZaloPay.payOrder({
       appid: 999888,
       zptranstoken: "gOAWGD_NK4DFoq0mTA0iTw"
       }, cb)
 
       var cb = function (data) {
-        if (typeof data === "object") {
-          if (data.error === 1) {
-            alert("Thanh toán đơn hàng thành công");
-            // Merchant Server gọi truy vấn trạng thái đơn hàng để lấy kết quả thanh toán.
-          } else if (data.error === 4) {
-            alert("Người dùng huỷ việc thanh toán đơn hàng");
-          } else {
-            alert("Thanh toán đơn hàng thất bại với mã lỗi " + data.errorCode);
-            // Khi thanh toán thất bại, có thể xem nguyên nhân chi tiết trong bảng mã lỗi
-          }
-        }
+        window.ZaloPay.showDialog({
+          title: "Checkout Info: ",
+          message: "status: " + JSON.stringify(data),
+          button: "OK"
+        }); 
       };
     // console.log("call ZLP.getUserInfo()2")
   }
 
   const ZlpPayOrderV13 = () => {
-    const zpTransToken = "22072500000075601sNQ8o"
+    const zpTransToken = "220725000002870SV3uZvs"
     window.ZaloPay.payOrder({
       appid: 3,
       zptranstoken: "gOAWGD_NK4DFoq0mTA0iTw"
       }, cb)
 
       var cb = function (data) {
-        if (typeof data === "object") {
-          if (data.error === 1) {
-            alert("Thanh toán đơn hàng thành công");
-            // Merchant Server gọi truy vấn trạng thái đơn hàng để lấy kết quả thanh toán.
-          } else if (data.error === 4) {
-            alert("Người dùng huỷ việc thanh toán đơn hàng");
-          } else {
-            alert("Thanh toán đơn hàng thất bại với mã lỗi " + data.errorCode);
-            // Khi thanh toán thất bại, có thể xem nguyên nhân chi tiết trong bảng mã lỗi
-          }
-        }
+        window.ZaloPay.showDialog({
+          title: "Checkout Info: ",
+          message: "status: " + JSON.stringify(data),
+          button: "OK"
+        }); 
       };
     // console.log("call ZLP.getUserInfo()2")
   }
 
   const ZlpPayOrderV14 = () => {
-    const zpTransToken = "22072500000075601sNQ8o"
+    const zpTransToken = "220725000002870SV3uZvs"
     window.ZPI_ZPA_SDK.showOrderPopup({
       appid: 999888,
-      zptranstoken: "22072500000075601sNQ8o"
+      zptranstoken: "220725000002870SV3uZvs"
       }, cb)
 
       var cb = function (data) {
-        if (typeof data === "object") {
-          if (data.error === 1) {
-            alert("Thanh toán đơn hàng thành công");
-            // Merchant Server gọi truy vấn trạng thái đơn hàng để lấy kết quả thanh toán.
-          } else if (data.error === 4) {
-            alert("Người dùng huỷ việc thanh toán đơn hàng");
-          } else {
-            alert("Thanh toán đơn hàng thất bại với mã lỗi " + data.errorCode);
-            // Khi thanh toán thất bại, có thể xem nguyên nhân chi tiết trong bảng mã lỗi
-          }
-        }
+        window.ZaloPay.showDialog({
+          title: "Checkout Info: ",
+          message: "status: " + JSON.stringify(data),
+          button: "OK"
+        }); 
       };
     // console.log("call ZLP.getUserInfo()2")
   }
 
   const ZlpPayOrderV15 = () => {
-    const zpTransToken = "22072500000075601sNQ8o"
+    const zpTransToken = "220725000002870SV3uZvs"
     window.ZPI_ZPA_SDK.showOrderPopup({
       appid: 3,
       zptranstoken: "gOAWGD_NK4DFoq0mTA0iTw"
       }, cb)
 
       var cb = function (data) {
-        if (typeof data === "object") {
-          if (data.error === 1) {
-            alert("Thanh toán đơn hàng thành công");
-            // Merchant Server gọi truy vấn trạng thái đơn hàng để lấy kết quả thanh toán.
-          } else if (data.error === 4) {
-            alert("Người dùng huỷ việc thanh toán đơn hàng");
-          } else {
-            alert("Thanh toán đơn hàng thất bại với mã lỗi " + data.errorCode);
-            // Khi thanh toán thất bại, có thể xem nguyên nhân chi tiết trong bảng mã lỗi
-          }
-        }
+        window.ZaloPay.showDialog({
+          title: "Checkout Info: ",
+          message: "status: " + JSON.stringify(data),
+          button: "OK"
+        }); 
       };
     // console.log("call ZLP.getUserInfo()2")
   }
@@ -498,6 +462,8 @@ const UserPage = () => {
         <Button onClick={ZlpPayOrderV11} variant="contained" color='secondary' sx={{marginTop: 1}}>ZlpPayOrderV11</Button>
         <Button onClick={ZlpPayOrderV12} variant="contained" color='secondary' sx={{marginTop: 1}}>ZlpPayOrderV12</Button>
         <Button onClick={ZlpPayOrderV13} variant="contained" color='secondary' sx={{marginTop: 1}}>ZlpPayOrderV13</Button>
+        <Button onClick={ZlpPayOrderV14} variant="contained" color='secondary' sx={{marginTop: 1}}>ZlpPayOrderV14</Button>
+        <Button onClick={ZlpPayOrderV15} variant="contained" color='secondary' sx={{marginTop: 1}}>ZlpPayOrderV15</Button>
         
 
 
