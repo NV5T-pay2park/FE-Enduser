@@ -167,7 +167,7 @@ const UserPage = () => {
   // test order
   const ZlpPayOrder = () => {
     const zpTransToken = "22072500000075601sNQ8o"
-    const info = window.ZLP.Payment(zpTransToken).payOrder().then(value => { 
+    const info = window.ZLP.Payment().payOrder({zptranstoken: "22072500000075601sNQ8o"}).then(value => { 
       setData(value)
       window.ZaloPay.showDialog({
         title: "User Info: ",
@@ -182,7 +182,7 @@ const UserPage = () => {
 
   const ZlpPayOrderV2 = () => {
     const zpTransToken = "22072500000075601sNQ8o"
-    const info = window.ZLP.Payment(zpTransToken).payOrderV2().then(value => { 
+    const info = window.ZLP.Payment().payOrderV2({zptranstoken: "22072500000075601sNQ8o"}).then(value => { 
       setData(value)
       window.ZaloPay.showDialog({
         title: "User Info: ",
@@ -195,6 +195,41 @@ const UserPage = () => {
     // console.log("call ZLP.getUserInfo()2")
   }
 
+  const ZlpPayOrder3 = () => {
+    const zpTransToken = "22072500000075601sNQ8o"
+    const info = window.ZLP.Payment().payOrder({
+        "zptranstoken": "22072500000075601sNQ8o",
+        "appid": 999888
+      }).then(value => { 
+      setData(value)
+      window.ZaloPay.showDialog({
+        title: "User Info: ",
+        message: "ZaloPay User Info: " + JSON.stringify(value),
+        button: "OK"
+      });  
+      return value; 
+    })
+
+    // console.log("call ZLP.getUserInfo()2")
+  }
+
+  const ZlpPayOrderV4 = () => {
+    const zpTransToken = "22072500000075601sNQ8o"
+    const info = window.ZLP.Payment().payOrderV2({
+        "zptranstoken": "22072500000075601sNQ8o",
+        "appid": 999888
+      }).then(value => { 
+      setData(value)
+      window.ZaloPay.showDialog({
+        title: "User Info: ",
+        message: "ZaloPay User Info: " + JSON.stringify(value),
+        button: "OK"
+      });  
+      return value; 
+    })
+
+    // console.log("call ZLP.getUserInfo()2")
+  }
 
   return (
     <Container sx={{ backgroundColor: '#008FE5', height: 'calc(100vh - 56px)'}}>
@@ -216,7 +251,8 @@ const UserPage = () => {
         <Box>test oder</Box>
         <Button onClick={ZlpPayOrder} variant="contained" color='secondary' sx={{marginTop: 1}}>ZlpPayOrder</Button>
         <Button onClick={ZlpPayOrderV2} variant="contained" color='secondary' sx={{marginTop: 1}}>ZlpPayOrderV2</Button>
-        <Button onClick={getUserZPIinfo3} variant="contained" color='secondary' sx={{marginTop: 1}}>getUserZPIinfo3</Button>
+        <Button onClick={ZlpPayOrder3} variant="contained" color='secondary' sx={{marginTop: 1}}>ZlpPayOrder3withAppId</Button>
+        <Button onClick={ZlpPayOrderV4} variant="contained" color='secondary' sx={{marginTop: 1}}>ZlpPayOrderV4</Button>
         
 
 
