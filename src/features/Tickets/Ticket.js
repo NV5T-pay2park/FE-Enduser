@@ -26,8 +26,8 @@ const Ticket = ({ticketData}) => {
             {/* <QrTicket data={ticketData}/> */}
         </Box>
         <CardContent>
-            <Typography gutterBottom variant="h8" component="div" align='center' color='red'>
-                {ticketData.status}
+            <Typography gutterBottom variant="h8" component="div" align='center' color='black'>
+                {ticketData.status === "paid" ? "Chưa thanh toán" : "Đã thanh toán"}
             </Typography>
             <Typography variant="h7" color="text.secondary" component="div">
               Loại xe: {ticketData.vehicleType.vehicleTypeName}
