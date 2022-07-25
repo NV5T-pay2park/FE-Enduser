@@ -19,11 +19,12 @@ const TicketCheckout = () => {
   const prevCount = useRef()
 
   const fetchPaymentCheckout = () => {
-    axios.get(`https://jsonplaceholder.typicode.com/posts/t`)
+    axios.get(`https://jsonplaceholder.typicode.com/posts/1`)
     .then(res => {
       const post = res.data;
       console.log(post)
       stopPingRequest()
+      window.open("https://sbgateway.zalopay.vn/openinapp?order=eyJ6cHRyYW5zdG9rZW4iOiIyMjA3MjUwMDAwMDAwODYwOTJaNzBUIiwiYXBwaWQiOjk5OTg4OH0");
     })
     .catch(error => console.log("err: " + error));
   }
@@ -31,7 +32,7 @@ const TicketCheckout = () => {
   const stopPingRequest = () => {
     clearInterval(intervalID.current)
     clearTimeout(timeoutID.current);
-    navigate('/')
+    // navigate('/')
   }
 
   useEffect(() => {
