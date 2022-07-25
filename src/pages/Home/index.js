@@ -50,6 +50,11 @@ const HomePage = () => {
         if (window.ZaloPay.isZaloPay) {
           window.ZaloPay.hideLoading();
         }
+        window.ZaloPay.showDialog({
+          title: "QR response",
+          message: "QR response: " + JSON.stringify(err),
+          button: "OK"
+        });
         await context.setTicketList([])
       }
       // const apiResponseData = await fetch(Constant.SERVER_BASE_URL + '/api/getTicketByEndUserId?endUserID=7')

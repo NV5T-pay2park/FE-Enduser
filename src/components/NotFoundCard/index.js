@@ -3,8 +3,10 @@ import { Box } from '@mui/system'
 import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../../AppContext'
+import axios from 'axios'
+import * as Constant from '../../config/config'
 
-const mockData = {"status":"OK","message":"Success","data":[{"id":18,"checkInTime":"2022-07-18T07:27:48Z","checkOutTime":null,"licensePlates":"77C1-44094","vehicleType":{"id":1,"vehicleTypeName":"Xe máy","hibernateLazyInitializer":{}},"endUser":{"id":2,"firstName":"Partypooper009","lastName":"throwaway217217","gender":0,"phone":"0790529870","email":"throwaway217217@gmail.com"},"parkingLot":{"id":6,"parkingLotName":"Hiệp Phú","numberSlot":101,"numberSlotRemaining":101,"address":"Bình Chiểu, Thành phố Thủ Đức, TPHCM","status":0,"merchant":{"id":1,"name":"Thành phố Thủ Đức","represent":"Lee4an","email":"Lee4an@gmail.com","phone":"0906094163","hibernateLazyInitializer":{}},"lat":10.884166717529297,"ing":106.73027801513672,"timeOpen":5,"timeClose":22,"phoneNumber":"982347126","hibernateLazyInitializer":{}}},{"id":25,"checkInTime":"2022-07-24T17:03:51Z","checkOutTime":null,"licensePlates":"77C1-67567","vehicleType":{"id":1,"vehicleTypeName":"Xe máy","hibernateLazyInitializer":{}},"endUser":{"id":2,"firstName":"Partypooper009","lastName":"throwaway217217","gender":0,"phone":"0790529870","email":"throwaway217217@gmail.com"},"parkingLot":{"id":4,"parkingLotName":"Bến Nghé","numberSlot":71,"numberSlotRemaining":71,"address":"Linh Trung, Thành phố Thủ Đức, TPHCM","status":0,"merchant":{"id":1,"name":"Thành phố Thủ Đức","represent":"Lee4an","email":"Lee4an@gmail.com","phone":"0906094163","hibernateLazyInitializer":{}},"lat":10.86388874053955,"ing":106.78277587890625,"timeOpen":5,"timeClose":22,"phoneNumber":"982347126","hibernateLazyInitializer":{}}}]}
+const mockNewTicket = {"id":101,"checkInTime":"2022-07-18T07:27:48Z","checkOutTime":null,"licensePlates":"77C1-44094","vehicleType":{"id":1,"vehicleTypeName":"Xe máy","hibernateLazyInitializer":{}},"endUser":{"id":2,"firstName":"Partypooper009","lastName":"throwaway217217","gender":0,"phone":"0790529870","email":"throwaway217217@gmail.com"},"parkingLot":{"id":6,"parkingLotName":"Hiệp Phú","numberSlot":101,"numberSlotRemaining":101,"address":"Bình Chiểu, Thành phố Thủ Đức, TPHCM","status":0,"merchant":{"id":1,"name":"Thành phố Thủ Đức","represent":"Lee4an","email":"Lee4an@gmail.com","phone":"0906094163","hibernateLazyInitializer":{}},"lat":10.884166717529297,"ing":106.73027801513672,"timeOpen":5,"timeClose":22,"phoneNumber":"982347126","hibernateLazyInitializer":{}}}
 
 const NotFoundCard = () => {
 
@@ -26,16 +28,35 @@ const NotFoundCard = () => {
           window.ZaloPay.showLoading()
         
       
-          const headers = { 'Content-Type': 'application/json' }
-          fetch('https://jsonplaceholder.typicode.com/posts/1', { headers })
-              .then(response => response.json())
-              .then(data => {
-                let ticketData = obj
-                window.ZaloPay.hideLoading()
-                //context.insertTicket(ticketData)
-                context.insertTicket(mockData.data)
-                navigate('/')
-              })
+          // const headers = { 'Content-Type': 'application/json' }
+          // fetch('https://jsonplaceholder.typicode.com/posts/1', { headers })
+          //     .then(response => response.json())
+          //     .then(data => {
+          //       let ticketData = obj
+          //       window.ZaloPay.hideLoading()
+          //       //context.insertTicket(ticketData)
+          //       context.insertTicket(mockData.data)
+          //       navigate('/')
+          //     })
+
+          axios.post(Constant.SERVER_BASE_URL + '/api/checkIn', {
+            endUserID: 2,
+            parkingLotID: 4
+          })
+          .then(function (response) {
+            console.log("response: " + response);
+            context.insertTicket(mockNewTicket)
+            navigate('/')
+          })
+          .catch(function (error) {
+            // console.log("error: " + error);
+            window.ZaloPay.showDialog({
+              title: "QR response",
+              message: "QR response: " + JSON.stringify(error),
+              button: "OK"
+            });
+            navigate('/')
+          });
         }
         return value 
       })

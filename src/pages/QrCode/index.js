@@ -10,8 +10,8 @@ import LoadingIndicator from '../../components/LoadingIndicator';
 import QrReader from 'react-camera-qr'
 import { Button } from '@mui/material';
 import { Box } from '@mui/system';
-
-
+import axios from 'axios'
+import * as Constant from '../../config/config'
 
 // end: test qr-camera-reader
 const mockNewTicket = {"id":101,"checkInTime":"2022-07-18T07:27:48Z","checkOutTime":null,"licensePlates":"77C1-44094","vehicleType":{"id":1,"vehicleTypeName":"Xe máy","hibernateLazyInitializer":{}},"endUser":{"id":2,"firstName":"Partypooper009","lastName":"throwaway217217","gender":0,"phone":"0790529870","email":"throwaway217217@gmail.com"},"parkingLot":{"id":6,"parkingLotName":"Hiệp Phú","numberSlot":101,"numberSlotRemaining":101,"address":"Bình Chiểu, Thành phố Thủ Đức, TPHCM","status":0,"merchant":{"id":1,"name":"Thành phố Thủ Đức","represent":"Lee4an","email":"Lee4an@gmail.com","phone":"0906094163","hibernateLazyInitializer":{}},"lat":10.884166717529297,"ing":106.73027801513672,"timeOpen":5,"timeClose":22,"phoneNumber":"982347126","hibernateLazyInitializer":{}}}
@@ -106,23 +106,37 @@ const QrPage = () => {
       //setParkingId(obj.parkingId)
 
       if (parkingId !== undefined) {
-        setShowLoading(true)
+        //setShowLoading(true)
         
       
-        const headers = { 'Content-Type': 'application/json' }
-        fetch('https://jsonplaceholder.typicode.com/posts/1', { headers })
-            .then(response => response.json())
-            .then(data => {
-              let ticketData = obj
-              setShowLoading(true)
-              context.insertTicket(mockNewTicket)
+        // const headers = { 'Content-Type': 'application/json' }
+        // fetch('https://jsonplaceholder.typicode.com/posts/1', { headers })
+        //     .then(response => response.json())
+        //     .then(data => {
+        //       let ticketData = obj
+        //       setShowLoading(true)
+        //       context.insertTicket(mockNewTicket)
               
-              navigate('/')
-            })
-            // .finally(
-            //   setShowLoading(false)
-            // );      
-        //setScanResult(result.text);
+        //       navigate('/')
+        //     })
+           
+        // const json = JSON.stringify({
+        //   endUserID: 2,
+        //   parkingLotID: 4
+        // });
+        axios.post(Constant.SERVER_BASE_URL + '/api/checkIn', {
+          endUserID: 2,
+          parkingLotID: 4
+        })
+        .then(function (response) {
+          console.log("response: " + response);
+          context.insertTicket(mockNewTicket)
+          navigate('/')
+        })
+        .catch(function (error) {
+          console.log("error: " + error);
+          navigate('/')
+        });
       }
     }
   }
