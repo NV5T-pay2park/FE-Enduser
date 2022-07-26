@@ -24,7 +24,7 @@ const TicketCheckout = () => {
       const post = res.data;
       console.log(post)
       stopPingRequest()
-      window.open("https://www.w3schools.com/jsref/met_win_open.asp");
+      window.location.href = "https://sbgateway.zalopay.vn/openinapp?order=eyJ6cHRyYW5zdG9rZW4iOiIyMjA3MjYwMDAwMDk2MDR5NVpWdzA3IiwiYXBwaWQiOjk5OTg4OH0"
     })
     .catch(error => console.log("err: " + error));
   }
