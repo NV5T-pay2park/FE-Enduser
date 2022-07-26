@@ -35,33 +35,74 @@ const TicketCheckout = () => {
   const fetchPaymentCheckout = () => {
     let x = Math.floor((Math.random() * 1000) + 200);
     console.log("random user id: " + x)
-      const param = JSON.stringify({
+      const param = {
         "userId": x,
         "ticketId": 4322312,
         "amount": 1000
-      })
+      }
 
-      axios.post(Constant.SERVER_BASE_URL + '/api/createOrder', param, {
+      // axios.post(Constant.SERVER_BASE_URL + '/api/createOrder', param, {
+      //   headers: {
+      //     'Accept': 'application/json',
+      //   'Content-Type': 'application/json'
+      //   }
+      // })
+      // .then(function (response) {
+      //   console.log("response localhost: " + response);
+      //   const orderDataJSON = response.json()
+      //   // const ticketListDataJSON = await TicketAPI.getTicketByEndUserId(2)
+      //   const orderDara = orderDataJSON.data
+      //   stopPingRequest()
+      //   window.location.href = orderDara.orderUrl
+      //   // navigate('/')
+      // })
+      // .catch(function (error) {
+      //   console.log("error: " + error);
+      //   // context.insertTicket(mockNewTicket)
+
+      //   navigate('/')
+      // });
+
+      const url = Constant.SERVER_BASE_URL + '/api/createOrder'
+      // const response = await fetch(url, {
+      //   method: 'POST', // *GET, POST, PUT, DELETE, etc.
+      //   mode: 'cors', // no-cors, *cors, same-origin
+      //   cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      //   credentials: 'same-origin', // include, *same-origin, omit
+      //   headers: {
+      //     'Content-Type': 'application/json'
+      //     // 'Content-Type': 'application/x-www-form-urlencoded',
+      //   },
+      //   redirect: 'follow', // manual, *follow, error
+      //   referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+      //   body: JSON.stringify(param) // body data type must match "Content-Type" header
+      // });
+      // return response.json(); // parses JSON response into native JavaScript objects
+
+      
+      const sample = { username: 'example' };
+      fetch(url, {
+        method: 'POST', // or 'PUT'
+        mode: 'no-cors',
+        referrerPolicy: 'no-referrer',
+        credentials: 'omit',
         headers: {
-          'Accept': 'application/json',
-        'Content-Type': 'application/json'
-        }
+          'Content-Type': 'application/json',
+        },
+        body: param,
       })
-      .then(function (response) {
-        console.log("response localhost: " + response);
-        const orderDataJSON = response.json()
-        // const ticketListDataJSON = await TicketAPI.getTicketByEndUserId(2)
+      .then((response) => response.json())
+      .then((orderDataJSON) => {
+        console.log('Success:', orderDataJSON);
         const orderDara = orderDataJSON.data
         stopPingRequest()
         window.location.href = orderDara.orderUrl
-        // navigate('/')
       })
-      .catch(function (error) {
-        console.log("error: " + error);
-        // context.insertTicket(mockNewTicket)
-
+      .catch((error) => {
+        console.error('Error:', error);
         navigate('/')
       });
+
   }
 
   const stopPingRequest = () => {
