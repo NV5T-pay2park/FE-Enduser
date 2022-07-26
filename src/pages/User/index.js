@@ -430,6 +430,23 @@ const UserPage = () => {
     // console.log("call ZLP.getUserInfo()2")
   }
 
+  const callPaymentAPI = () => {
+    const zpTransToken = "220725000002870SV3uZvs"
+    window.ZPI_ZPA_SDK.showOrderPopup({
+      appid: 3,
+      zptranstoken: "gOAWGD_NK4DFoq0mTA0iTw"
+      }, cb)
+
+      var cb = function (data) {
+        window.ZaloPay.showDialog({
+          title: "Checkout Info: ",
+          message: "status: " + JSON.stringify(data),
+          button: "OK"
+        }); 
+      };
+    // console.log("call ZLP.getUserInfo()2")
+  }
+
 
   return (
     <Container sx={{ backgroundColor: '#008FE5', height: 'calc(100vh - 56px)'}}>
@@ -466,7 +483,7 @@ const UserPage = () => {
         <Button onClick={ZlpPayOrderV15} variant="contained" color='secondary' sx={{marginTop: 1}}>ZlpPayOrderV15</Button>
         
         <Button onClick={() => {window.location.href = "https://sbgateway.zalopay.vn/openinapp?order=eyJ6cHRyYW5zdG9rZW4iOiIyMjA3MjYwMDAwMDk2MDR5NVpWdzA3IiwiYXBwaWQiOjk5OTg4OH0"}} variant="contained" color='secondary' sx={{marginTop: 1}}>href link</Button>
-
+        <Button onClick={() => {window.location.href = "https://sbgateway.zalopay.vn/openinapp?order=eyJ6cHRyYW5zdG9rZW4iOiIyMjA3MjYwMDAwMTMxMjJXNjhXWDNXIiwiYXBwaWQiOjk5OTg4OH0"}} variant="contained" color='secondary' sx={{marginTop: 1}}>new Thanh toán url</Button>
         <Button onClick={() => setData("hihi")}>Update value data</Button>
         <Box>Data: {JSON.stringify(data)}</Box>        
 

@@ -4,6 +4,9 @@ import { Box } from '@mui/system'
 import { useLocation, useNavigate } from 'react-router-dom'
 import QrTicket from '../../features/Tickets/QrTicket'
 import axios from 'axios'
+import * as Constant from '../../config/config'
+import * as TicketAPI from '../../api/ticketAPI'
+import * as Service from '../../services/index'
 
 const TicketCheckout = () => {
 
@@ -18,15 +21,47 @@ const TicketCheckout = () => {
   const timeoutID = useRef()
   const prevCount = useRef()
 
+  // const fetchPaymentCheckout = () => {
+  //   axios.get(`https://jsonplaceholder.typicode.com/posts/1`)
+  //   .then(res => {
+  //     const post = res.data;
+  //     console.log(post)
+  //     stopPingRequest()
+  //     window.location.href = "https://sbgateway.zalopay.vn/openinapp?order=eyJ6cHRyYW5zdG9rZW4iOiIyMjA3MjYwMDAwMDk2MDR5NVpWdzA3IiwiYXBwaWQiOjk5OTg4OH0"
+  //   })
+  //   .catch(error => console.log("err: " + error));
+  // }
+
   const fetchPaymentCheckout = () => {
-    axios.get(`https://jsonplaceholder.typicode.com/posts/1`)
-    .then(res => {
-      const post = res.data;
-      console.log(post)
-      stopPingRequest()
-      window.location.href = "https://sbgateway.zalopay.vn/openinapp?order=eyJ6cHRyYW5zdG9rZW4iOiIyMjA3MjYwMDAwMDk2MDR5NVpWdzA3IiwiYXBwaWQiOjk5OTg4OH0"
-    })
-    .catch(error => console.log("err: " + error));
+    let x = Math.floor((Math.random() * 1000) + 200);
+    console.log("random user id: " + x)
+      const param = JSON.stringify({
+        "userId": x,
+        "ticketId": 4322312,
+        "amount": 1000
+      })
+
+      axios.post(Constant.SERVER_BASE_URL + '/api/createOrder', param, {
+        headers: {
+          'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        }
+      })
+      .then(function (response) {
+        console.log("response localhost: " + response);
+        const orderDataJSON = response.json()
+        // const ticketListDataJSON = await TicketAPI.getTicketByEndUserId(2)
+        const orderDara = orderDataJSON.data
+        stopPingRequest()
+        window.href.location(orderDara.orderUrl)
+        // navigate('/')
+      })
+      .catch(function (error) {
+        console.log("error: " + error);
+        // context.insertTicket(mockNewTicket)
+
+        navigate('/')
+      });
   }
 
   const stopPingRequest = () => {

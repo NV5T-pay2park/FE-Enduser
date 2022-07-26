@@ -90,7 +90,7 @@ const HomePage = () => {
   
   }, [])
   // console.log(context.ticketList)
-  ticketElements = Service.getCheckedNullList(context.ticketList).map(ticket =><SwiperSlide key={ticket.id}><Ticket ticketData={ticket}/></SwiperSlide>)
+  ticketElements = Service.getCheckedNullList(context.ticketList).map(ticket =><SwiperSlide key={ticket.ticketID}><Ticket ticketData={ticket}/></SwiperSlide>)
   console.log("first time" + isFirstTime.current)
   // ticketElements = context.ticketList.map(ticket =><SwiperSlide key={ticket.id}><Ticket ticketData={ticket}/></SwiperSlide>)
   

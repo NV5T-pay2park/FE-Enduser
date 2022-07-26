@@ -19,9 +19,9 @@ const ListTicket = ({status}) => {
   })
   const tickets = Service.getCheckedNullList(filterTickets).map(ticket => {
     if (ticket.status === 'paid') {
-      return <SwipeItemListCard key={ticket.id} ticket={ticket}/>
+      return <SwipeItemListCard key={ticket.ticketID} ticket={ticket}/>
     } else {
-      return <ItemListCard key={ticket.id} ticket={ticket} />
+      return <ItemListCard key={ticket.ticketID} ticket={ticket} />
     }
   })
   

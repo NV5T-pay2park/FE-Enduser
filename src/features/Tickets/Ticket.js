@@ -13,7 +13,7 @@ const Ticket = ({ticketData}) => {
     <Card sx={{ maxWidth: '80vw', height: '70vh', marginTop: '0px', borderRadius: '20px', minWidth: '80vw' }} variant="outlined">
         <CardContent>
             <Typography gutterBottom variant="h5" component="div" align="center">
-              Thẻ Giữ Xe {ticketData.parkingLot.parkingLotName}
+              Thẻ Giữ Xe {ticketData.parkingLotName}
             </Typography>
         </CardContent>
         <Box alignItems="center" justifyContent="center" display="flex">
@@ -30,7 +30,7 @@ const Ticket = ({ticketData}) => {
                 {ticketData.status === "paid" ? "Chưa thanh toán" : "Đã thanh toán"}
             </Typography>
             <Typography variant="h7" color="text.secondary" component="div">
-              Loại xe: {ticketData.vehicleType.vehicleTypeName}
+              Loại xe: {ticketData.vehicleType}
             </Typography> 
             <Typography variant="h7" color="text.secondary">
               Giờ vào: {ticketData.checkInTime}
