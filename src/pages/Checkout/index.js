@@ -63,7 +63,29 @@ const TicketCheckout = () => {
       //   navigate('/')
       // });
 
-      const url = Constant.SERVER_BASE_URL + '/api/createOrder'
+      const url = Constant.SERVER_BASE_URL + `/api/getCreateOrder?userId=${x}&ticketId=22&amount=2000`
+
+      fetch(url)
+      .then((response) => response.json())
+      .then((orderDataJSON) => {
+        console.log('Success:', orderDataJSON);
+        const orderDara = orderDataJSON.data
+        stopPingRequest()
+        window.location.href = orderDara.orderUrl
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        navigate('/')
+      });
+      
+
+
+
+
+
+
+
+
       // const response = await fetch(url, {
       //   method: 'POST', // *GET, POST, PUT, DELETE, etc.
       //   mode: 'cors', // no-cors, *cors, same-origin
@@ -80,28 +102,30 @@ const TicketCheckout = () => {
       // return response.json(); // parses JSON response into native JavaScript objects
 
       
-      const sample = { username: 'example' };
-      fetch(url, {
-        method: 'POST', // or 'PUT'
-        mode: 'no-cors',
-        referrerPolicy: 'no-referrer',
-        credentials: 'omit',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: param,
-      })
-      .then((response) => response.json())
-      .then((orderDataJSON) => {
-        console.log('Success:', orderDataJSON);
-        const orderDara = orderDataJSON.data
-        stopPingRequest()
-        window.location.href = orderDara.orderUrl
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        navigate('/')
-      });
+      // const sample = { username: 'example' };
+      // fetch('https://pay2park.ep-eng.io/api/createOrder', {
+      //   method: 'POST', // or 'PUT'
+      //   headers: {
+      //     'Accept': 'application/json, text/plain',
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: {
+      //     "userId": 1000,
+      //     "ticketId": 4322312,
+      //     "amount": 1000
+      //   },
+      // })
+      // .then((response) => response.json())
+      // .then((orderDataJSON) => {
+      //   console.log('Success:', orderDataJSON);
+      //   const orderDara = orderDataJSON.data
+      //   stopPingRequest()
+      //   window.location.href = orderDara.orderUrl
+      // })
+      // .catch((error) => {
+      //   console.error('Error:', error);
+      //   navigate('/')
+      // });
 
   }
 
