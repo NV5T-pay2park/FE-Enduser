@@ -65,7 +65,15 @@ const TicketCheckout = () => {
 
       const url = Constant.SERVER_BASE_URL + `/api/getCreateOrder?userId=${x}&ticketId=22&amount=2000`
 
-      fetch(url)
+      fetch(url, {
+        method: 'GET', // or 'PUT'
+        credentials: 'omit', // include, *same-origin, omit
+        mode: 'cors',
+        headers: {
+          'Accept': 'application/json, text/plain',
+          'Content-Type': 'application/json',
+        },
+      })
       .then((response) => response.json())
       .then((orderDataJSON) => {
         console.log('Success:', orderDataJSON);
