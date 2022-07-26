@@ -53,7 +53,7 @@ const TicketCheckout = () => {
         // const ticketListDataJSON = await TicketAPI.getTicketByEndUserId(2)
         const orderDara = orderDataJSON.data
         stopPingRequest()
-        window.href.location(orderDara.orderUrl)
+        window.location.href = orderDara.orderUrl
         // navigate('/')
       })
       .catch(function (error) {
