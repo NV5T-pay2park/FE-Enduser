@@ -167,7 +167,7 @@ const UserPage = () => {
   // test order
   const ZlpPayOrder = () => {
     const zpTransToken = "22072500000075601sNQ8o"
-    const info = window.ZLP.Payment().payOrder({zptranstoken: "22072500000075601sNQ8o"}).then(value => { 
+    const info = window.ZLP.Payment().payOrder({zptranstoken: "220726000014001R0P8r61"}).then(value => { 
       setData(value)
       window.ZaloPay.showDialog({
         title: "User Info: ",
@@ -182,7 +182,7 @@ const UserPage = () => {
 
   const ZlpPayOrderV2 = () => {
     const zpTransToken = "22072500000075601sNQ8o"
-    const info = window.ZLP.Payment().payOrderV2({zptranstoken: "22072500000075601sNQ8o"}).then(value => { 
+    const info = window.ZLP.Payment().payOrderV2({zptranstoken: "220726000014001R0P8r61"}).then(value => { 
       setData(value)
       window.ZaloPay.showDialog({
         title: "User Info: ",
@@ -198,8 +198,8 @@ const UserPage = () => {
   const ZlpPayOrder3 = () => {
     const zpTransToken = "22072500000075601sNQ8o"
     const info = window.ZLP.Payment().payOrder({
-        "zptranstoken": "22072500000075601sNQ8o",
-        "appid": 999888
+        "zptranstoken": "220726000014001R0P8r61",
+        "appid": -9999
       }).then(value => { 
       setData(value)
       window.ZaloPay.showDialog({
@@ -216,8 +216,8 @@ const UserPage = () => {
   const ZlpPayOrderV4 = () => {
     const zpTransToken = "22072500000075601sNQ8o"
     const info = window.ZLP.Payment().payOrderV2({
-        "zptranstoken": "22072500000075601sNQ8o",
-        "appid": 999888
+        "zptranstoken": "220726000014001R0P8r61",
+        "appid": -9999
       }).then(value => { 
       setData(value)
       window.ZaloPay.showDialog({
@@ -269,7 +269,7 @@ const UserPage = () => {
     const zpTransToken = "22072500000075601sNQ8o"
     window.ZLP.Payment().payOrderV2({
       appid: 3,
-      zptranstoken: "gOAWGD_NK4DFoq0mTA0iTw"
+      zptranstoken: "220726000014001R0P8r61"
       }, cb)
 
     var cb = function (data) {
@@ -285,8 +285,8 @@ const UserPage = () => {
   const ZlpPayOrderV8 = () => {
     const zpTransToken = "22072500000075601sNQ8o"
     window.ZLP.Payment().payOrderV2({
-      appid: 999888,
-      zptranstoken: "22072500000075601sNQ8o"
+      appid: -9999,
+      zptranstoken: "220726000014001R0P8r61"
       }, cb)
 
       var cb = function (data) {
@@ -309,7 +309,7 @@ const UserPage = () => {
     const zpTransToken = "22072500000075601sNQ8o"
     window.ZLP.Payment().payOrderV2({
       appid: 999888,
-      zptranstoken: "gOAWGD_NK4DFoq0mTA0iTw"
+      zptranstoken: "220726000014001R0P8r61"
       }, cb)
 
       var cb = function (data) {
@@ -331,8 +331,8 @@ const UserPage = () => {
   const ZlpPayOrderV10 = () => {
     const zpTransToken = "220725000002870SV3uZvs"
     window.ZLP.Payment().payOrderV2({
-      appid: 3,
-      zptranstoken: "gOAWGD_NK4DFoq0mTA0iTw"
+      appid: -9999,
+      zptranstoken: "220726000014001R0P8r61"
       }, cb)
 
       var cb = function (data) {
@@ -348,8 +348,8 @@ const UserPage = () => {
   const ZlpPayOrderV11 = () => {
     const zpTransToken = "220725000002870SV3uZvs"
     window.ZaloPay.payOrder({
-      appid: 999888,
-      zptranstoken: "220725000002870SV3uZvs"
+      appid: -9999,
+      zptranstoken: "220726000014001R0P8r61"
       }, cb)
 
       var cb = function (data) {
@@ -365,8 +365,8 @@ const UserPage = () => {
   const ZlpPayOrderV12 = () => {
     const zpTransToken = "220725000002870SV3uZvs"
     window.ZaloPay.payOrder({
-      appid: 999888,
-      zptranstoken: "gOAWGD_NK4DFoq0mTA0iTw"
+      appid: -9999,
+      zptranstoken: "220726000014001R0P8r61"
       }, cb)
 
       var cb = function (data) {
@@ -380,10 +380,10 @@ const UserPage = () => {
   }
 
   const ZlpPayOrderV13 = () => {
-    const zpTransToken = "220725000002870SV3uZvs"
+    const zpTransToken = "220726000014001R0P8r61"
     window.ZaloPay.payOrder({
-      appid: 3,
-      zptranstoken: "gOAWGD_NK4DFoq0mTA0iTw"
+      appid: 999888,
+      zptranstoken: "220726000014001R0P8r61"
       }, cb)
 
       var cb = function (data) {
@@ -397,10 +397,10 @@ const UserPage = () => {
   }
 
   const ZlpPayOrderV14 = () => {
-    const zpTransToken = "220725000002870SV3uZvs"
+    const zpTransToken = "220726000014001R0P8r61"
     window.ZPI_ZPA_SDK.showOrderPopup({
-      appid: 999888,
-      zptranstoken: "220725000002870SV3uZvs"
+      appid: -9999,
+      zptranstoken: "220726000014001R0P8r61"
       }, cb)
 
       var cb = function (data) {
@@ -416,8 +416,8 @@ const UserPage = () => {
   const ZlpPayOrderV15 = () => {
     const zpTransToken = "220725000002870SV3uZvs"
     window.ZPI_ZPA_SDK.showOrderPopup({
-      appid: 3,
-      zptranstoken: "gOAWGD_NK4DFoq0mTA0iTw"
+      appid: -9999,
+      zptranstoken: "220726000014001R0P8r61"
       }, cb)
 
       var cb = function (data) {
@@ -433,8 +433,8 @@ const UserPage = () => {
   const callPaymentAPI = () => {
     const zpTransToken = "220725000002870SV3uZvs"
     window.ZPI_ZPA_SDK.showOrderPopup({
-      appid: 3,
-      zptranstoken: "gOAWGD_NK4DFoq0mTA0iTw"
+      appid: -9999,
+      zptranstoken: "220726000014001R0P8r61"
       }, cb)
 
       var cb = function (data) {
