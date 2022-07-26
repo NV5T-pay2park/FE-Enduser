@@ -17,8 +17,7 @@ import * as Service from '../../services/index'
 import NotFoundSwipeCard from '../../components/NotFoundSwiperSlide/NotFoundSwipeCard';
 import EmptySwipeSlide from '../../components/NotFoundSwiperSlide/EmptySwipeSlide';
 
-const mockData = {"status":"OK","message":"Success","data":[{"id":18,"checkInTime":"2022-07-18T07:27:48Z","checkOutTime":null,"licensePlates":"77C1-44094","vehicleType":{"id":1,"vehicleTypeName":"Xe máy","hibernateLazyInitializer":{}},"endUser":{"id":2,"firstName":"Partypooper009","lastName":"throwaway217217","gender":0,"phone":"0790529870","email":"throwaway217217@gmail.com"},"parkingLot":{"id":6,"parkingLotName":"Hiệp Phú","numberSlot":101,"numberSlotRemaining":101,"address":"Bình Chiểu, Thành phố Thủ Đức, TPHCM","status":0,"merchant":{"id":1,"name":"Thành phố Thủ Đức","represent":"Lee4an","email":"Lee4an@gmail.com","phone":"0906094163","hibernateLazyInitializer":{}},"lat":10.884166717529297,"ing":106.73027801513672,"timeOpen":5,"timeClose":22,"phoneNumber":"982347126","hibernateLazyInitializer":{}}},{"id":25,"checkInTime":"2022-07-24T17:03:51Z","checkOutTime":null,"licensePlates":"77C1-67567","vehicleType":{"id":1,"vehicleTypeName":"Xe máy","hibernateLazyInitializer":{}},"endUser":{"id":2,"firstName":"Partypooper009","lastName":"throwaway217217","gender":0,"phone":"0790529870","email":"throwaway217217@gmail.com"},"parkingLot":{"id":4,"parkingLotName":"Bến Nghé","numberSlot":71,"numberSlotRemaining":71,"address":"Linh Trung, Thành phố Thủ Đức, TPHCM","status":0,"merchant":{"id":1,"name":"Thành phố Thủ Đức","represent":"Lee4an","email":"Lee4an@gmail.com","phone":"0906094163","hibernateLazyInitializer":{}},"lat":10.86388874053955,"ing":106.78277587890625,"timeOpen":5,"timeClose":22,"phoneNumber":"982347126","hibernateLazyInitializer":{}}}]}
-
+const mockData = {"status":"OK","message":"Success","data":[{"ticketID":7,"checkInTime":"2022-07-18T14:27:45Z","amount":null,"licensePlate":"77C1-99794","vehicleType":"Xe mÃ¡y","endUserID":3,"endUserName":"Jenna1021 neccernpogrlinzi15","parkingLotID":5,"parkingLotName":"BÃ¬nh Chiá»ƒu","status":false},{"ticketID":16,"checkInTime":"2022-07-18T14:27:48Z","amount":null,"licensePlate":"77C1-10662","vehicleType":"Xe mÃ¡y","endUserID":3,"endUserName":"Jenna1021 neccernpogrlinzi15","parkingLotID":2,"parkingLotName":"Thá»§ ThiÃªm","status":false},{"ticketID":26,"checkInTime":"2022-07-26T00:24:02Z","amount":null,"licensePlate":"77C1-67567","vehicleType":"Xe mÃ¡y","endUserID":3,"endUserName":"Jenna1021 neccernpogrlinzi15","parkingLotID":4,"parkingLotName":"Báº¿n NghÃ©","status":false}]}
 const HomePage = () => {
 
   const context = useContext(AppContext)
@@ -35,7 +34,7 @@ const HomePage = () => {
       let tempList
       // test call local api
       try{
-        const apiResponseData = await fetch(Constant.SERVER_BASE_URL + '/api/getTicketByEndUserId?endUserID=3')
+        const apiResponseData = await fetch(Constant.SERVER_BASE_URL + '/api/getTicketByEndUserId?endUserID=2')
         const ticketListDataJSON = await apiResponseData.json()
         // const ticketListDataJSON = await TicketAPI.getTicketByEndUserId(2)
         const ticketListData = ticketListDataJSON.data
