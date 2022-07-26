@@ -52,7 +52,9 @@ const HomePage = () => {
         // if (window.ZaloPay.isZaloPay) {
         //   window.ZaloPay.hideLoading();
         // }
-        
+        if (window.ZaloPay.isZaloPay) {
+          window.ZaloPay.hideLoading();
+        }
         await context.setTicketList(mockData.data)
         tempList = mockData.data
         console.log("after set data")
