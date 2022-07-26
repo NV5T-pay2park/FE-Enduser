@@ -24,6 +24,7 @@ const HomePage = () => {
   const context = useContext(AppContext)
   const navigate = useNavigate()
   const isFirstTime = useRef(true)
+  let ticketElements
 
   useLayoutEffect(() => {
     isFirstTime.current = false
@@ -31,31 +32,33 @@ const HomePage = () => {
       if (window.ZaloPay.isZaloPay) {
         window.ZaloPay.showLoading();
       }
-
+      let tempList
       // test call local api
       try{
-        // const apiResponseData = await fetch(Constant.SERVER_BASE_URL + '/api/getTicketByEndUserId?endUserID=7')
-        // const ticketListDataJSON = await apiResponseData.json()
-        const ticketListDataJSON = await TicketAPI.getTicketByEndUserId(2)
+        const apiResponseData = await fetch(Constant.SERVER_BASE_URL + '/api/getTicketByEndUserId?endUserID=3')
+        const ticketListDataJSON = await apiResponseData.json()
+        // const ticketListDataJSON = await TicketAPI.getTicketByEndUserId(2)
         const ticketListData = ticketListDataJSON.data
         console.log("home api response: ")
         console.log(ticketListData)
         if (window.ZaloPay.isZaloPay) {
           window.ZaloPay.hideLoading();
         }
-        await context.setTicketList(mockData.data)
+        tempList = ticketListData
+        await context.setTicketList(ticketListData)
       }catch(err){
-        console.error("error: " + err);
-        if (window.ZaloPay.isZaloPay) {
-          window.ZaloPay.hideLoading();
-        }
-        // window.ZaloPay.showDialog({
-        //   title: "QR response",
-        //   message: "QR response: " + JSON.stringify(err),
-        //   button: "OK"
-        // });
+        console.error("error: ")
+        console.log(err);
+        // if (window.ZaloPay.isZaloPay) {
+        //   window.ZaloPay.hideLoading();
+        // }
+        
         await context.setTicketList(mockData.data)
+        tempList = mockData.data
+        console.log("after set data")
       }
+     
+      
       // const apiResponseData = await fetch(Constant.SERVER_BASE_URL + '/api/getTicketByEndUserId?endUserID=7')
       // const ticketListDataJSON = await apiResponseData.json()
       // const ticketListData = ticketListDataJSON.data
@@ -81,13 +84,17 @@ const HomePage = () => {
       
       // end old version
     }
-    getTickets()
+    getTickets();
+  
   }, [])
-
-  const ticketElements = Service.getCheckedNullList(context.ticketList).map(ticket =><SwiperSlide key={ticket.id}><Ticket ticketData={ticket}/></SwiperSlide>)
-  // const notFoundElement = <SwiperSlide><NotFoundCard/></SwiperSlide>
-  // const emptyElement = <SwiperSlide><Box></Box></SwiperSlide>
-
+  // console.log(context.ticketList)
+  ticketElements = Service.getCheckedNullList(context.ticketList).map(ticket =><SwiperSlide key={ticket.id}><Ticket ticketData={ticket}/></SwiperSlide>)
+  console.log("first time" + isFirstTime.current)
+  // ticketElements = context.ticketList.map(ticket =><SwiperSlide key={ticket.id}><Ticket ticketData={ticket}/></SwiperSlide>)
+  
+  const notFoundElement = <SwiperSlide><NotFoundCard/></SwiperSlide>
+  const emptyElement = <SwiperSlide><Box></Box></SwiperSlide>
+  
   return (
     <Container sx={{ backgroundColor: '#008FE5', height: 'calc(100vh - 56px)'}}>
         <Swiper
@@ -98,8 +105,8 @@ const HomePage = () => {
           }}
           modules={[Pagination]}
         >
-          { isFirstTime.current ? <EmptySwipeSlide /> : context.ticketList.length <= 0 ?
-            <NotFoundSwipeCard /> :
+          { isFirstTime.current && context.ticketList.length === 0 ? emptyElement : context.ticketList.length === 0 ?
+            notFoundElement :
             ticketElements
           }
         </Swiper>
