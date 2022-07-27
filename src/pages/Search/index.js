@@ -70,7 +70,7 @@ const Search = () => {
     }
     const tempData = await GarageAPI.getParkingListSearch(str);
     if (window.ZaloPay.isZaloPay) {
-      window.ZaloPay.showLoading()
+      window.ZaloPay.hideLoading()
     }
     setDisplayDataGarage(tempData.data);
   }
