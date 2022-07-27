@@ -26,7 +26,6 @@ const Search = () => {
         setUserLocation(temp);
       })
     }
-  }
   
 
   async function getData() {
@@ -39,8 +38,14 @@ const Search = () => {
 
   async function getFirstRenderData() {
     if (firstRender) {
+        if (window.ZaloPay.isZaloPay) {
+          window.ZaloPay.showLoading()
+        }
         await getUserLocation();  
         await getData();
+        if (window.ZaloPay.isZaloPay) {
+          window.ZaloPay.hideLoading()
+        }
         setFirstRender(false);
     }
 
