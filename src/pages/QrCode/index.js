@@ -66,23 +66,6 @@ const QrPage = () => {
       })
     }
   }
-  
-
-  // useLayoutEffect(() => {
-  //   scanWithZaloPayQR()
-
-  // }, [])
-
-
-  // const getPermissionsAsync = async () => {
-  //   const { status } = await Permissions.askAsync(Permissions.CAMERA);
-  //   if(status === "granted"){
-  //       // use the camera or location service
-  //       console.log("status: " + status)
-  //    }
-  
-  // };
-  // getPermissionsAsync()
 
   const handleErrorCam = (error) => {
     console.log(error);
@@ -101,64 +84,24 @@ const QrPage = () => {
       //setParkingId(obj.parkingId)
 
       if (parkingId !== undefined) {
-        //setShowLoading(true)
-        
-      
-        // const headers = { 'Content-Type': 'application/json' }
-        // fetch('https://jsonplaceholder.typicode.com/posts/1', { headers })
-        //     .then(response => response.json())
-        //     .then(data => {
-        //       let ticketData = obj
-        //       setShowLoading(true)
-        //       context.insertTicket(mockNewTicket)
-              
-        //       navigate('/')
-        //     })
-           
-        // const json = JSON.stringify({
-        //   endUserID: 2,
-        //   parkingLotID: 4
-        // });
-
         const param = JSON.stringify({
           "endUserID": 3,
           "parkingLotID": 4
         })
 
-        // axios.post(Constant.SERVER_BASE_URL + '/api/checkIn', param, {
-        //   headers: {
-        //   'Content-Type': 'application/json'
-        //   }
-        // })
-        // .then(function (response) {
-        //   console.log("response localhost: " + response);
-        //   context.insertTicket(mockNewTicket)
-        //   navigate('/')
-        // })
-        // .catch(function (error) {
-        //   console.log("error: " + error);
-        //   context.insertTicket(mockNewTicket)
-        //   navigate('/')
-        // });
-
-
         // test post checkin
         const url = Constant.SERVER_BASE_URL + '/api/checkIn'
-        const headers = { 'Content-Type': 'application/json' }
 
         fetch(url, {
           method: 'POST', // or 'PUT'
-          credentials: 'omit', // include, *same-origin, omit
-          mode: 'cors',
           headers: {
             'Accept': 'application/json, text/plain',
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin':'*'
           },
-          body: {
-            "endUserID": 3,
-            "parkingLotID": 4
-          },
+          body: JSON.stringify({
+            "endUserID": "3",
+            "parkingLotID": "14"
+          }),
         })
         .then((response) => response.json())
         .then((ticketDataJSON) => {
@@ -172,7 +115,7 @@ const QrPage = () => {
             });
           }
           context.insertTicket(newTicket)
-          
+          navigate('/')
         })
         .catch((error) => {
           console.error('Error:', error);
@@ -186,9 +129,6 @@ const QrPage = () => {
           context.insertTicket(mockNewTicket)
           navigate('/')
         });
-
-
-
       }
     }
   }

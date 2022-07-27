@@ -13,7 +13,7 @@ import css from './bottom.css'
 
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../../AppContext';
-
+import * as Constant from '../../config/config'
 
 const mockNewTicket = {"id":101,"checkInTime":"2022-07-18T07:27:48Z","checkOutTime":null,"licensePlates":"77C1-44094","vehicleType":{"id":1,"vehicleTypeName":"Xe máy","hibernateLazyInitializer":{}},"endUser":{"id":2,"firstName":"Partypooper009","lastName":"throwaway217217","gender":0,"phone":"0790529870","email":"throwaway217217@gmail.com"},"parkingLot":{"id":6,"parkingLotName":"Hiệp Phú","numberSlot":101,"numberSlotRemaining":101,"address":"Bình Chiểu, Thành phố Thủ Đức, TPHCM","status":0,"merchant":{"id":1,"name":"Thành phố Thủ Đức","represent":"Lee4an","email":"Lee4an@gmail.com","phone":"0906094163","hibernateLazyInitializer":{}},"lat":10.884166717529297,"ing":106.73027801513672,"timeOpen":5,"timeClose":22,"phoneNumber":"982347126","hibernateLazyInitializer":{}}}
 
@@ -27,34 +27,47 @@ const BottomNavigationBar = () => {
     if (window.ZaloPay.isZaloPay) {
       const info = window.ZLP.Device().scanQRCode({ "needResult": 1, "scanType": 'qrCode'}).then(value => {        
         let parkingId = value.page
-        window.ZaloPay.showDialog({
-          title: "QR response",
-          message: "QR response: " + "---id: " + parkingId + "---raw: " + JSON.stringify(value),
-          button: "OK"
-        });
         if (parkingId !== undefined) {
-          const json2 = '{"id": 100, "name": "Leanne Graham", "username": "Bret", "email": "Sincere@april.biz", "address": { "street": "Kulas Light", "suite": "Apt. 556", "city": "Gwenborough", "zipcode": "92998-3874", "geo": { "lat": "-37.3159", "lng": "81.1496" }}, "phone": "1-770-736-8031 x56442", "website": "hildegard.org", "company": { "name": "Romaguera-Crona", "catchPhrase": "Multi-layered client-server neural-net", "bs": "harness real-time e-markets"}}'
-          const obj = JSON.parse(json2);
           window.ZaloPay.showLoading()
-        
-      
-          const headers = { 'Content-Type': 'application/json' }
-          fetch('https://jsonplaceholder.typicode.com/posts/1', { headers })
-              .then(response => response.json())
-              .then(data => {
-                let ticketData = obj
-                window.ZaloPay.hideLoading()
-                //context.insertTicket(ticketData)
-                context.insertTicket(mockNewTicket)
-                navigate('/')
-              })
-        }
-        return value 
-      })
-    } else {
-      navigate('/qr')
+          const url = Constant.SERVER_BASE_URL + '/api/checkIn'
+
+          fetch(url, {
+            method: 'POST', // or 'PUT'
+            headers: {
+              'Accept': 'application/json, text/plain',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              "endUserID": "3",
+              "parkingLotID": "14"
+            }),
+          })
+          .then((response) => response.json())
+          .then((ticketDataJSON) => {
+            const newTicket = ticketDataJSON.data
+            window.ZaloPay.hideLoading()
+            context.insertTicket(newTicket)
+            navigate('/')
+          })
+          .catch((error) => {
+            if (window.ZaloPay.isZaloPay) {
+              window.ZaloPay.showDialog({
+                title: "Checkin",
+                message: "Quét mã không thành công:" + JSON.stringify(error),
+                button: "OK"
+              });
+            }
+            window.ZaloPay.hideLoading()
+            // context.insertTicket(mockNewTicket)
+            navigate('/')
+          });
+          }
+          return value 
+          })
+      } else {
+        navigate('/qr')
+      }
     }
-  }
 
   return (
     <BottomNavigation

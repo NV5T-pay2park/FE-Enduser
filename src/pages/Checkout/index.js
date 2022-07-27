@@ -34,7 +34,7 @@ const TicketCheckout = () => {
 
   const fetchPaymentCheckout = () => {
     let x = Math.floor((Math.random() * 1000) + 200);
-    console.log("random user id: " + x)
+    // console.log("random user id: " + x)
       const param = {
         "userId": x,
         "ticketId": 4322312,
@@ -77,13 +77,27 @@ const TicketCheckout = () => {
       })
       .then((response) => response.json())
       .then((orderDataJSON) => {
-        console.log('Success:', orderDataJSON);
-        const orderDara = orderDataJSON.data
+        // console.log('Success:', orderDataJSON);
+        const orderData = orderDataJSON.data
         stopPingRequest()
-        window.location.href = orderDara.orderUrl
+        // window.location.href = orderDara.orderUrl
+
+        const zpTransToken = orderData.zpTransToken
+        window.ZaloPay.payOrder({
+          appid: 805,
+          zptranstoken: zpTransToken,
+          }, cb)
+
+          var cb = function (data) {
+            // window.ZaloPay.showDialog({
+            //   title: "Checkout Info: ",
+            //   message: "status: " + JSON.stringify(data),
+            //   button: "OK"
+            // }); 
+          };
       })
       .catch((error) => {
-        console.error('Error:', error);
+        // console.error('Error:', error);
         navigate('/')
       });
       
