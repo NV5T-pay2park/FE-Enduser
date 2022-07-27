@@ -23,12 +23,10 @@ function ParkingDetail() {
   const id = loc.state.id;
   const userLocation = loc.state.location;
   const [value, setValue] = useState({});
-  console.log(userLocation);
   
   useEffect(() => {
     async function getDetailData() {
       const tempData = await GarageAPI.getDetailGarage(id, userLocation);
-      console.log(tempData);
       setValue(tempData.data);
     }
     getDetailData();
