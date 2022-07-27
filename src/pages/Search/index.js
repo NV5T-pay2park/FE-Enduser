@@ -17,13 +17,22 @@ const Search = () => {
   const [DisplayDataGarage, setDisplayDataGarage] = useState([]);
 
   const getUserLocation = async () => {
-      await navigator.geolocation.getCurrentPosition((location) => {
+    if (window.ZaloPay.isZaloPay) {
+      const location = window.ZLP.Device().getCurLocation().then((location) => {return location})
       const temp = {
-        lat: location.coords.latitude,
-        lng: location.coords.longitude
+        lat: location.latitude,
+        lng: location.longitude
       }
       setUserLocation(temp);
-    })
+    } else {
+      await navigator.geolocation.getCurrentPosition((location) => {
+        const temp = {
+          lat: location.coords.latitude,
+          lng: location.coords.longitude
+        }
+        setUserLocation(temp);
+      })
+    }
   }
   
 
