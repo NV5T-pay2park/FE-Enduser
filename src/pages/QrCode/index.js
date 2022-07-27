@@ -14,8 +14,18 @@ import axios from 'axios'
 import * as Constant from '../../config/config'
 
 // end: test qr-camera-reader
-const mockNewTicket = {"id":101,"checkInTime":"2022-07-18T07:27:48Z","checkOutTime":null,"licensePlates":"77C1-44094","vehicleType":{"id":1,"vehicleTypeName":"Xe máy","hibernateLazyInitializer":{}},"endUser":{"id":2,"firstName":"Partypooper009","lastName":"throwaway217217","gender":0,"phone":"0790529870","email":"throwaway217217@gmail.com"},"parkingLot":{"id":6,"parkingLotName":"Hiệp Phú","numberSlot":101,"numberSlotRemaining":101,"address":"Bình Chiểu, Thành phố Thủ Đức, TPHCM","status":0,"merchant":{"id":1,"name":"Thành phố Thủ Đức","represent":"Lee4an","email":"Lee4an@gmail.com","phone":"0906094163","hibernateLazyInitializer":{}},"lat":10.884166717529297,"ing":106.73027801513672,"timeOpen":5,"timeClose":22,"phoneNumber":"982347126","hibernateLazyInitializer":{}}}
-
+const mockNewTicket = {
+  "ticketID": 26,
+  "checkInTime": "2022-07-26T00:24:02Z",
+  "amount": null,
+  "licensePlate": "77C1-67567",
+  "vehicleType": "Xe máy",
+  "endUserID": 3,
+  "endUserName": "Jenna1021 neccernpogrlinzi15",
+  "parkingLotID": 4,
+  "parkingLotName": "Brủh",
+  "status": false
+}
 const QrPage = () => {
 
   const context = useContext(AppContext)
@@ -50,17 +60,6 @@ const QrPage = () => {
           const obj = JSON.parse(json2);
  
         
-      
-          const headers = { 'Content-Type': 'application/json' }
-          fetch('https://jsonplaceholder.typicode.com/posts/1', { headers })
-              .then(response => response.json())
-              .then(data => {
-                let ticketData = obj
-              
-                context.insertTicket(mockNewTicket)
-                
-                navigate('/')
-              })
         }
         // setScanResult(parkingId)
         return value 
@@ -122,25 +121,74 @@ const QrPage = () => {
         // });
 
         const param = JSON.stringify({
-          "endUserID": 2,
+          "endUserID": 3,
           "parkingLotID": 4
         })
 
-        axios.post(Constant.SERVER_BASE_URL + '/api/checkIn', param, {
+        // axios.post(Constant.SERVER_BASE_URL + '/api/checkIn', param, {
+        //   headers: {
+        //   'Content-Type': 'application/json'
+        //   }
+        // })
+        // .then(function (response) {
+        //   console.log("response localhost: " + response);
+        //   context.insertTicket(mockNewTicket)
+        //   navigate('/')
+        // })
+        // .catch(function (error) {
+        //   console.log("error: " + error);
+        //   context.insertTicket(mockNewTicket)
+        //   navigate('/')
+        // });
+
+
+        // test post checkin
+        const url = Constant.SERVER_BASE_URL + '/api/checkIn'
+        const headers = { 'Content-Type': 'application/json' }
+
+        fetch(url, {
+          method: 'POST', // or 'PUT'
+          credentials: 'omit', // include, *same-origin, omit
+          mode: 'cors',
           headers: {
-          'Content-Type': 'application/json'
+            'Accept': 'application/json, text/plain',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin':'*'
+          },
+          body: {
+            "endUserID": 3,
+            "parkingLotID": 4
+          },
+        })
+        .then((response) => response.json())
+        .then((ticketDataJSON) => {
+          console.log('Success:', ticketDataJSON);
+          const newTicket = ticketDataJSON.data
+          if (window.ZaloPay.isZaloPay) {
+            window.ZaloPay.showDialog({
+              title: "QR response",
+              message: "Ticket response: " + JSON.stringify(newTicket),
+              button: "OK"
+            });
           }
+          context.insertTicket(newTicket)
+          
         })
-        .then(function (response) {
-          console.log("response localhost: " + response);
-          context.insertTicket(mockNewTicket)
-          navigate('/')
-        })
-        .catch(function (error) {
-          console.log("error: " + error);
+        .catch((error) => {
+          console.error('Error:', error);
+          if (window.ZaloPay.isZaloPay) {
+            window.ZaloPay.showDialog({
+              title: "QR response",
+              message: "Ticket response: " + JSON.stringify(error),
+              button: "OK"
+            });
+          }
           context.insertTicket(mockNewTicket)
           navigate('/')
         });
+
+
+
       }
     }
   }
