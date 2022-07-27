@@ -63,7 +63,12 @@ const TicketCheckout = () => {
       //   navigate('/')
       // });
 
-      const url = Constant.SERVER_BASE_URL + `/api/getCreateOrder?userId=${x}&ticketId=22&amount=2000`
+      
+      
+      
+      // const url = Constant.SERVER_BASE_URL + `/api/getCreateOrder?userId=${x}&ticketId=22&amount=2000`
+      const url = Constant.SERVER_BASE_URL + `/api/queryPaymentUrl?endUserId=${ticketData.endUserID}&ticketId=${ticketData.ticketID}`
+
 
       fetch(url, {
         method: 'GET', // or 'PUT'
