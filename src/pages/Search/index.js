@@ -15,6 +15,7 @@ const Search = () => {
   const [firstRender, setFirstRender] = useState(true);
   const [DataGarage, setDataGarage] = useState([]);
   const [DisplayDataGarage, setDisplayDataGarage] = useState([]);
+  const [vehicleType, setVehicleType] = useState(["1"])
 
   const getUserLocation = async () => {
     
@@ -29,9 +30,7 @@ const Search = () => {
   
 
   async function getData() {
-    console.log(userLocation)
-    const temp = await GarageAPI.getGaragesList(userLocation, ["1"]);
-    console.log(temp.data);
+    const temp = await GarageAPI.getParkingListSearch("", userLocation, ["1"]);
     setDataGarage(temp.data.map((item) => item.parkingLotName));
     setDisplayDataGarage(temp.data);
   }
@@ -57,18 +56,19 @@ const Search = () => {
     if (window.ZaloPay.isZaloPay) {
       window.ZaloPay.showLoading()
     }
-    const tempData = await GarageAPI.getGaragesList(userLocation, vehicles);
+    const tempData = await GarageAPI.getParkingListSearch("", userLocation, vehicles);
     if (window.ZaloPay.isZaloPay) {
       window.ZaloPay.hideLoading()
     }
     setDisplayDataGarage(tempData.data);
+    setVehicleType(vehicles);
   }
 
   const handleSearch = async (str) => {
     if (window.ZaloPay.isZaloPay) {
       window.ZaloPay.showLoading()
     }
-    const tempData = await GarageAPI.getParkingListSearch(str);
+    const tempData = await GarageAPI.getParkingListSearch(str, userLocation, vehicleType);
     if (window.ZaloPay.isZaloPay) {
       window.ZaloPay.hideLoading()
     }

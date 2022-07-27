@@ -31,16 +31,11 @@ export const getDetailGarage = async (id, location) => {
 
 }
 
-export const getParkingListSearch = async (str) => {
-    var dataSearch;
-    if (str == null || str == "") {
-        dataSearch = await fetch(Constant.SERVER_BASE_URL + `/api/searchParking/?stringSearch`)
-    } 
-    else {
-        dataSearch = await fetch(Constant.SERVER_BASE_URL + `/api/searchParking/?stringSearch=${str}`)
-    }
-
+export const getParkingListSearch = async (str, location, vehicleType) => {
+    
+    const vehicleString = vehicleType.filter(Boolean).join(",");
+    const request_url = Constant.SERVER_BASE_URL + `/api/searchAndFilterParking?stringSearch=${str}&vehicleTypes=${vehicleString}&coordinates=${location.lat},${location.lng}`;
+    const dataSearch = await fetch(request_url);
     const searchResult = await dataSearch.json()
     return searchResult
 }
-
