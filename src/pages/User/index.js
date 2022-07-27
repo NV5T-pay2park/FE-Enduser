@@ -365,8 +365,8 @@ const UserPage = () => {
   const ZlpPayOrderV12 = () => {
     const zpTransToken = "220725000002870SV3uZvs"
     window.ZaloPay.payOrder({
-      appid: -9999,
-      zptranstoken: "220726000014001R0P8r61"
+      appid: 999888,
+      zptranstoken: "2207270000005871306N42"
       }, cb)
 
       var cb = function (data) {
@@ -382,8 +382,8 @@ const UserPage = () => {
   const ZlpPayOrderV13 = () => {
     const zpTransToken = "220726000014001R0P8r61"
     window.ZaloPay.payOrder({
-      appid: 999888,
-      zptranstoken: "220726000014001R0P8r61"
+      appid: 805,
+      zptranstoken: "2207270000005871306N42"
       }, cb)
 
       var cb = function (data) {
