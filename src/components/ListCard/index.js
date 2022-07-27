@@ -28,6 +28,12 @@ function ListCard({ list, location }) {
     if (list === null || list === undefined)
         list = [] 
 
+    const getState = (v) => {
+        return {
+            id: v.id,
+            location: location,
+        }
+    }
     return (
         <Paper style={myStyle}>
             <List sx={{ width: '100%', maxWidth: 1000, bgcolor: '#f6f7f8' }}>
@@ -37,7 +43,7 @@ function ListCard({ list, location }) {
                         <ListItem key={value.id}
                             disablePadding
                         >
-                            <ListItemButton onClick={() => navigate('/search/detail', {id: value.id, location: location})}>
+                            <ListItemButton onClick={() => navigate('/search/detail', {state: {id: value.id, location: location}} )}>
                                 {/* <Card value={value} ></Card> */}
                                 <ParkingCard value={value}/>
                             </ListItemButton>

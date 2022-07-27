@@ -26,7 +26,7 @@ function App() {
         <Route path='/search' element={<Search />} />
         <Route path='/history' element={<HistoryTicketPage />} />
         <Route path='/qrimg' element={<QrTicket />} />
-        <Route path='/search/detail/:value' element={<ParkingDetail />} />
+        <Route path='/search/detail/' element={<ParkingDetail />} />
         <Route path='/googlemap/:value' element={<Map />} />
         <Route path='/ticket/checkout' element={<TicketCheckout />} />
         <Route path='/test-qr' element={<Test />} />

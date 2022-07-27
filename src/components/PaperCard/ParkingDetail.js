@@ -1,6 +1,6 @@
 import { Avatar, Button, Card, Stack, CardContent, CardMedia, Typography } from '@mui/material'
 import { Box } from '@mui/system'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types';
 import { useLocation, useParams } from 'react-router-dom';
 import {DataGarage} from '../../models/Garage';
@@ -20,13 +20,15 @@ ParkingDetail.propTypes = {
 function ParkingDetail() {
 
   const loc = useLocation();
-  const id = loc.id;
-  const userLocation = loc.location;
-  const [value, setValue] = useState(null);
+  const id = loc.state.id;
+  const userLocation = loc.state.location;
+  const [value, setValue] = useState({});
+  console.log(userLocation);
   
   useEffect(() => {
     async function getDetailData() {
       const tempData = await GarageAPI.getDetailGarage(id, userLocation);
+      console.log(tempData);
       setValue(tempData.data);
     }
     getDetailData();
@@ -89,8 +91,9 @@ function ParkingDetail() {
                 variant="outlined" 
                 startIcon={<AssistantDirectionOutlinedIcon />} 
                 sx={{marginTop: 2, width: '90vw'}} 
-                onClick={() => {navigate('/googlemap/' + v.id);}}
-            >
+                onClick={() => {navigate('/googlemap/' + value.id);}}
+            >;
+
                 Hiển thị bản đồ
             </Button>
             
