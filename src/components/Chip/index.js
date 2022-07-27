@@ -5,7 +5,7 @@ import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import PropTypes from 'prop-types';
 import Stack from '@mui/material/Stack';
-
+import DirectionsBikeIcon from '@mui/icons-material/DirectionsBike';
 
 FilterChip.propTypes = {
     handleChoose:  PropTypes.func,
@@ -16,13 +16,41 @@ function FilterChip({handleChoose})  {
     const [chooseBike, setChooseBike] = useState(true);
     const [chooseCar, setChooseCar] = useState(false);
     const [chooseContainer, setChooseContainer] = useState(false);
+    const [chooseBicycle, setChooseBicycle] = useState(false);
+
+    const onChange = () => {
+        var tempFilter = []
+        if (chooseBicycle) 
+            tempFilter.push("0");
+
+        if (chooseBike)
+            tempFilter.push("1");
+
+        if (chooseCar)
+            tempFilter.push("2");
+
+        if (chooseContainer)
+            tempFilter.push("3");
+
+        handleChoose(tempFilter);
+    }
+
+    const handleOnClickBicycle = () => {
+        if (chooseBicycle) {
+            setChooseBicycle(false);
+            return;
+        }
+        setChooseBicycle(true);
+        onChange()
+    }
 
     const handleOnClickBike = () => {
-        if (chooseBike) {
+        if (chooseBike) { 
             setChooseBike(false);
             return;            
         }
         setChooseBike(true);
+        onChange()
     }
 
      const handleOnClickCar = () => {
@@ -31,6 +59,7 @@ function FilterChip({handleChoose})  {
             return;            
         }
         setChooseCar(true);
+        onChange();
     }
 
      const handleOnClickContainer = () => {
@@ -39,10 +68,20 @@ function FilterChip({handleChoose})  {
             return;            
         }
         setChooseContainer(true);
+        onChange();
     }
 
     return (
         <Stack direction="row" spacing={0.5}>
+
+            <Chip 
+                    label="Xe đạp" 
+                    icon={<DirectionsBikeIcon />} 
+                    variant={chooseContainer ? "outlined" : "filled"} 
+                    clickable onClick={() => handleOnClickBicycle()} 
+                    color={chooseBicycle ? "primary" : "default"} 
+                    size="small"
+            />
 
             <Chip   label="Xe máy" 
                     icon={<TwoWheelerIcon />} 
@@ -53,7 +92,7 @@ function FilterChip({handleChoose})  {
             />
 
             <Chip 
-                    label="Xe hơi" 
+                    label="Xe ô tô" 
                     icon={<DirectionsCarIcon />} 
                     variant={chooseCar ? "outlined" : "filled"} 
                     clickable onClick={() => handleOnClickCar() } 
@@ -62,14 +101,14 @@ function FilterChip({handleChoose})  {
             />
 
             <Chip 
-                    label="Xe container" 
+                    label="Xe 16 chỗ" 
                     icon={<LocalShippingIcon />} 
                     variant={chooseContainer ? "outlined" : "filled"} 
                     clickable onClick={() => handleOnClickContainer()} 
                     color={chooseContainer ? "primary" : "default"} 
                     size="small"
             />
-
+            
         </Stack>
 
     )

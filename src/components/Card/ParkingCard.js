@@ -29,22 +29,22 @@ const ParkingCard = ({ value }) => {
     {/* sx={{ flex: '1 0 auto' }} */}   
         <Box sx={{padding: 0, height: 110}}>
             <CardContent sx={{padding: "1px"}}>
-                {value.status === "available" ? <Typography component="div" fontSize={12} color="#06BE04" fontWeight={"bold"} marginTop={1}>
+                {value.status === 0 ? <Typography component="div" fontSize={12} color="#06BE04" fontWeight={"bold"} marginTop={1}>
                     Còn chỗ
                 </Typography> : <Typography component="div" fontSize={12} color="red" fontWeight={"bold"} marginTop={1}>
                     Hết chỗ
                 </Typography>}
                 <Typography fontSize={15} component="div" marginTop="1px" fontWeight={"bold"}>
-                {(value.name.length <= 20) ? value.name : value.name.substr(0, 20) + "..."}
+                {(value.parkingLotName.length <= 20) ? value.parkingLotName : value.parkingLotName.substr(0, 20) + "..."}
                 </Typography>
                 <Typography fontSize={10} component="div">
                 {(value.address.length <= 35) ? value.address : value.address.substr(0, 35) + "..."}
                 </Typography>
                 <Typography fontSize={10} component="div">
-                    25 phút • 1,9 km • {value.phone}
+                    {value.timeMoving} phút • {value.distance} km • 0{value.phone}
                 </Typography>
                 <Typography fontSize={10} component="div">
-                    Giờ mở cửa: {value.timeWorking}
+                    Giờ mở cửa: {value.timeOpen} - {value.timeClose}
                 </Typography>
             </CardContent>
         </Box>

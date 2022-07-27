@@ -24,6 +24,8 @@ function ListCard({ list }) {
     }
 
     const navigate = useNavigate();
+    if (list === null || list === undefined)
+        list = [] 
 
     return (
         <Paper style={myStyle}>
