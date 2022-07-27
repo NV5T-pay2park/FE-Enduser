@@ -36,21 +36,20 @@ const Search = () => {
   }
 
   async function getFirstRenderData() {
-    if (firstRender) {
-        if (window.ZaloPay.isZaloPay) {
-          window.ZaloPay.showLoading()
-        }
-        await getUserLocation();  
-        await getData();
-        if (window.ZaloPay.isZaloPay) {
-          window.ZaloPay.hideLoading()
-        }
-        setFirstRender(false);
-    }
+    
+      if (window.ZaloPay.isZaloPay) {
+        window.ZaloPay.showLoading()
+      }
+      await getUserLocation();  
+      await getData();
+      if (window.ZaloPay.isZaloPay) {
+        window.ZaloPay.hideLoading()
+      }
+   
 
   }
 
-  getFirstRenderData();
+  useEffect(getFirstRenderData, [])
 
   const handleFilter = async (vehicles) => {
     if (window.ZaloPay.isZaloPay) {
