@@ -22,22 +22,30 @@ const Search = () => {
         lat: location.coords.latitude,
         lng: location.coords.longitude
       }
+      console.log(temp);
       setUserLocation(temp);
     })
   }
   
 
   async function getData() {
+    console.log(userLocation)
     const temp = await GarageAPI.getGaragesList(userLocation, ["1"]);
+    console.log(temp.data);
     setDataGarage(temp.data.map((item) => item.parkingLotName));
     setDisplayDataGarage(temp.data);
   }
 
-  if (firstRender) {
-      getUserLocation();  
-      getData();
-      setFirstRender(false);
+  async function getFirstRenderData() {
+    if (firstRender) {
+        await getUserLocation();  
+        await getData();
+        setFirstRender(false);
+    }
+
   }
+
+  getFirstRenderData();
 
   const handleFilter = async (vehicles) => {
     const tempData = await GarageAPI.getGaragesList(userLocation, vehicles);
