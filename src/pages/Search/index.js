@@ -17,14 +17,15 @@ const Search = () => {
   const [DisplayDataGarage, setDisplayDataGarage] = useState([]);
 
   const getUserLocation = async () => {
+    
       await navigator.geolocation.getCurrentPosition((location) => {
-      const temp = {
-        lat: location.coords.latitude,
-        lng: location.coords.longitude
-      }
-      console.log(temp);
-      setUserLocation(temp);
-    })
+        const temp = {
+          lat: location.coords.latitude,
+          lng: location.coords.longitude
+        }
+        setUserLocation(temp);
+      })
+    }
   }
   
 
@@ -48,13 +49,24 @@ const Search = () => {
   getFirstRenderData();
 
   const handleFilter = async (vehicles) => {
+    if (window.ZaloPay.isZaloPay) {
+      window.ZaloPay.showLoading()
+    }
     const tempData = await GarageAPI.getGaragesList(userLocation, vehicles);
+    if (window.ZaloPay.isZaloPay) {
+      window.ZaloPay.hideLoading()
+    }
     setDisplayDataGarage(tempData.data);
   }
 
   const handleSearch = async (str) => {
+    if (window.ZaloPay.isZaloPay) {
+      window.ZaloPay.showLoading()
+    }
     const tempData = await GarageAPI.getParkingListSearch(str);
-    console.log(str);
+    if (window.ZaloPay.isZaloPay) {
+      window.ZaloPay.showLoading()
+    }
     setDisplayDataGarage(tempData.data);
   }
 

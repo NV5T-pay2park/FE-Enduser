@@ -447,6 +447,46 @@ const UserPage = () => {
     // console.log("call ZLP.getUserInfo()2")
   }
 
+  const getLocation1 = () => {
+    const location = window.ZLP.Device().getCurLocation().then((location) => {
+      window.ZaloPay.showDialog({
+        title: "Location",
+        message: "Location response: " + JSON.stringify(location),
+        button: "OK"
+      });
+      return location
+    })
+  }
+
+  const getLocation2 = async () => {
+    const location = await window.ZLP.Device().getCurLocation()
+    window.ZaloPay.showDialog({
+      title: "Location",
+      message: "Location response: " + JSON.stringify(location),
+      button: "OK"
+    });
+  }
+
+  const getLocation3 = async () => {
+    const location = await window.ZPI_ZPA_SDK.getLocation()
+    window.ZaloPay.showDialog({
+      title: "Location",
+      message: "Location response: " + JSON.stringify(location),
+      button: "OK"
+    });
+  }
+
+  const getLocation4 = async () => {
+    const location = await window.ZPI_ZPA_SDK.getLocation().then((location) => {
+      window.ZaloPay.showDialog({
+        title: "Location",
+        message: "Location response: " + JSON.stringify(location),
+        button: "OK"
+      });
+      return location
+    })
+  }
+
 
   return (
     <Container sx={{ backgroundColor: '#008FE5', height: 'calc(100vh - 56px)'}}>
@@ -486,6 +526,12 @@ const UserPage = () => {
         <Button onClick={() => {window.location.href = "https://sbgateway.zalopay.vn/openinapp?order=eyJ6cHRyYW5zdG9rZW4iOiIyMjA3MjYwMDAwMTMxMjJXNjhXWDNXIiwiYXBwaWQiOjk5OTg4OH0"}} variant="contained" color='secondary' sx={{marginTop: 1}}>new Thanh toán url</Button>
         <Button onClick={() => setData("hihi")}>Update value data</Button>
         <Box>Data: {JSON.stringify(data)}</Box>        
+
+        <Button onClick={getLocation1} variant="contained" color='secondary' sx={{marginTop: 1}}>getLocation1</Button>
+        <Button onClick={getLocation2} variant="contained" color='secondary' sx={{marginTop: 1}}>getLocation1</Button>
+        <Button onClick={getLocation3} variant="contained" color='secondary' sx={{marginTop: 1}}>getLocation1</Button>
+        <Button onClick={getLocation4} variant="contained" color='secondary' sx={{marginTop: 1}}>getLocation1</Button>
+
 
     </Container>
   )

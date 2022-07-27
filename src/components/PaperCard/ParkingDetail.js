@@ -26,7 +26,13 @@ function ParkingDetail() {
   
   useEffect(() => {
     async function getDetailData() {
+      if (window.ZaloPay.isZaloPay) {
+        window.ZaloPay.showLoading()
+      }
       const tempData = await GarageAPI.getDetailGarage(id, userLocation);
+      if (window.ZaloPay.isZaloPay) {
+        window.ZaloPay.hideLoading()
+      }
       setValue(tempData.data);
     }
     getDetailData();
