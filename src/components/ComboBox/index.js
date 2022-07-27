@@ -17,6 +17,9 @@ function ComboBox({ listName, handleChoose }) {
         handleChoose(str);
         setChoosen(str);
     }
+    
+    if (listName == null || listName == undefined)
+        listName = []
 
     return (
         <div>
