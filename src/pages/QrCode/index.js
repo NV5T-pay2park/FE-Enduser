@@ -12,7 +12,7 @@ import { Button } from '@mui/material';
 import { Box } from '@mui/system';
 import axios from 'axios'
 import * as Constant from '../../config/config'
-import * as CheckInOutAPI from '../../api/checkInOut'
+import * as CheckInOutAPI from '../../api/checkInOutAPI'
 
 // end: test qr-camera-reader
 const mockNewTicket = {
@@ -81,9 +81,13 @@ const QrPage = () => {
           if (parkingId !== undefined) {
               try {
                   const res = await CheckInOutAPI.requestCheckIn(2, 5)
-                  const newTicket = res.data
-                  if (newTicket.ticketID !== undefined) {
+                  if (res.message === "Success") {
+                    const newTicket = res.data
+                    if (newTicket.ticketID !== undefined) {
                       context.insertTicket(newTicket)
+                    }
+                  } {
+                    console.log(res.message)
                   }
                   navigate('/')
               } catch (err) {
@@ -127,22 +131,6 @@ const QrPage = () => {
       { /* test qr-camet */ }
       
       {!window.ZaloPay.isZaloPay ? showManualQr() : () => {navigate('/')}}
-      {/* <QrReader
-          delay={300}
-          onError={handleErrorCam}
-          onScan={handleScanCam}
-          style={{ width: '100%' }}
-          facingMode={facingMode}
-        />
-      
-      
-      <Box textAlign='center' alignItems='center'>
-        <Button onClick={handleSwitchCam}>Switch Cam</Button>
-      </Box>
-      <Box textAlign='center' alignItems='center'>
-        <Button onClick={() => navigate('/test-qr')}>Test qr-scanner lib</Button>
-      </Box>
-      <Box>{JSON.stringify(scanResult)}</Box>         */}
     </div>
   )
 }
