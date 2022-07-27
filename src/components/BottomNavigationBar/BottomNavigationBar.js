@@ -38,10 +38,15 @@ const BottomNavigationBar = () => {
           window.ZaloPay.showLoading()
           try {
             const res = await CheckInOutAPI.requestCheckIn(2, 5)
-            const newTicket = res.data
-            window.ZaloPay.hideLoading()
-            if (newTicket.ticketID !== undefined) {
+            if (res.message === "Success") {
+
+              const newTicket = res.data
+              window.ZaloPay.hideLoading()
+              if (newTicket.ticketID !== undefined) {
                 context.insertTicket(newTicket)
+              }
+            } else {
+              window.ZaloPay.hideLoading()
             }
             navigate('/')
           } catch (err) {
@@ -51,52 +56,6 @@ const BottomNavigationBar = () => {
         }
       })
   }
-
-  // const scanWithZaloPayQR = () => {
-  //   if (window.ZaloPay.isZaloPay) {
-  //     const info = window.ZLP.Device().scanQRCode({ "needResult": 1, "scanType": 'qrCode'}).then(value => {        
-  //       let parkingId = value.page
-  //       if (parkingId !== undefined) {
-  //         window.ZaloPay.showLoading()
-  //         const url = Constant.SERVER_BASE_URL + '/api/checkIn'
-
-  //         fetch(url, {
-  //           method: 'POST', // or 'PUT'
-  //           headers: {
-  //             'Accept': 'application/json, text/plain',
-  //             'Content-Type': 'application/json',
-  //           },
-  //           body: JSON.stringify({
-  //             "endUserID": "3",
-  //             "parkingLotID": "14"
-  //           }),
-  //         })
-  //         .then((response) => response.json())
-  //         .then((ticketDataJSON) => {
-  //           const newTicket = ticketDataJSON.data
-  //           window.ZaloPay.hideLoading()
-  //           context.insertTicket(newTicket)
-  //           navigate('/')
-  //         })
-  //         .catch((error) => {
-  //           if (window.ZaloPay.isZaloPay) {
-  //             window.ZaloPay.showDialog({
-  //               title: "Checkin",
-  //               message: "Quét mã không thành công:" + JSON.stringify(error),
-  //               button: "OK"
-  //             });
-  //           }
-  //           window.ZaloPay.hideLoading()
-  //           // context.insertTicket(mockNewTicket)
-  //           navigate('/')
-  //         });
-  //         }
-  //         return value 
-  //         })
-  //     } else {
-  //       navigate('/qr')
-  //     }
-  //   }
 
   return (
     <BottomNavigation
@@ -108,7 +67,6 @@ const BottomNavigationBar = () => {
       }}
     >
       <BottomNavigationAction label="Vé" icon={<BookOnlineIcon />} onClick={() => navigate('/')} />
-      {/* <BottomNavigationAction icon={<QrCodeScannerIcon />} onClick={() => navigate('/qr')} className={css.qr} /> */}
       <BottomNavigationAction icon={<QrCodeScannerIcon />} onClick={handleScanQR} className={css.qr} />
       <BottomNavigationAction label="Tìm kiếm" icon={<LocationSearchingOutlinedIcon />} onClick={() => navigate('/search')} />
     </BottomNavigation>

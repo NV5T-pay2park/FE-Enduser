@@ -81,9 +81,13 @@ const QrPage = () => {
           if (parkingId !== undefined) {
               try {
                   const res = await CheckInOutAPI.requestCheckIn(2, 5)
-                  const newTicket = res.data
-                  if (newTicket.ticketID !== undefined) {
+                  if (res.message === "Success") {
+                    const newTicket = res.data
+                    if (newTicket.ticketID !== undefined) {
                       context.insertTicket(newTicket)
+                    }
+                  } {
+                    console.log(res.message)
                   }
                   navigate('/')
               } catch (err) {
