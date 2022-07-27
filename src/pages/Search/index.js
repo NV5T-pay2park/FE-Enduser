@@ -18,11 +18,20 @@ const Search = () => {
 
   const getUserLocation = async () => {
     if (window.ZaloPay.isZaloPay) {
-      const location = window.ZLP.Device().getCurLocation().then((location) => {return location})
+      const location = window.ZLP.Device().getCurLocation().then((location) => {
+        window.ZaloPay.showDialog({
+          title: "Location",
+          message: "Location response: " + JSON.stringify(location),
+          button: "OK"
+        });
+        return location
+      })
+      
       const temp = {
         lat: location.latitude,
         lng: location.longitude
       }
+
       setUserLocation(temp);
     } else {
       await navigator.geolocation.getCurrentPosition((location) => {
