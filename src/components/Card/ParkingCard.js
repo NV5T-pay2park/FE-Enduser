@@ -41,10 +41,10 @@ const ParkingCard = ({ value }) => {
                 {(value.address.length <= 35) ? value.address : value.address.substr(0, 35) + "..."}
                 </Typography>
                 <Typography fontSize={10} component="div">
-                    {value.timeMoving} phút • {value.distance} km • 0{value.phone}
+                    {value.timeMoving} phút • {value.distance} km • 0{value.phoneNumber}
                 </Typography>
                 <Typography fontSize={10} component="div">
-                    Giờ mở cửa: {value.timeOpen} - {value.timeClose}
+                    Giờ mở cửa: {value.timeOpen}:00 AM - {value.timeClose}:00 PM
                 </Typography>
             </CardContent>
         </Box>

@@ -19,7 +19,7 @@ function ComboBox({ listName, handleChoose }) {
     }
     
     if (listName == null || listName == undefined)
-        listName = []
+        listName = [];
 
     return (
         <div>
@@ -29,7 +29,7 @@ function ComboBox({ listName, handleChoose }) {
                     id="free-solo-demo"
                     freeSolo
                     onChange={(event, value) => handleChooseValue(value)}
-                    options={listName.map((option) => option.name)}
+                    options={listName}
                     renderInput={(params) => <TextField {...params} size="small" label="Tìm kiếm nhà xe" />}
                 />
             </Stack>

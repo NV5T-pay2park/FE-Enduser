@@ -99,7 +99,7 @@ const QrPage = () => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            "endUserID": "3",
+            "endUserID": "2",
             "parkingLotID": "14"
           }),
         })

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Chip from '@mui/material/Chip';
 import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
@@ -35,13 +35,14 @@ function FilterChip({handleChoose})  {
         handleChoose(tempFilter);
     }
 
+    useEffect(onChange, [chooseBicycle, chooseBike, chooseCar, chooseContainer]);
+
     const handleOnClickBicycle = () => {
         if (chooseBicycle) {
             setChooseBicycle(false);
             return;
         }
         setChooseBicycle(true);
-        onChange()
     }
 
     const handleOnClickBike = () => {
@@ -50,7 +51,6 @@ function FilterChip({handleChoose})  {
             return;            
         }
         setChooseBike(true);
-        onChange()
     }
 
      const handleOnClickCar = () => {
@@ -59,7 +59,6 @@ function FilterChip({handleChoose})  {
             return;            
         }
         setChooseCar(true);
-        onChange();
     }
 
      const handleOnClickContainer = () => {
@@ -68,7 +67,6 @@ function FilterChip({handleChoose})  {
             return;            
         }
         setChooseContainer(true);
-        onChange();
     }
 
     return (
@@ -77,7 +75,7 @@ function FilterChip({handleChoose})  {
             <Chip 
                     label="Xe đạp" 
                     icon={<DirectionsBikeIcon />} 
-                    variant={chooseContainer ? "outlined" : "filled"} 
+                    variant={chooseBicycle ? "outlined" : "filled"} 
                     clickable onClick={() => handleOnClickBicycle()} 
                     color={chooseBicycle ? "primary" : "default"} 
                     size="small"

@@ -12,47 +12,56 @@ import * as GarageAPI from '../../api/garageAPI';
 const Search = () => {
 
   const [userLocation, setUserLocation] = useState(null) ;
-  const [vehicleType, setVehicalType] = useState(["1"]);
-  const [searchString, setSearchString] = useState("");
+  const [firstRender, setFirstRender] = useState(true);
+  const [DataGarage, setDataGarage] = useState([]);
+  const [DisplayDataGarage, setDisplayDataGarage] = useState([]);
 
-  navigator.geolocation.getCurrentPosition((location) => {
-    const temp = {
-      lat: location.coords.latitude,
-      lng: location.coords.longitude
-    }
-    setUserLocation(temp);
-  })
+  const getUserLocation = async () => {
+      await navigator.geolocation.getCurrentPosition((location) => {
+      const temp = {
+        lat: location.coords.latitude,
+        lng: location.coords.longitude
+      }
+      setUserLocation(temp);
+    })
+  }
+  
 
-  var DataGarage;
-  useEffect( async () => {
-    DataGarage = await GarageAPI.getGaragesList(userLocation, vehicleType).data;
-  }, []);
-
-  const [DisplayDataGarage, setDataGarage] = useState(DataGarage);
-
-  const handleChoose = async () => {
-    const tempData = await GarageAPI.getParkingListSearch(searchString);
-    setDataGarage(tempData.data);
+  async function getData() {
+    const temp = await GarageAPI.getGaragesList(userLocation, ["1"]);
+    setDataGarage(temp.data.map((item) => item.parkingLotName));
+    setDisplayDataGarage(temp.data);
   }
 
-  const handleFilter = (vehicles) => {
-    setVehicalType(vehicles);
-    handleChoose();
+  if (firstRender) {
+      getUserLocation();  
+      getData();
+      setFirstRender(false);
+  }
+
+  const handleFilter = async (vehicles) => {
+    const tempData = await GarageAPI.getGaragesList(userLocation, vehicles);
+    setDisplayDataGarage(tempData.data);
   }
 
   const handleSearch = async (str) => {
-    setSearchString(str);
-    const tempData = await GarageAPI.getGaragesList(userLocation, vehicleType);
-    setDataGarage(tempData.data);
+    const tempData = await GarageAPI.getParkingListSearch(str);
+    console.log(str);
+    setDisplayDataGarage(tempData.data);
   }
+
+  useEffect(() => {
+    setDataGarage(DisplayDataGarage.map((item) => item.parkingLotName));
+  }, [DisplayDataGarage]);
   
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
   return (
-    <div style={{ flexDirection: 'row', height: 'calc(100vh - 56px)' }}>
+    <div style={{ flexDirection: 'row', height: 'calc(100vh - 30px)' }}>
 
     <Grid container spacing={0} mt={0.8}>
       <Grid item xs={8} ml={2}>
-        <ComboBox  listName={DataGarage} handleChoose={handleSearch} />
+        <ComboBox listName={DataGarage} handleChoose={handleSearch} />
       </Grid>
       <Grid item xs={3} style={{width: '100%'}} mt={0.5} ml={1} mr={0.5}>
         <Button variant="contained" style={{width: '95%'}} onClick={() => {
@@ -64,7 +73,7 @@ const Search = () => {
         <FilterChip handleChoose={handleFilter}></FilterChip>
       </Grid>
     </Grid>
-      <ListCard list={DisplayDataGarage} />
+      <ListCard list={DisplayDataGarage} location={userLocation}/>
     </div>
   )
 }

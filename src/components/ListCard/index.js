@@ -13,9 +13,10 @@ import ParkingCard from '../Card/ParkingCard';
 
 ListCard.propTypes = {
     list: PropTypes.array,
+    location: PropTypes.object,
 };
 
-function ListCard({ list }) {
+function ListCard({ list, location }) {
 
     var myStyle = {
         height: 'calc(100vh - 106px)',
@@ -36,7 +37,7 @@ function ListCard({ list }) {
                         <ListItem key={value.id}
                             disablePadding
                         >
-                            <ListItemButton onClick={() => navigate('/search/detail/:' + value.id)}>
+                            <ListItemButton onClick={() => navigate('/search/detail', {id: value.id, location: location})}>
                                 {/* <Card value={value} ></Card> */}
                                 <ParkingCard value={value}/>
                             </ListItemButton>

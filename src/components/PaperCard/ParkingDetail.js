@@ -1,6 +1,6 @@
 import { Avatar, Button, Card, Stack, CardContent, CardMedia, Typography } from '@mui/material'
 import { Box } from '@mui/system'
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types';
 import { useLocation, useParams } from 'react-router-dom';
 import {DataGarage} from '../../models/Garage';
@@ -10,22 +10,27 @@ import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 import AssistantDirectionOutlinedIcon from '@mui/icons-material/AssistantDirectionOutlined';
-import TablePrice from '../Table/TablePrice';
-
+import TablePrice from '../Table/TablePrice'
+import * as GarageAPI from '../../api/garageAPI';
 
 
 ParkingDetail.propTypes = {
 };
 
 function ParkingDetail() {
-  var {value} = useParams();
-  value = value.substr(1);
-  let v = DataGarage[0];
-  for(let i = 0; i < DataGarage.length; i++)
-    if (DataGarage[i].id === value) {
-      v = DataGarage[i];
-      break;
+
+  const loc = useLocation();
+  const id = loc.id;
+  const userLocation = loc.location;
+  const [value, setValue] = useState(null);
+  
+  useEffect(() => {
+    async function getDetailData() {
+      const tempData = await GarageAPI.getDetailGarage(id, userLocation);
+      setValue(tempData.data);
     }
+    getDetailData();
+  }, [])
 
   const navigate = useNavigate();
   return (
@@ -43,22 +48,22 @@ function ParkingDetail() {
               </Box>
               <CardContent style={{ lineHeight: "28px" }}>
                 <Typography gutterBottom fontSize={24} component="div" align='center' >
-                  <b>{v.name}</b> 
+                  <b>{value.parkingLotName}</b> 
                 </Typography>
                 <Stack direction="row" marginTop={1}>
                   <LocationOnOutlinedIcon sx={{color: '#4286F6', marginRight: "12px"}}/>
-                  <Typography fontSize={14} component="div" sx={{color: '#ACB3BA'}}>{v.address}</Typography>
+                  <Typography fontSize={14} component="div" sx={{color: '#ACB3BA'}}>{value.address}</Typography>
                 </Stack>
                 <Stack direction="row" marginTop={1}>
                   <AccessTimeOutlinedIcon sx={{color: '#4286F6', marginRight: "12px"}}/>
                   <Typography fontSize={14} component="div">
-                      {v.status === "available" ? <text style={{color:'green', fontWeight: 'bold'}}> Còn chỗ</text> : <text style={{color: 'red', fontWeight: 'bold'}}> Hết chỗ</text> }
+                      {value.status === 0 ? <text style={{color:'green', fontWeight: 'bold'}}> Còn chỗ</text> : <text style={{color: 'red', fontWeight: 'bold'}}> Hết chỗ</text> }
                   </Typography>
-                  <Typography fontSize={14} component="div" marginLeft={1} sx={{color: '#ACB3BA'}}>{v.timeWorking} giờ</Typography>
+                  <Typography fontSize={14} component="div" marginLeft={1} sx={{color: '#ACB3BA'}}>{value.timeOpen}:00 AM - {value.timeClose}:00 PM</Typography>
                 </Stack>
                 <Stack direction="row" marginTop={1}>
                   <LocalPhoneOutlinedIcon sx={{color: '#4286F6', marginRight: "12px"}}/>
-                  <Typography fontSize={14} component="div" sx={{color: '#ACB3BA'}}>{v.phone}</Typography>
+                  <Typography fontSize={14} component="div" sx={{color: '#ACB3BA'}}>{value.phoneNumber}</Typography>
                 </Stack>
                 {/* <Typography variant="h7" component="div" paragraph>
                   <b> Mô tả: </b> {v.discription}
@@ -85,7 +90,6 @@ function ParkingDetail() {
                 startIcon={<AssistantDirectionOutlinedIcon />} 
                 sx={{marginTop: 2, width: '90vw'}} 
                 onClick={() => {navigate('/googlemap/' + v.id);}}
-                
             >
                 Hiển thị bản đồ
             </Button>
