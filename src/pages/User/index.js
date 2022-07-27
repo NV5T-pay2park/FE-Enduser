@@ -528,9 +528,9 @@ const UserPage = () => {
         <Box>Data: {JSON.stringify(data)}</Box>        
 
         <Button onClick={getLocation1} variant="contained" color='secondary' sx={{marginTop: 1}}>getLocation1</Button>
-        <Button onClick={getLocation1} variant="contained" color='secondary' sx={{marginTop: 1}}>getLocation1</Button>
-        <Button onClick={getLocation1} variant="contained" color='secondary' sx={{marginTop: 1}}>getLocation1</Button>
-        <Button onClick={getLocation1} variant="contained" color='secondary' sx={{marginTop: 1}}>getLocation1</Button>
+        <Button onClick={getLocation2} variant="contained" color='secondary' sx={{marginTop: 1}}>getLocation1</Button>
+        <Button onClick={getLocation3} variant="contained" color='secondary' sx={{marginTop: 1}}>getLocation1</Button>
+        <Button onClick={getLocation4} variant="contained" color='secondary' sx={{marginTop: 1}}>getLocation1</Button>
 
 
     </Container>
