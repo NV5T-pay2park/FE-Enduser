@@ -28,7 +28,13 @@ const Search = () => {
   
 
   async function getData() {
+    if (window.ZaloPay.isZaloPay) {
+      window.ZaloPay.showLoading()
+    }
     const temp = await GarageAPI.getGaragesList(userLocation, ["1"]);
+    if (window.ZaloPay.isZaloPay) {
+      window.ZaloPay.hideLoading()
+    }
     setDataGarage(temp.data.map((item) => item.parkingLotName));
     setDisplayDataGarage(temp.data);
   }
@@ -40,13 +46,24 @@ const Search = () => {
   }
 
   const handleFilter = async (vehicles) => {
+    if (window.ZaloPay.isZaloPay) {
+      window.ZaloPay.showLoading()
+    }
     const tempData = await GarageAPI.getGaragesList(userLocation, vehicles);
+    if (window.ZaloPay.isZaloPay) {
+      window.ZaloPay.hideLoading()
+    }
     setDisplayDataGarage(tempData.data);
   }
 
   const handleSearch = async (str) => {
+    if (window.ZaloPay.isZaloPay) {
+      window.ZaloPay.showLoading()
+    }
     const tempData = await GarageAPI.getParkingListSearch(str);
-    console.log(str);
+    if (window.ZaloPay.isZaloPay) {
+      window.ZaloPay.showLoading()
+    }
     setDisplayDataGarage(tempData.data);
   }
 
