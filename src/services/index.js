@@ -17,16 +17,21 @@ export const getCheckedNullList = (list) => {
     return list
 }
 
-export const getZaloPayID = () => {
-    let zlpID
+export const getZaloPayID = async () => {
+    let zlpID = 2
     if (window.ZaloPay.isZaloPay) {
-        zlpID = window.ZLP.User().getUserInfo().then(value => { 
-            return value.id
-        })
+        const zlpIDJSON = await window.ZLP.User().getUserInfo()
+        zlpID = zlpIDJSON.id
+        // window.ZaloPay.showDialog({
+        //     title: "Login Info: ",
+        //     message: "status: " + JSON.stringify(zlpID),
+        //     button: "OK"
+        // }); 
     } else {
         zlpID = "aptx4869"
     }
     console.log("zalopay id: " + zlpID)
+
     return zlpID
 }
 

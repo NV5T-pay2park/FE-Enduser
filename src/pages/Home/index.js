@@ -36,11 +36,13 @@ const HomePage = () => {
       // test call local api
       try{
         // const ticketListData = await TicketAPI.getTicketByEndUserId(2)
-        const zaloPayID = Service.getZaloPayID()
+        const zaloPayID = await Service.getZaloPayID()
         let userId
         try {
-          const loginResponse = await LoginAPI.requestLogin(zaloPayID)
-          userId = loginResponse.data.id !== undefined ? loginResponse.data.id : 1
+          const loginDataResponse = await LoginAPI.requestLogin(zaloPayID)
+          console.log("login")
+          console.log(loginDataResponse)
+          userId = loginDataResponse.endUserID !== undefined ? loginDataResponse.endUserID : 1
         } catch (error) {
           userId = 4
         }
@@ -97,15 +99,20 @@ const HomePage = () => {
             ticketElements
           }
         </Swiper>
-        <Box textAlign='center' alignItems='center'>
+       
             <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/history')}>User ID: {context.userInfo.id}</Button>
-        </Box>
-        <Box textAlign='center' alignItems='center'>
+
+            <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/history')}>Xem tất cả</Button>
+
+
+            <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/user')}>Thông tin cá nhân</Button>
+
+        {/* <Box textAlign='center' alignItems='center'>
             <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/history')}>Xem tất cả</Button>
         </Box>
         <Box textAlign='center' alignItems='center'>
             <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/user')}>Thông tin cá nhân</Button>
-        </Box>
+        </Box> */}
     </Container>
   )
 }

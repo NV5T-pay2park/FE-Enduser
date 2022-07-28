@@ -9,9 +9,9 @@ const UserPage = () => {
   const [data, setData] = useState({data: "nothing"})
 
   // UserInfo: { access_token: string; display_name: string; id: string; phone?: number | string; zlp_id: string }
-  const getUserZaloPayInfo = () => {
+  const getUserZaloPayInfo = async () => {
       if (window.ZaloPay.isZaloPay) {
-        const info = window.ZaloPay.getUserInfo()
+        const info = await window.ZaloPay.getUserInfo()
         window.ZaloPay.showDialog({
           title: "User Info: ",
           message: "User Info: " + JSON.stringify(info),
@@ -43,8 +43,8 @@ const UserPage = () => {
     }
 }
 
-  const getUserZLPInfo = () => {
-      const info = window.ZLP.User().getUserInfo()
+  const getUserZLPInfo = async () => {
+      const info = await window.ZLP.User().getUserInfo()
       setData(info)
       window.ZaloPay.showDialog({
         title: "User Info: ",
@@ -487,6 +487,18 @@ const UserPage = () => {
     })
   }
 
+  const getZaloPayID = async () => {
+    if (window.ZaloPay.isZaloPay) {
+
+      const zlpIDJSON = await window.ZLP.User().getUserInfo()
+      window.ZaloPay.showDialog({
+        title: "Login Info: ",
+        message: "status: " + zlpIDJSON.id,
+        button: "OK"
+      }); 
+    }
+  }
+
 
   return (
     <Container sx={{ backgroundColor: '#008FE5', height: 'calc(100vh - 56px)'}}>
@@ -527,11 +539,11 @@ const UserPage = () => {
         <Button onClick={() => setData("hihi")}>Update value data</Button>
         <Box>Data: {JSON.stringify(data)}</Box>        
 
-        <Button onClick={getLocation1} variant="contained" color='secondary' sx={{marginTop: 1}}>getLocation1</Button>
+        {/* <Button onClick={getLocation1} variant="contained" color='secondary' sx={{marginTop: 1}}>getLocation1</Button>
         <Button onClick={getLocation2} variant="contained" color='secondary' sx={{marginTop: 1}}>getLocation1</Button>
         <Button onClick={getLocation3} variant="contained" color='secondary' sx={{marginTop: 1}}>getLocation1</Button>
-        <Button onClick={getLocation4} variant="contained" color='secondary' sx={{marginTop: 1}}>getLocation1</Button>
-
+        <Button onClick={getLocation4} variant="contained" color='secondary' sx={{marginTop: 1}}>getLocation1</Button> */}
+        <Button onClick={getZaloPayID} variant="contained" color='secondary' sx={{marginTop: 1}}>get zalopayid</Button>
 
     </Container>
   )
