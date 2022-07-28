@@ -80,7 +80,7 @@ const QrPage = () => {
 
           if (parkingId !== undefined) {
               try {
-                  const res = await CheckInOutAPI.requestCheckIn(2, 5)
+                  const res = await CheckInOutAPI.requestCheckIn(context.userInfo.id, 29)
                   if (res.message === "Success") {
                     const newTicket = res.data
                     if (newTicket.ticketID !== undefined) {
