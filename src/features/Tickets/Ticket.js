@@ -27,7 +27,7 @@ const Ticket = ({ticketData}) => {
         </Box>
         <CardContent>
             <Typography gutterBottom variant="h8" component="div" align='center' color='black'>
-                {ticketData.status === "paid" ? "Chưa thanh toán" : "Đã thanh toán"}
+                {ticketData.status === false ? "Chưa thanh toán" : "Đã thanh toán"}
             </Typography>
             <Typography variant="h7" color="text.secondary" component="div">
               Loại xe: {ticketData.vehicleType}

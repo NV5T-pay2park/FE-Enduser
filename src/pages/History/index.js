@@ -21,10 +21,10 @@ const HistoryTicketPage = () => {
           </TabList>
         </Box>
         <TabPanel value="1" sx={{ bgcolor: '#f6f7f8', height: 'calc(100vh - 104px)'}}>
-            <ListTicket status="unpaid"/>
+            <ListTicket status={false}/>
         </TabPanel>
         <TabPanel value="2" sx={{ bgcolor: '#f6f7f8', height: 'calc(100vh - 104px)'}}>
-            <ListTicket status="paid"/>
+            <ListTicket status={true}/>
         </TabPanel>
       </TabContext>  
     {/* </Box> */}

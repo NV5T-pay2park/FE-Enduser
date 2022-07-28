@@ -16,7 +16,7 @@ const SwipeItemListCard = ({ticket}) => {
             <Box sx={{ width: '100%', padding: 0, margin: 0}}>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Box><Typography>Vé xe {ticket.parkingLotName}</Typography></Box>
-                    <Box><Typography sx={{fontSize: 10, fontWeight: 'bold', color: 'black'}}>-{ticket.money}đ</Typography></Box>
+                    <Box><Typography sx={{fontSize: 10, fontWeight: 'bold', color: 'black'}}>-{ticket.total}đ</Typography></Box>
                 </Box>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Box><Typography sx={{fontSize: 12}}>Giờ gửi: 15h32 01/06/2022</Typography></Box>

@@ -12,13 +12,14 @@ const ListTicket = ({status}) => {
   const context = useContext(AppContext)
   const filterTickets = Service.getCheckedNullList(context.ticketList).filter((ticket) => { 
     // return ticket.status == {status}
-    ticket.status = ticket.id % 2===0 ? 'paid' : 'unpaid'
-    ticket.money = Math.floor(Math.random()*10 + 1)*1000
+    // ticket.status = ticket.id % 2===0 ? 'true' : 'false'
+    // ticket.money = Math.floor(Math.random()*10 + 1)*1000
+    console.log(ticket)
     return ticket.status === status
 
   })
   const tickets = Service.getCheckedNullList(filterTickets).map(ticket => {
-    if (ticket.status === 'paid') {
+    if (ticket.status === true) {
       return <SwipeItemListCard key={ticket.ticketID} ticket={ticket}/>
     } else {
       return <ItemListCard key={ticket.ticketID} ticket={ticket} />
