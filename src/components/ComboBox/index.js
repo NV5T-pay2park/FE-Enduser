@@ -13,7 +13,7 @@ function ComboBox({ listName, handleChoose }) {
     const [chooseString, setChoosen] = useState('');
 
     const handleChooseValue = (str) => {
-        if (str == null) return;
+        if (str == null) str = "";
         handleChoose(str);
         setChoosen(str);
     }

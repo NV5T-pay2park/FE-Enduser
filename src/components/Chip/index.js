@@ -48,17 +48,21 @@ function FilterChip({handleChoose})  {
     const handleOnClickBike = () => {
         if (chooseBike) { 
             setChooseBike(false);
+            
             return;            
         }
         setChooseBike(true);
+    
     }
 
      const handleOnClickCar = () => {
         if (chooseCar) {
             setChooseCar(false);
+            setChooseContainer(false);
             return;            
         }
         setChooseCar(true);
+        setChooseContainer(true);
     }
 
      const handleOnClickContainer = () => {
@@ -70,16 +74,8 @@ function FilterChip({handleChoose})  {
     }
 
     return (
-        <Stack direction="row" spacing={0.5}>
+        <Stack direction="column" spacing={0.5}>
 
-            <Chip 
-                    label="Xe đạp" 
-                    icon={<DirectionsBikeIcon />} 
-                    variant={chooseBicycle ? "outlined" : "filled"} 
-                    clickable onClick={() => handleOnClickBicycle()} 
-                    color={chooseBicycle ? "primary" : "default"} 
-                    size="small"
-            />
 
             <Chip   label="Xe máy" 
                     icon={<TwoWheelerIcon />} 
@@ -98,14 +94,7 @@ function FilterChip({handleChoose})  {
                     size="small"
             />
 
-            <Chip 
-                    label="Xe 16 chỗ" 
-                    icon={<LocalShippingIcon />} 
-                    variant={chooseContainer ? "outlined" : "filled"} 
-                    clickable onClick={() => handleOnClickContainer()} 
-                    color={chooseContainer ? "primary" : "default"} 
-                    size="small"
-            />
+        
             
         </Stack>
 
