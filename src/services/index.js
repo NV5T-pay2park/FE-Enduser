@@ -29,3 +29,65 @@ export const getZaloPayID = () => {
     console.log("zalopay id: " + zlpID)
     return zlpID
 }
+
+export const checkIfObjectNull = (obj) => {
+    if (obj === null || obj === undefined) {
+        return {};
+    }
+    return obj;
+}
+
+export const checkIfLocationNull = (obj) => {
+    if (obj === null || obj === undefined) {
+        return {
+            lat: 0,
+            lng: 0,
+        }
+    }
+    return obj;
+}
+
+export const checkIfStringNull = (str) => {
+    if (str === null || str === undefined) {
+        return '';
+    }
+    return str;
+}
+
+export const checkIfNullDataListParking = (obj) => {
+    if (obj == null || obj == undefined) {
+        return {
+            data: []
+        }
+    }
+    return obj;
+}
+
+export const checkIfDetailParkingNull = (obj) => {
+    if (obj == null || obj == undefined) {
+        return {
+            parkingLotName: "",
+            timeMoving: 0, 
+            distance: 0, 
+            street: "", 
+            ward: "", 
+            city: "",
+            timeOpen: "",
+            timeClose: "",
+            phoneNumber: "",
+            status: "",
+            location: {
+                lat: 0, 
+                lng: 0,
+            }
+        }
+    }
+    return obj;
+}
+
+export const getIndexOfListLocation = (lst, idx) => {
+    if (idx >= lst.length) {
+        return checkIfLocationNull(null);
+    }
+    return lst[idx];
+}

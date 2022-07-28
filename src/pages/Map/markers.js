@@ -1,29 +1,34 @@
 import React from 'react'
 import { GoogleMap, LoadScript, Marker} from '@react-google-maps/api';
 import Locations from '../../models/Locations';
+import * as Service from '../../services/index';
+import { useLocation } from 'react-router-dom';
 
 const containerStyle = {
   width: '100%',
   height: 'calc(100vh - 56px)'
 };
 
-const center = {
-  lat: 10.75766401459632,
-  lng: 106.74603203425715
-};
-
-
 
 function Markers() {
     
+    const loc = useLocation();
+    const Locations = Service.getCheckedNullList(loc.state.Locations);
+    const userLocation = Service.checkIfLocationNull(loc.state.userLocation);
+
+    const handleOnClick = () => {
+      console.log("Hello tan")
+    }
+
      return ( 
      <LoadScript
       googleMapsApiKey="AIzaSyCuIMJTEeifSs3ISPf2WOCsoiMjsuurP5w" >
       <GoogleMap
         mapContainerStyle={containerStyle}
-        center={center}
+        center={userLocation}
         zoom={14}>
-        { Locations.map( (item) => {return <Marker position={{lat: item.lat, lng: item.lng}}/>})  }
+        { Locations.map((item) => {return <Marker position={{lat: item.lat, lng: item.lng}} onClick={handleOnClick()}/>})  }
+        <Marker position={userLocation} shape="MarkerShapeCircle" onClick={handleOnClick()} />
       </GoogleMap>
     </LoadScript>)
 }

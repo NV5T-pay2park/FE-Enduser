@@ -10,7 +10,7 @@ import * as GarageAPI from '../../api/garageAPI';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import { maxHeight } from '@mui/system';
-
+import * as Service from '../../services/index';
 
 const Search = () => {
 
@@ -22,6 +22,7 @@ const Search = () => {
   const [district, setDistrict] = useState("Tất cả")
   const [districtList, setDistrictList] = useState([]);
   const [searchString, setSearchString] = useState("");
+  const [listLocation, setListLocation] = useState([]);
 
   const getUserLocation = async () => {
 
@@ -39,15 +40,22 @@ const Search = () => {
   
 
   async function getData() {
-    const temp = await GarageAPI.getParkingListSearch("", district, userLocation , ["1"]);
-    setDisplayDataGarage(temp.data);
-    return temp.data;
+    try {
+      const temp = await Service.checkIfNullDataListParking(GarageAPI.getParkingListSearch("", district, userLocation , ["1"]));
+      setDisplayDataGarage(temp.data);
+      return temp.data;
+    } catch(err) {
+      console.log(err);
+      return [];
+    }
   }
 
   async function getFirstRenderData() {
-      const listData = await getData();
+      const listData = await Service.getCheckedNullList(getData());
       const listTemp = ["Tất cả"].concat([... new Set(listData.map((item) => item.district))].sort());
+      const tempLocationList = Service.getCheckedNullList(listData.map((item) => item.location));
       setDistrictList(listTemp);
+      setListLocation(tempLocationList);
   }
 
   async function firstRenderData ()  {
@@ -61,52 +69,68 @@ const Search = () => {
     }
 
     firstRenderData();
+
     if (window.ZaloPay.isZaloPay) {
       window.ZaloPay.hideLoading()
     }
+
+
   }, [])
 
   const handleFilter = async (vehicles) => {
     if (window.ZaloPay.isZaloPay) {
-      window.ZaloPay.showLoading()
+        window.ZaloPay.showLoading()
     }
-    const tempData = await GarageAPI.getParkingListSearch(searchString, district, userLocation, vehicles);
+    try {
+      const tempData = await Service.checkIfNullDataListParking(GarageAPI.getParkingListSearch(searchString, district, userLocation, vehicles));
+      setDisplayDataGarage(tempData.data);
+      setVehicleType(vehicles);
+    } catch (err) {
+      console.log(err);
+      setDisplayDataGarage([]);
+      setVehicleType(["1"]);
+    }
     if (window.ZaloPay.isZaloPay) {
       window.ZaloPay.hideLoading()
     }
-    setDisplayDataGarage(tempData.data);
-    setVehicleType(vehicles);
-  }
+ }
 
   const handleDistrict = async (tempDistrict) => {
     if (window.ZaloPay.isZaloPay) {
       window.ZaloPay.showLoading();
     }
    
-    if (tempDistrict == null) {
-      tempDistrict = "Tất cả";
+    try {
+      if (tempDistrict == null) {
+        tempDistrict = "Tất cả";
+      }
+    
+      const tempData = await Service.checkIfNullDataListParking(GarageAPI.getParkingListSearch(searchString, tempDistrict, userLocation, vehicleType));
+      setDisplayDataGarage(tempData.data);
+      setDistrict(tempDistrict);
+    } catch (err) {
+      console.log(err);
+      setDisplayDataGarage([]);
+      setDistrict("Tất cả");
     }
-    const tempData = await GarageAPI.getParkingListSearch(searchString, tempDistrict, userLocation, vehicleType);
-    setDisplayDataGarage(tempData.data);
-    setDistrict(tempDistrict);
-    if (window.ZaloPay.isZaloPay) {
+   if (window.ZaloPay.isZaloPay) {
       window.ZaloPay.hideLoading();
     }
   }
 
   const handleSearch = async (str) => {
-    if (window.ZaloPay.isZaloPay) {
-      window.ZaloPay.showLoading()
+   
+    try {
+      const tempData = await Service.checkIfNullDataListParking(GarageAPI.getParkingListSearch(str, district, userLocation, vehicleType));
+      setDisplayDataGarage(tempData.data);
+      setSearchString(str);
+    } catch(err) {
+      console.log(err);
+      setDisplayDataGarage([]);
+      setSearchString("");
     }
-    const tempData = await GarageAPI.getParkingListSearch(str, district, userLocation, vehicleType);
-    if (window.ZaloPay.isZaloPay) {
-      window.ZaloPay.hideLoading()
-    }
-    setDisplayDataGarage(tempData.data);
-    setSearchString(str);
   }
 
-  
   const navigate = useNavigate();
 
   return (
@@ -118,7 +142,7 @@ const Search = () => {
       </Grid>
       <Grid item xs={3} style={{width: '100%'}} mt={0.5} ml={1} mr={0.5}>
         <Button variant="contained" style={{width: '95%'}} onClick={() => {
-            navigate('/markers') 
+            navigate('/markers', {state: {Locations: listLocation, userLocation: userLocation}}) 
         }}> Bản đồ</Button>
      
       </Grid>
