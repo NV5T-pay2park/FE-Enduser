@@ -15,7 +15,7 @@ function ComboBox({ listName, handleChoose }) {
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {
            handleChoose(chooseString)
-        }, 1000)
+        }, 2000)
     }, [chooseString])
 
     return (

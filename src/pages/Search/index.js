@@ -14,7 +14,7 @@ import { maxHeight } from '@mui/system';
 
 const Search = () => {
 
-  const [userLocation, setUserLocation] = useState({lat: 0, lng: 0}) ;
+  const [userLocation, setUserLocation] = useState({lat: 10.8782444, lng: 106.8062906}) ;
   const [firstRender, setFirstRender] = useState(true);
   const [DataGarage, setDataGarage] = useState([]);
   const [DisplayDataGarage, setDisplayDataGarage] = useState([]);
@@ -59,11 +59,12 @@ const Search = () => {
     if (window.ZaloPay.isZaloPay) {
       window.ZaloPay.showLoading()
     }
+
     firstRenderData();
     if (window.ZaloPay.isZaloPay) {
       window.ZaloPay.hideLoading()
     }
-  }, [userLocation])
+  }, [])
 
   const handleFilter = async (vehicles) => {
     if (window.ZaloPay.isZaloPay) {

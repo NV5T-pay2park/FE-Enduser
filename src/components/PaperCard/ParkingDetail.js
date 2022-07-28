@@ -44,6 +44,7 @@ function ParkingDetail() {
     getDetailData();
   }, [])
 
+  console.log(userLocation)
   const navigate = useNavigate();
   return (
     <Paper style={ {height: 'calc(100vh - 56px)', display: 'flex', justifyContent: 'center', backgroundColor: '#f6f7f8'}}>
