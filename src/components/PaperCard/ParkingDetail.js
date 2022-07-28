@@ -13,7 +13,7 @@ import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
 import AssistantDirectionOutlinedIcon from '@mui/icons-material/AssistantDirectionOutlined';
 import TablePrice from '../Table/TablePrice'
 import * as GarageAPI from '../../api/garageAPI';
-
+import * as Service from '../../services/index';
 
 ParkingDetail.propTypes = {
 };
@@ -21,8 +21,8 @@ ParkingDetail.propTypes = {
 function ParkingDetail() {
 
   const loc = useLocation();
-  const id = loc.state.id;
-  const userLocation = loc.state.location;
+  const id = Service.checkIfStringNull(loc.state.id);
+  const userLocation = Service.checkIfLocationNull(loc.state.location);
   const [value, setValue] = useState({});
   
   useEffect(() => {
@@ -30,21 +30,23 @@ function ParkingDetail() {
       if (window.ZaloPay.isZaloPay) {
         window.ZaloPay.showLoading()
       }
-      const tempData = await GarageAPI.getDetailGarage(id, userLocation);
+      try {
+        const tempData = await Service.checkIfDetailParkingNull(GarageAPI.getDetailGarage(id, userLocation));
+        if (tempData.status == "OK") {
+          setValue(tempData.data);
+        } 
+      } catch (err) {
+        console.log(err);
+        setValue(Service.checkIfDetailParkingNull(null)); 
+      }
       if (window.ZaloPay.isZaloPay) {
         window.ZaloPay.hideLoading()
       }
-      if (tempData === null || tempData === undefined) {
-        return;
-      }
-      if (tempData.status == "OK") {
-        setValue(tempData.data);
-      } 
+     
     }
     getDetailData();
   }, [])
 
-  console.log(userLocation)
   const navigate = useNavigate();
   return (
     <Paper style={ {height: 'calc(100vh - 56px)', display: 'flex', justifyContent: 'center', backgroundColor: '#f6f7f8'}}>
@@ -98,17 +100,13 @@ function ParkingDetail() {
 
               </CardContent>
           
-              
-
-
-
             </Card>
             <Button 
                 variant="outlined" 
                 startIcon={<AssistantDirectionOutlinedIcon />} 
                 sx={{marginTop: 2, width: '90vw'}} 
-                onClick={() => {navigate('/googlemap/' + value.id);}}
-            >;
+                onClick={() => {navigate('/googlemap', {state: {origin: userLocation, destination: value.location}});}}
+            >
 
                 Hiển thị bản đồ
             </Button>

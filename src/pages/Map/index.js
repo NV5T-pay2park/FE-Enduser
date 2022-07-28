@@ -1,23 +1,20 @@
 import {React, useState} from 'react'
 import { DirectionsRenderer, DirectionsService, GoogleMap, LoadScript} from '@react-google-maps/api';
-
+import { useLocation, useParams } from 'react-router-dom';
+import * as Service from '../../services/index';
 
 const containerStyle = {
   width: '100%',
   height: 'calc(100vh - 56px)'
 };
 
-const center = {
-  lat: 10.75766401459632,
-   lng:106.74603203425715
-};
-
-const destination = {
-  lat: 10.739992847744777, 
-  lng: 106.72301089610434
-}
 
 function Map() {
+
+  const loc = useLocation();
+
+  const origin = Service.checkIfLocationNull(loc.state.origin);
+  const destination = Service.checkIfLocationNull(loc.state.destination);
 
   var [direction, setDirection] = useState(null);
 
@@ -34,13 +31,13 @@ function Map() {
     >
       <GoogleMap
         mapContainerStyle={containerStyle}
-        center={center}
+        center={origin}
         zoom={16}
       >
         <DirectionsService
           options={{ 
                 destination: destination,
-                origin: center ,
+                origin: origin ,
                 travelMode: 'DRIVING'
           }}
           callback={Direction}
