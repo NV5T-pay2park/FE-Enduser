@@ -490,10 +490,10 @@ const UserPage = () => {
   const getZaloPayID = async () => {
     if (window.ZaloPay.isZaloPay) {
 
-      const zlpID = await window.ZLP.User().getUserInfo()
+      const zlpIDJSON = await window.ZLP.User().getUserInfo()
       window.ZaloPay.showDialog({
         title: "Login Info: ",
-        message: "status: " + JSON.stringify(zlpID),
+        message: "status: " + zlpIDJSON.id,
         button: "OK"
       }); 
     }

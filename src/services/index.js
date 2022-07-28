@@ -21,12 +21,12 @@ export const getZaloPayID = async () => {
     let zlpID = 2
     if (window.ZaloPay.isZaloPay) {
         const zlpIDJSON = await window.ZLP.User().getUserInfo()
-        window.ZaloPay.showDialog({
-            title: "Login Info: ",
-            message: "status: " + JSON.stringify(zlpID),
-            button: "OK"
-        }); 
         zlpID = zlpIDJSON.id
+        // window.ZaloPay.showDialog({
+        //     title: "Login Info: ",
+        //     message: "status: " + JSON.stringify(zlpID),
+        //     button: "OK"
+        // }); 
     } else {
         zlpID = "aptx4869"
     }
