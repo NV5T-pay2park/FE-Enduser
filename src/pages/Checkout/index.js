@@ -40,7 +40,7 @@ const TicketCheckout = () => {
         if (zpTransToken !== undefined && zpTransToken !== "") {
             stopPingRequest()
             window.ZaloPay.payOrder({
-              appid: 805,
+              appid: Constant.APP_ID,
               zptranstoken: zpTransToken,
             }, cb)    
         }
