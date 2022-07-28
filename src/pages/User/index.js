@@ -488,12 +488,15 @@ const UserPage = () => {
   }
 
   const getZaloPayID = async () => {
-    const zlpID = window.ZLP.User().getUserInfo()
-    window.ZaloPay.showDialog({
+    if (window.ZaloPay.isZaloPay) {
+
+      const zlpID = await window.ZLP.User().getUserInfo()
+      window.ZaloPay.showDialog({
         title: "Login Info: ",
         message: "status: " + JSON.stringify(zlpID),
         button: "OK"
-    }); 
+      }); 
+    }
   }
 
 
