@@ -74,7 +74,7 @@ function FilterChip({handleChoose})  {
     }
 
     return (
-        <Stack direction="column" spacing={0.5}>
+        <Stack direction= "column" spacing={0.5}>
 
 
             <Chip   label="Xe máy" 

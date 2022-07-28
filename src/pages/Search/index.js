@@ -25,44 +25,45 @@ const Search = () => {
 
   const getUserLocation = async () => {
 
-      var temp = {lat: 0, lng: 0};
       await navigator.geolocation.getCurrentPosition((location) => {
-        temp = {
+        const temp = {
           lat: location.coords.latitude,
           lng: location.coords.longitude
         }
+        if (firstRender) {
+          setUserLocation(temp);
+          setFirstRender(false);
+        }
       })
-      setUserLocation(temp);
-      return temp;
     }
   
 
-  async function getData(location) {
-    const temp = await GarageAPI.getParkingListSearch("", district, location, ["1"]);
+  async function getData() {
+    const temp = await GarageAPI.getParkingListSearch("", district, userLocation , ["1"]);
     setDisplayDataGarage(temp.data);
     return temp.data;
   }
 
   async function getFirstRenderData() {
-    
-      if (window.ZaloPay.isZaloPay) {
-        window.ZaloPay.showLoading()
-      }
-      const location = await getUserLocation();  
-      const listData = await getData(location);
-      
+      const listData = await getData();
       const listTemp = ["Tất cả"].concat([... new Set(listData.map((item) => item.district))].sort());
       setDistrictList(listTemp);
-
-
-      if (window.ZaloPay.isZaloPay) {
-        window.ZaloPay.hideLoading()
-      }
-
   }
 
-  useEffect(() => {getFirstRenderData()}, [])
-  
+  async function firstRenderData ()  {
+      await getUserLocation();  
+      await getFirstRenderData();
+  }
+
+  useEffect(() => {
+    if (window.ZaloPay.isZaloPay) {
+      window.ZaloPay.showLoading()
+    }
+    firstRenderData();
+    if (window.ZaloPay.isZaloPay) {
+      window.ZaloPay.hideLoading()
+    }
+  }, [userLocation])
 
   const handleFilter = async (vehicles) => {
     if (window.ZaloPay.isZaloPay) {
@@ -104,14 +105,11 @@ const Search = () => {
     setSearchString(str);
   }
 
-  useEffect(() => {
-    setDataGarage(DisplayDataGarage.map((item) => item.parkingLotName));
-  }, [DisplayDataGarage]);
   
   const navigate = useNavigate();
 
   return (
-    <div style={{ flexDirection: 'row', height: 'calc(100vh - 30px)' }}>
+    <div style={{ flexDirection: 'row', height: 'calc(100vh - 0px)' }}>
 
     <Grid container spacing={0} mt={0.8}>
       <Grid item xs={8} ml={2}>
@@ -139,7 +137,7 @@ const Search = () => {
      </Grid>
    
     </Grid>
-      <div style={{height: 'calc(100vh - 20px)'}} >
+      <div >
         <ListCard list={DisplayDataGarage} location={userLocation}/>
       </div>
     </div>

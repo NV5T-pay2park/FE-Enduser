@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
@@ -12,26 +12,16 @@ ComboBox.propTypes = {
 function ComboBox({ listName, handleChoose }) {
     const [chooseString, setChoosen] = useState('');
 
-    const handleChooseValue = (str) => {
-        if (str == null) str = "";
-        handleChoose(str);
-        setChoosen(str);
-    }
-    
-    if (listName == null || listName == undefined)
-        listName = [];
+    useEffect(() => {
+        const delayDebounceFn = setTimeout(() => {
+           handleChoose(chooseString)
+        }, 1000)
+    }, [chooseString])
 
     return (
         <div>
             <Stack spacing={2} sx={{ width: '100%', marginTop: 0.5, marginBottom: 0.75 }}>
-                <Autocomplete
-                    value={chooseString}
-                    id="free-solo-demo"
-                    freeSolo
-                    onChange={(event, value) => handleChooseValue(value)}
-                    options={listName}
-                    renderInput={(params) => <TextField {...params} size="small" label="Tìm kiếm nhà xe" />}
-                />
+                <TextField id="outlined-basic" label="Tìm kiếm nhà xe" variant="outlined" onChange={(e) => setChoosen(e.target.value)} size="small"/>
             </Stack>
         </div>
     );

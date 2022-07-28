@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
+import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
 import AssistantDirectionOutlinedIcon from '@mui/icons-material/AssistantDirectionOutlined';
 import TablePrice from '../Table/TablePrice'
 import * as GarageAPI from '../../api/garageAPI';
@@ -62,9 +63,14 @@ function ParkingDetail() {
                   <b>{value.parkingLotName}</b> 
                 </Typography>
                 <Stack direction="row" marginTop={1}>
+                  <TwoWheelerIcon sx={{color: '#4286F6', marginRight: "12px"}}/>
+                  <Typography fontSize={14} component="div" > {value.timeMoving} phút - {value.distance} km</Typography>
+                </Stack>
+                <Stack direction="row" marginTop={1}>
                   <LocationOnOutlinedIcon sx={{color: '#4286F6', marginRight: "12px"}}/>
                   <Typography fontSize={14} component="div" >{value.street}, {value.ward}, {value.district}, {value.city}</Typography>
                 </Stack>
+                
                 <Stack direction="row" marginTop={1}>
                   <AccessTimeOutlinedIcon sx={{color: '#4286F6', marginRight: "12px"}}/>
                   <Typography fontSize={14} component="div">
