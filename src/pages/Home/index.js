@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import * as Constant from '../../config/config'
 import * as TicketAPI from '../../api/ticketAPI'
 import * as Service from '../../services/index'
+import * as LoginAPI from '../../api/loginAPI'
 import NotFoundSwipeCard from '../../components/NotFoundSwiperSlide/NotFoundSwipeCard';
 import EmptySwipeSlide from '../../components/NotFoundSwiperSlide/EmptySwipeSlide';
 
@@ -34,7 +35,22 @@ const HomePage = () => {
       let tempList
       // test call local api
       try{
-        const ticketListData = await TicketAPI.getTicketByEndUserId(2)
+        // const ticketListData = await TicketAPI.getTicketByEndUserId(2)
+        const zaloPayID = Service.getZaloPayID()
+        let userId
+        try {
+          const loginResponse = await LoginAPI.requestLogin(zaloPayID)
+          userId = loginResponse.data.id !== undefined ? loginResponse.data.id : 1
+        } catch (error) {
+          userId = 4
+        }
+        context.setUserInfo({
+          zlpId: zaloPayID,
+          id: userId,
+        })
+        console.log("userID: " + userId)
+        const ticketListData = await TicketAPI.getTicketByEndUserId(userId)
+
         console.log("home api response: ")
         console.log(ticketListData)
         if (window.ZaloPay.isZaloPay) {
@@ -54,31 +70,6 @@ const HomePage = () => {
         await context.setTicketList(mockData.data)
       }
      
-      
-      // const apiResponseData = await fetch(Constant.SERVER_BASE_URL + '/api/getTicketByEndUserId?endUserID=7')
-      // const ticketListDataJSON = await apiResponseData.json()
-      // const ticketListData = ticketListDataJSON.data
-      // console.log("home api response: ")
-      // console.log(ticketListData)
-
-      // if (window.ZaloPay.isZaloPay) {
-      //   window.ZaloPay.hideLoading();
-      // }
-      // await context.setTicketList(mockData.data)
-      // await context.setTicketList(ticketListData)
-      
-      // end test
-
-      // old versio
-
-      // const res = await fetch('https://jsonplaceholder.typicode.com/users')
-      // const data = await res.json()
-      // if (window.ZaloPay.isZaloPay) {
-      //   window.ZaloPay.hideLoading();
-      // }
-      // await context.setTicketList(data)
-      
-      // end old version
     }
     getTickets();
   
@@ -106,6 +97,9 @@ const HomePage = () => {
             ticketElements
           }
         </Swiper>
+        <Box textAlign='center' alignItems='center'>
+            <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/history')}>User ID: {context.userInfo.id}</Button>
+        </Box>
         <Box textAlign='center' alignItems='center'>
             <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/history')}>Xem tất cả</Button>
         </Box>
