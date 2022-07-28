@@ -1,4 +1,4 @@
-import { Button } from '@mui/material';
+import { Autocomplete, Button } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import React, { useEffect, useState } from 'react';
 import '../../components/ComboBox/index';
@@ -7,32 +7,40 @@ import ListCard from '../../components/ListCard/index';
 import FilterChip from '../../components/Chip/index';
 import { Navigate, useNavigate } from 'react-router-dom';
 import * as GarageAPI from '../../api/garageAPI';
+import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+import { maxHeight } from '@mui/system';
 
 
 const Search = () => {
 
-  const [userLocation, setUserLocation] = useState(null) ;
+  const [userLocation, setUserLocation] = useState({lat: 0, lng: 0}) ;
   const [firstRender, setFirstRender] = useState(true);
   const [DataGarage, setDataGarage] = useState([]);
   const [DisplayDataGarage, setDisplayDataGarage] = useState([]);
-  const [vehicleType, setVehicleType] = useState(["1"])
+  const [vehicleType, setVehicleType] = useState(["1"]);
+  const [district, setDistrict] = useState("Tất cả")
+  const [districtList, setDistrictList] = useState([]);
+  const [searchString, setSearchString] = useState("");
 
   const getUserLocation = async () => {
-    
+
+      var temp = {lat: 0, lng: 0};
       await navigator.geolocation.getCurrentPosition((location) => {
-        const temp = {
+        temp = {
           lat: location.coords.latitude,
           lng: location.coords.longitude
         }
-        setUserLocation(temp);
       })
+      setUserLocation(temp);
+      return temp;
     }
   
 
-  async function getData() {
-    const temp = await GarageAPI.getParkingListSearch("", userLocation, ["1"]);
-    setDataGarage(temp.data.map((item) => item.parkingLotName));
+  async function getData(location) {
+    const temp = await GarageAPI.getParkingListSearch("", district, location, ["1"]);
     setDisplayDataGarage(temp.data);
+    return temp.data;
   }
 
   async function getFirstRenderData() {
@@ -40,22 +48,27 @@ const Search = () => {
       if (window.ZaloPay.isZaloPay) {
         window.ZaloPay.showLoading()
       }
-      await getUserLocation();  
-      await getData();
+      const location = await getUserLocation();  
+      const listData = await getData(location);
+      
+      const listTemp = ["Tất cả"].concat([... new Set(listData.map((item) => item.district))].sort());
+      setDistrictList(listTemp);
+
+
       if (window.ZaloPay.isZaloPay) {
         window.ZaloPay.hideLoading()
       }
-   
 
   }
 
-  useEffect(getFirstRenderData, [])
+  useEffect(() => {getFirstRenderData()}, [])
+  
 
   const handleFilter = async (vehicles) => {
     if (window.ZaloPay.isZaloPay) {
       window.ZaloPay.showLoading()
     }
-    const tempData = await GarageAPI.getParkingListSearch("", userLocation, vehicles);
+    const tempData = await GarageAPI.getParkingListSearch(searchString, district, userLocation, vehicles);
     if (window.ZaloPay.isZaloPay) {
       window.ZaloPay.hideLoading()
     }
@@ -63,15 +76,32 @@ const Search = () => {
     setVehicleType(vehicles);
   }
 
+  const handleDistrict = async (tempDistrict) => {
+    if (window.ZaloPay.isZaloPay) {
+      window.ZaloPay.showLoading();
+    }
+   
+    if (tempDistrict == null) {
+      tempDistrict = "Tất cả";
+    }
+    const tempData = await GarageAPI.getParkingListSearch(searchString, tempDistrict, userLocation, vehicleType);
+    setDisplayDataGarage(tempData.data);
+    setDistrict(tempDistrict);
+    if (window.ZaloPay.isZaloPay) {
+      window.ZaloPay.hideLoading();
+    }
+  }
+
   const handleSearch = async (str) => {
     if (window.ZaloPay.isZaloPay) {
       window.ZaloPay.showLoading()
     }
-    const tempData = await GarageAPI.getParkingListSearch(str, userLocation, vehicleType);
+    const tempData = await GarageAPI.getParkingListSearch(str, district, userLocation, vehicleType);
     if (window.ZaloPay.isZaloPay) {
       window.ZaloPay.hideLoading()
     }
     setDisplayDataGarage(tempData.data);
+    setSearchString(str);
   }
 
   useEffect(() => {
@@ -85,7 +115,7 @@ const Search = () => {
 
     <Grid container spacing={0} mt={0.8}>
       <Grid item xs={8} ml={2}>
-        <ComboBox listName={DataGarage} handleChoose={handleSearch} />
+        <ComboBox listName={[]} handleChoose={handleSearch} />
       </Grid>
       <Grid item xs={3} style={{width: '100%'}} mt={0.5} ml={1} mr={0.5}>
         <Button variant="contained" style={{width: '95%'}} onClick={() => {
@@ -93,11 +123,25 @@ const Search = () => {
         }}> Bản đồ</Button>
      
       </Grid>
-     <Grid ml={2} mt={0.25} mb={1}>
-        <FilterChip handleChoose={handleFilter}></FilterChip>
-      </Grid>
+     <Grid container spacing={0}>
+        <Grid item xs={8} ml={2} mt={0.25} mb={1}>
+          <Autocomplete
+            options={districtList}
+            value={district}
+            onChange={(event, value) => handleDistrict(value)}
+            sx={{}}
+            renderInput={(params) => <TextField {...params} label="Quận" />}
+          />
+        </Grid>
+        <Grid item xs={3}  mt={0.25} mb={1} ml={1}>
+          <FilterChip handleChoose={handleFilter}></FilterChip>
+        </Grid>
+     </Grid>
+   
     </Grid>
-      <ListCard list={DisplayDataGarage} location={userLocation}/>
+      <div style={{height: 'calc(100vh - 20px)'}} >
+        <ListCard list={DisplayDataGarage} location={userLocation}/>
+      </div>
     </div>
   )
 }

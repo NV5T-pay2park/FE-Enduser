@@ -33,7 +33,12 @@ function ParkingDetail() {
       if (window.ZaloPay.isZaloPay) {
         window.ZaloPay.hideLoading()
       }
-      setValue(tempData.data);
+      if (tempData === null || tempData === undefined) {
+        return;
+      }
+      if (tempData.status == "OK") {
+        setValue(tempData.data);
+      } 
     }
     getDetailData();
   }, [])
@@ -58,18 +63,18 @@ function ParkingDetail() {
                 </Typography>
                 <Stack direction="row" marginTop={1}>
                   <LocationOnOutlinedIcon sx={{color: '#4286F6', marginRight: "12px"}}/>
-                  <Typography fontSize={14} component="div" sx={{color: '#ACB3BA'}}>{value.address}</Typography>
+                  <Typography fontSize={14} component="div" >{value.street}, {value.ward}, {value.district}, {value.city}</Typography>
                 </Stack>
                 <Stack direction="row" marginTop={1}>
                   <AccessTimeOutlinedIcon sx={{color: '#4286F6', marginRight: "12px"}}/>
                   <Typography fontSize={14} component="div">
                       {value.status === 0 ? <text style={{color:'green', fontWeight: 'bold'}}> Còn chỗ</text> : <text style={{color: 'red', fontWeight: 'bold'}}> Hết chỗ</text> }
                   </Typography>
-                  <Typography fontSize={14} component="div" marginLeft={1} sx={{color: '#ACB3BA'}}>{value.timeOpen}:00 AM - {value.timeClose}:00 PM</Typography>
+                  <Typography fontSize={14} component="div" marginLeft={1} >{value.timeOpen}:00 AM - {value.timeClose}:00 PM</Typography>
                 </Stack>
                 <Stack direction="row" marginTop={1}>
                   <LocalPhoneOutlinedIcon sx={{color: '#4286F6', marginRight: "12px"}}/>
-                  <Typography fontSize={14} component="div" sx={{color: '#ACB3BA'}}>{value.phoneNumber}</Typography>
+                  <Typography fontSize={14} component="div">0{value.phoneNumber}</Typography>
                 </Stack>
                 {/* <Typography variant="h7" component="div" paragraph>
                   <b> Mô tả: </b> {v.discription}

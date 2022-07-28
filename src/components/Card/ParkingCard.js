@@ -16,6 +16,12 @@ const ParkingCard = ({ value }) => {
 //     address: "Khu chế xuất Tân Thuận, Z06, Tân Thuận Đông, Quận 7, Thành phố Hồ Chí Minh, Việt Nam"
 //   }
 
+    const getAddress = (value) => {
+        return `${value.street}, ${value.ward}, ${value.district}`
+    }
+
+    const address = getAddress(value);
+
   return (
     <Card sx={{ display: 'flex', width: '100%', }}>
         <CardMedia
@@ -38,7 +44,7 @@ const ParkingCard = ({ value }) => {
                 {(value.parkingLotName.length <= 20) ? value.parkingLotName : value.parkingLotName.substr(0, 20) + "..."}
                 </Typography>
                 <Typography fontSize={10} component="div">
-                {(value.address.length <= 35) ? value.address : value.address.substr(0, 35) + "..."}
+                {(address.length <= 35) ? address : address.substr(0, 35) + "..."}
                 </Typography>
                 <Typography fontSize={10} component="div">
                     {value.timeMoving} phút • {value.distance} km • 0{value.phoneNumber}
