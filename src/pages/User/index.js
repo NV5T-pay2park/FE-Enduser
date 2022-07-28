@@ -9,9 +9,9 @@ const UserPage = () => {
   const [data, setData] = useState({data: "nothing"})
 
   // UserInfo: { access_token: string; display_name: string; id: string; phone?: number | string; zlp_id: string }
-  const getUserZaloPayInfo = () => {
+  const getUserZaloPayInfo = async () => {
       if (window.ZaloPay.isZaloPay) {
-        const info = window.ZaloPay.getUserInfo()
+        const info = await window.ZaloPay.getUserInfo()
         window.ZaloPay.showDialog({
           title: "User Info: ",
           message: "User Info: " + JSON.stringify(info),

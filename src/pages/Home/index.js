@@ -99,15 +99,20 @@ const HomePage = () => {
             ticketElements
           }
         </Swiper>
-        <Box textAlign='center' alignItems='center'>
+       
             <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/history')}>User ID: {context.userInfo.id}</Button>
-        </Box>
-        <Box textAlign='center' alignItems='center'>
+
+            <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/history')}>Xem tất cả</Button>
+
+
+            <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/user')}>Thông tin cá nhân</Button>
+
+        {/* <Box textAlign='center' alignItems='center'>
             <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/history')}>Xem tất cả</Button>
         </Box>
         <Box textAlign='center' alignItems='center'>
             <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/user')}>Thông tin cá nhân</Button>
-        </Box>
+        </Box> */}
     </Container>
   )
 }
