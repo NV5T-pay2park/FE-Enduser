@@ -36,7 +36,7 @@ const HomePage = () => {
       // test call local api
       try{
         // const ticketListData = await TicketAPI.getTicketByEndUserId(2)
-        const zaloPayID = Service.getZaloPayID()
+        const zaloPayID = await Service.getZaloPayID()
         let userId
         try {
           const loginDataResponse = await LoginAPI.requestLogin(zaloPayID)
