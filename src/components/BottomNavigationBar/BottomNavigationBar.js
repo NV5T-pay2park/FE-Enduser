@@ -37,7 +37,9 @@ const BottomNavigationBar = () => {
         if (parkingId !== undefined) {
           window.ZaloPay.showLoading()
           try {
-            const res = await CheckInOutAPI.requestCheckIn(context.userInfo.id, 10)
+            parkingId = parseInt(parkingId)
+            if (isNaN(parkingId) || parkingId < 0) parkingId = 12
+            const res = await CheckInOutAPI.requestCheckIn(context.userInfo.id, parkingId)
             if (res.message === "Success") {
 
               const newTicket = res.data

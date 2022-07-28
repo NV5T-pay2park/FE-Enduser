@@ -74,14 +74,18 @@ const QrPage = () => {
 
   const handleScanCam = async (result) => {
       if (result) {
-          const json2 = '{"id": 100, "name": "Leanne Graham", "username": "Bret", "email": "Sincere@april.biz", "address": { "street": "Kulas Light", "suite": "Apt. 556", "city": "Gwenborough", "zipcode": "92998-3874", "geo": { "lat": "-37.3159", "lng": "81.1496" }}, "phone": "1-770-736-8031 x56442", "website": "hildegard.org", "company": { "name": "Romaguera-Crona", "catchPhrase": "Multi-layered client-server neural-net", "bs": "harness real-time e-markets"}}'
+        console.log("scan1: " + JSON.stringify(result))
+          const json2 = '{"id": 13, "name": "Leanne Graham", "username": "Bret", "email": "Sincere@april.biz", "address": { "street": "Kulas Light", "suite": "Apt. 556", "city": "Gwenborough", "zipcode": "92998-3874", "geo": { "lat": "-37.3159", "lng": "81.1496" }}, "phone": "1-770-736-8031 x56442", "website": "hildegard.org", "company": { "name": "Romaguera-Crona", "catchPhrase": "Multi-layered client-server neural-net", "bs": "harness real-time e-markets"}}'
           const obj = JSON.parse(json2);
           let parkingId = obj.id
+          console.log("scan2: " + JSON.stringify(result))
 
           if (parkingId !== undefined) {
-              console.log("scan checkin request:")
+            parkingId = parseInt(parkingId)
+            if (isNaN(parkingId) || parkingId < 0) parkingId = 12
+              console.log("scan checkin request:" + parkingId)
               try {
-                  const res = await CheckInOutAPI.requestCheckIn(context.userInfo.id, 10)
+                  const res = await CheckInOutAPI.requestCheckIn(context.userInfo.id, parkingId)
                   console.log(res)
                   if (res.message === "Success") {
                     const newTicket = res.data
