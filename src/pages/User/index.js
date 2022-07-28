@@ -487,6 +487,15 @@ const UserPage = () => {
     })
   }
 
+  const getZaloPayID = async () => {
+    const zlpID = window.ZLP.User().getUserInfo()
+    window.ZaloPay.showDialog({
+        title: "Login Info: ",
+        message: "status: " + JSON.stringify(zlpID),
+        button: "OK"
+    }); 
+  }
+
 
   return (
     <Container sx={{ backgroundColor: '#008FE5', height: 'calc(100vh - 56px)'}}>
@@ -527,11 +536,11 @@ const UserPage = () => {
         <Button onClick={() => setData("hihi")}>Update value data</Button>
         <Box>Data: {JSON.stringify(data)}</Box>        
 
-        <Button onClick={getLocation1} variant="contained" color='secondary' sx={{marginTop: 1}}>getLocation1</Button>
+        {/* <Button onClick={getLocation1} variant="contained" color='secondary' sx={{marginTop: 1}}>getLocation1</Button>
         <Button onClick={getLocation2} variant="contained" color='secondary' sx={{marginTop: 1}}>getLocation1</Button>
         <Button onClick={getLocation3} variant="contained" color='secondary' sx={{marginTop: 1}}>getLocation1</Button>
-        <Button onClick={getLocation4} variant="contained" color='secondary' sx={{marginTop: 1}}>getLocation1</Button>
-
+        <Button onClick={getLocation4} variant="contained" color='secondary' sx={{marginTop: 1}}>getLocation1</Button> */}
+        <Button onClick={getZaloPayID} variant="contained" color='secondary' sx={{marginTop: 1}}>get zalopayid</Button>
 
     </Container>
   )
