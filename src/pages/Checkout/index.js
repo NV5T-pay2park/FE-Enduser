@@ -21,17 +21,6 @@ const TicketCheckout = () => {
   const timeoutID = useRef()
   const prevCount = useRef()
 
-  // const fetchPaymentCheckout = () => {
-  //   axios.get(`https://jsonplaceholder.typicode.com/posts/1`)
-  //   .then(res => {
-  //     const post = res.data;
-  //     console.log(post)
-  //     stopPingRequest()
-  //     window.location.href = "https://sbgateway.zalopay.vn/openinapp?order=eyJ6cHRyYW5zdG9rZW4iOiIyMjA3MjYwMDAwMDk2MDR5NVpWdzA3IiwiYXBwaWQiOjk5OTg4OH0"
-  //   })
-  //   .catch(error => console.log("err: " + error));
-  // }
-
   const fetchPaymentCheckout = async () => {
       let x = Math.floor((Math.random() * 1000) + 200);
       // console.log("random user id: " + x)
@@ -67,45 +56,6 @@ const TicketCheckout = () => {
         console.log("error call checkout api: ")
         console.log(err)
       }
-
-      
-
-      // fetch(url, {
-      //   method: 'GET', // or 'PUT'
-      //   credentials: 'omit', // include, *same-origin, omit
-      //   mode: 'cors',
-      //   headers: {
-      //     'Accept': 'application/json, text/plain',
-      //     'Content-Type': 'application/json',
-      //     'Access-Control-Allow-Origin':'*'
-      //   },
-      // })
-      // .then((response) => response.json())
-      // .then((orderDataJSON) => {
-      //   // console.log('Success:', orderDataJSON);
-      //   const orderData = orderDataJSON.data
-      //   stopPingRequest()
-      //   // window.location.href = orderDara.orderUrl
-
-      //   const zpTransToken = orderData.zpTransToken
-      //   window.ZaloPay.payOrder({
-      //     appid: 805,
-      //     zptranstoken: zpTransToken,
-      //     }, cb)
-
-      //     var cb = function (data) {
-      //       // window.ZaloPay.showDialog({
-      //       //   title: "Checkout Info: ",
-      //       //   message: "status: " + JSON.stringify(data),
-      //       //   button: "OK"
-      //       // }); 
-      //     };
-      // })
-      // .catch((error) => {
-      //   // console.error('Error:', error);
-      //   navigate('/')
-      // });
-      
   }
 
   const stopPingRequest = () => {
