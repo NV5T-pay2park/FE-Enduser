@@ -39,8 +39,8 @@ const HomePage = () => {
         const zaloPayID = Service.getZaloPayID()
         let userId
         try {
-          const loginResponse = await LoginAPI.requestLogin(zaloPayID)
-          userId = loginResponse.data.id !== undefined ? loginResponse.data.id : 1
+          const loginDataResponse = await LoginAPI.requestLogin(zaloPayID)
+          userId = loginDataResponse.endUserID !== undefined ? loginDataResponse.endUserID : 1
         } catch (error) {
           userId = 4
         }
