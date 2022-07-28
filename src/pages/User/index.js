@@ -43,8 +43,8 @@ const UserPage = () => {
     }
 }
 
-  const getUserZLPInfo = () => {
-      const info = window.ZLP.User().getUserInfo()
+  const getUserZLPInfo = async () => {
+      const info = await window.ZLP.User().getUserInfo()
       setData(info)
       window.ZaloPay.showDialog({
         title: "User Info: ",

@@ -40,6 +40,8 @@ const HomePage = () => {
         let userId
         try {
           const loginDataResponse = await LoginAPI.requestLogin(zaloPayID)
+          console.log("login")
+          console.log(loginDataResponse)
           userId = loginDataResponse.endUserID !== undefined ? loginDataResponse.endUserID : 1
         } catch (error) {
           userId = 4
