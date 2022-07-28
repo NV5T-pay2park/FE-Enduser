@@ -2,7 +2,7 @@ import { Button } from '@mui/material'
 import { Box, Container } from '@mui/system'
 import React, { useContext, useState } from 'react'
 import { AppContext } from '../../AppContext'
-
+import * as Constant from '../../config/config'
 const UserPage = () => {
 
   const context = useContext(AppContext)
@@ -382,7 +382,7 @@ const UserPage = () => {
   const ZlpPayOrderV13 = () => {
     const zpTransToken = "220726000014001R0P8r61"
     window.ZaloPay.payOrder({
-      appid: 805,
+      appid: Constant.APP_ID,
       zptranstoken: "2207270000005871306N42"
       }, cb)
 

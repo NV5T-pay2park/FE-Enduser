@@ -7,7 +7,7 @@ import axios from 'axios'
 import * as Constant from '../../config/config'
 import * as TicketAPI from '../../api/ticketAPI'
 import * as Service from '../../services/index'
-
+import * as CheckInOutAPI from '../../api/checkInOutAPI'
 const TicketCheckout = () => {
 
   const location = useLocation();
@@ -21,140 +21,41 @@ const TicketCheckout = () => {
   const timeoutID = useRef()
   const prevCount = useRef()
 
-  // const fetchPaymentCheckout = () => {
-  //   axios.get(`https://jsonplaceholder.typicode.com/posts/1`)
-  //   .then(res => {
-  //     const post = res.data;
-  //     console.log(post)
-  //     stopPingRequest()
-  //     window.location.href = "https://sbgateway.zalopay.vn/openinapp?order=eyJ6cHRyYW5zdG9rZW4iOiIyMjA3MjYwMDAwMDk2MDR5NVpWdzA3IiwiYXBwaWQiOjk5OTg4OH0"
-  //   })
-  //   .catch(error => console.log("err: " + error));
-  // }
-
-  const fetchPaymentCheckout = () => {
-    let x = Math.floor((Math.random() * 1000) + 200);
-    // console.log("random user id: " + x)
+  const fetchPaymentCheckout = async () => {
+      let x = Math.floor((Math.random() * 1000) + 200);
+      // console.log("random user id: " + x)
       const param = {
         "userId": x,
         "ticketId": 4322312,
         "amount": 1000
-      }
-
-      // axios.post(Constant.SERVER_BASE_URL + '/api/createOrder', param, {
-      //   headers: {
-      //     'Accept': 'application/json',
-      //   'Content-Type': 'application/json'
-      //   }
-      // })
-      // .then(function (response) {
-      //   console.log("response localhost: " + response);
-      //   const orderDataJSON = response.json()
-      //   // const ticketListDataJSON = await TicketAPI.getTicketByEndUserId(2)
-      //   const orderDara = orderDataJSON.data
-      //   stopPingRequest()
-      //   window.location.href = orderDara.orderUrl
-      //   // navigate('/')
-      // })
-      // .catch(function (error) {
-      //   console.log("error: " + error);
-      //   // context.insertTicket(mockNewTicket)
-
-      //   navigate('/')
-      // });
-
-      
-      
+      }  
       
       // const url = Constant.SERVER_BASE_URL + `/api/getCreateOrder?userId=${x}&ticketId=22&amount=2000`
       const url = Constant.SERVER_BASE_URL + `/api/queryPaymentUrl?endUserId=${ticketData.endUserID}&ticketId=${ticketData.ticketID}`
 
+      try {
+        const checkoutResult = await CheckInOutAPI.getCheckoutPaymentData(ticketData.endUserID, ticketData.ticketID)
+        const paymentData = checkoutResult.data
+        const zpTransToken = paymentData.zpTransToken
+        if (zpTransToken !== undefined && zpTransToken !== "") {
+            stopPingRequest()
+            window.ZaloPay.payOrder({
+              appid: Constant.APP_ID,
+              zptranstoken: zpTransToken,
+            }, cb)    
+        }
+        var cb = function (data) {
+          // window.ZaloPay.showDialog({
+          //   title: "Checkout Info: ",
+          //   message: "status: " + JSON.stringify(data),
+          //   button: "OK"
+          // }); 
 
-      fetch(url, {
-        method: 'GET', // or 'PUT'
-        credentials: 'omit', // include, *same-origin, omit
-        mode: 'cors',
-        headers: {
-          'Accept': 'application/json, text/plain',
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin':'*'
-        },
-      })
-      .then((response) => response.json())
-      .then((orderDataJSON) => {
-        // console.log('Success:', orderDataJSON);
-        const orderData = orderDataJSON.data
-        stopPingRequest()
-        // window.location.href = orderDara.orderUrl
-
-        const zpTransToken = orderData.zpTransToken
-        window.ZaloPay.payOrder({
-          appid: 805,
-          zptranstoken: zpTransToken,
-          }, cb)
-
-          var cb = function (data) {
-            // window.ZaloPay.showDialog({
-            //   title: "Checkout Info: ",
-            //   message: "status: " + JSON.stringify(data),
-            //   button: "OK"
-            // }); 
-          };
-      })
-      .catch((error) => {
-        // console.error('Error:', error);
-        navigate('/')
-      });
-      
-
-
-
-
-
-
-
-
-      // const response = await fetch(url, {
-      //   method: 'POST', // *GET, POST, PUT, DELETE, etc.
-      //   mode: 'cors', // no-cors, *cors, same-origin
-      //   cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-      //   credentials: 'same-origin', // include, *same-origin, omit
-      //   headers: {
-      //     'Content-Type': 'application/json'
-      //     // 'Content-Type': 'application/x-www-form-urlencoded',
-      //   },
-      //   redirect: 'follow', // manual, *follow, error
-      //   referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-      //   body: JSON.stringify(param) // body data type must match "Content-Type" header
-      // });
-      // return response.json(); // parses JSON response into native JavaScript objects
-
-      
-      // const sample = { username: 'example' };
-      // fetch('https://pay2park.ep-eng.io/api/createOrder', {
-      //   method: 'POST', // or 'PUT'
-      //   headers: {
-      //     'Accept': 'application/json, text/plain',
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: {
-      //     "userId": 1000,
-      //     "ticketId": 4322312,
-      //     "amount": 1000
-      //   },
-      // })
-      // .then((response) => response.json())
-      // .then((orderDataJSON) => {
-      //   console.log('Success:', orderDataJSON);
-      //   const orderDara = orderDataJSON.data
-      //   stopPingRequest()
-      //   window.location.href = orderDara.orderUrl
-      // })
-      // .catch((error) => {
-      //   console.error('Error:', error);
-      //   navigate('/')
-      // });
-
+        };
+      } catch (err) {
+        console.log("error call checkout api: ")
+        console.log(err)
+      }
   }
 
   const stopPingRequest = () => {
