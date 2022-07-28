@@ -16,7 +16,10 @@ export const requestCheckIn = async (userID, parkingLotID) => {
           'Content-Type': 'application/json',
       },
       body: JSON.stringify(bodyContent),
-		});
+	});
+    if(!response.ok){
+        return {}
+    }
     const data = await response.json();
     return data
 }
@@ -24,6 +27,10 @@ export const requestCheckIn = async (userID, parkingLotID) => {
 export const getCheckoutPaymentData = async (userID, ticketID) => {
     const url = Constant.SERVER_BASE_URL + `/api/queryPaymentUrl?endUserId=${userID}&ticketId=${ticketID}`
     const checkoutResponse = await fetch(url);
+    if(!checkoutResponse.ok){
+        const message = `No payment data`;
+        throw new Error(message);
+    }
     const checkoutResult = await checkoutResponse.json()
     return checkoutResult
 }

@@ -86,7 +86,7 @@ const QrPage = () => {
                     if (newTicket.ticketID !== undefined) {
                       context.insertTicket(newTicket)
                     }
-                  } {
+                  } else {
                     console.log(res.message)
                   }
                   navigate('/')

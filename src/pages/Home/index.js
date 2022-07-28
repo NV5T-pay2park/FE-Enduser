@@ -34,10 +34,7 @@ const HomePage = () => {
       let tempList
       // test call local api
       try{
-        const apiResponseData = await fetch(Constant.SERVER_BASE_URL + '/api/getTicketByEndUserId?endUserID=2')
-        const ticketListDataJSON = await apiResponseData.json()
-        // const ticketListDataJSON = await TicketAPI.getTicketByEndUserId(2)
-        const ticketListData = ticketListDataJSON.data
+        const ticketListData = await TicketAPI.getTicketByEndUserId(2)
         console.log("home api response: ")
         console.log(ticketListData)
         if (window.ZaloPay.isZaloPay) {
@@ -55,8 +52,6 @@ const HomePage = () => {
           window.ZaloPay.hideLoading();
         }
         await context.setTicketList(mockData.data)
-        tempList = mockData.data
-        console.log("after set data")
       }
      
       
