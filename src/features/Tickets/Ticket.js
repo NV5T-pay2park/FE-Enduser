@@ -24,7 +24,9 @@ const Ticket = ({ticketData}) => {
             <CardMedia
               component="img"
               sx={{height: 140, width: 140}}
-              image="./toro_cry_rmbg.png"
+              // image="./toro_cry_rmbg.png"
+              image="./toro_cry.webp"
+
               alt="qrcode"
             />
             {/* <QrTicket data={ticketData}/> */}

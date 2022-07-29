@@ -27,7 +27,9 @@ const ParkingCard = ({ value }) => {
         <CardMedia
             component="img"
             sx={{ width: 100, height: 100, margin: 0.5 }}
-            image="./toro_cry_rmbg.png"
+            // image="./toro_cry_rmbg.png"
+            image="./toro_cry.webp"
+
             alt="parking"
         />
 

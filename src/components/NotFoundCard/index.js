@@ -79,7 +79,9 @@ const NotFoundCard = () => {
       <CardMedia
         component="img"
         sx={{height: 140, width: 140, marginTop: 5}}
-        image="./toro_cry_rmbg.png"
+        // image="./toro_cry_rmbg.png"
+        image="./toro_cry.webp"
+
         alt="toro_cry"
       />
     </Box>
