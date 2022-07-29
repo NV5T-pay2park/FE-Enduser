@@ -1,21 +1,12 @@
-import { Box, Card } from '@mui/material'
+import { Box, Card } from '@mui/material';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import SkipNextIcon from '@mui/icons-material/SkipNext';
-import React from 'react'
 import { useTheme } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
+import React from 'react';
 
 const ParkingCard = ({ value }) => {
   const theme = useTheme();
-//   const value = {
-//     name: "Nhà xe VNG tên dài 1 2 4 tên dài part 2 3 4 5",
-//     address: "Khu chế xuất Tân Thuận, Z06, Tân Thuận Đông, Quận 7, Thành phố Hồ Chí Minh, Việt Nam"
-//   }
-
     const getAddress = (value) => {
         return `${value.street}, ${value.ward}, ${value.district}`
     }
@@ -32,9 +23,6 @@ const ParkingCard = ({ value }) => {
 
             alt="parking"
         />
-
-{/* sx={{ display: 'flex', flexDirection: 'column',}} */}
-    {/* sx={{ flex: '1 0 auto' }} */}   
         <Box sx={{padding: 0, height: 110}}>
             <CardContent sx={{padding: "1px"}}>
                 {value.status === 0 ? <Typography component="div" fontSize={12} color="#06BE04" fontWeight={"bold"} marginTop={1}>

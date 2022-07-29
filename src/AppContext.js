@@ -13,7 +13,6 @@ function AppProvider({children}) {
     })
 
     const insertTicket = (ticket) => {
-        // setTicketList(prevList => [ticket, prevList])
         setTicketList(prevList => [ticket].concat(prevList))
     }
 
@@ -29,8 +28,6 @@ function AppProvider({children}) {
         window.ZLP.User().getUserInfo().then(value => { 
           setUserInfo(value)
         })
-    
-        // console.log("call ZLP.getUserInfo()2")
     }
     const getUserInfo = async () => {
         if (window.ZaloPay.isZaloPay) {
@@ -66,7 +63,6 @@ function AppProvider({children}) {
                 id: 3,
             })
         }
-        console.log("zlpID: " + userInfo.id)
     }
     
     return (

@@ -20,7 +20,6 @@ const TicketCheckout = () => {
 
   const fetchPaymentCheckout = async () => {
       let x = Math.floor((Math.random() * 1000) + 200);
-      // console.log("random user id: " + x)
       const param = {
         "userId": x,
         "ticketId": 4322312,
@@ -42,15 +41,10 @@ const TicketCheckout = () => {
             }, cb)    
         }
         var cb = function (data) {
-          // window.ZaloPay.showDialog({
-          //   title: "Checkout Info: ",
-          //   message: "status: " + JSON.stringify(data),
-          //   button: "OK"
-          // }); 
+
 
         };
       } catch (err) {
-        console.log("error call checkout api: ")
         console.log(err)
       }
   }
@@ -91,12 +85,6 @@ const TicketCheckout = () => {
           </Typography>
         </CardContent>
         <Box alignItems="center" justifyContent="center" display="flex">
-          {/* <CardMedia
-            component="img"
-            sx={{height: 140, width: 140}}
-            image="./qr.jpeg"
-            alt="qrcode"
-          /> */}
           <QrTicket data={ticketData}/>
         </Box>
         <CardContent>

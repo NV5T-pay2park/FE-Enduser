@@ -36,19 +36,16 @@ const Search = () => {
         lat: latitude,
         lng: longitude,
       }
-      console.log(temp);
       setUserLocation(temp);
     }
   
 
   async function getData() {
     try {
-      console.log(userLocation)
       const temp = await Service.checkIfNullDataListParking(GarageAPI.getParkingListSearch("", district, userLocation , ["1"]));
       setDisplayDataGarage(temp.data);
       return temp.data;
     } catch(err) {
-      console.log(err);
       return [];
     }
   }
@@ -74,7 +71,6 @@ const Search = () => {
 
   async function getUserLocationSync() {
     await getUserLocation();
-    console.log(userLocation);
   }
 
   useEffect(() => {getUserLocationSync();}, [])
@@ -102,7 +98,6 @@ const Search = () => {
       setDisplayDataGarage(tempData.data);
       setVehicleType(vehicles);
     } catch (err) {
-      console.log(err);
       setDisplayDataGarage([]);
       setVehicleType(["1"]);
     }
@@ -126,7 +121,6 @@ const Search = () => {
       setDisplayDataGarage(tempData.data);
       setDistrict(tempDistrict);
     } catch (err) {
-      console.log(err);
       setDisplayDataGarage([]);
       setDistrict("Tất cả");
     }

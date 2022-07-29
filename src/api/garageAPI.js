@@ -46,10 +46,8 @@ export const getParkingListSearch = async (str, district, location, vehicleType)
 
     
     const locationString = (location == null ? "": `${location.lat},${location.lng}`);
-    console.log(locationString)
     const vehicleString = vehicleType.filter(Boolean).join(",");
     const request_url = Constant.SERVER_BASE_URL + `/api/searchAndFilterParking?stringSearch=${str}&vehicleTypes=${vehicleString}&district=${district}&coordinates=${locationString}`;
-    console.log(request_url);
     const dataSearch = await fetch(request_url);
 
     if (!dataSearch.ok) {

@@ -26,32 +26,17 @@ const NotFoundCard = () => {
           const json2 = '{"id": 100, "name": "Leanne Graham", "username": "Bret", "email": "Sincere@april.biz", "address": { "street": "Kulas Light", "suite": "Apt. 556", "city": "Gwenborough", "zipcode": "92998-3874", "geo": { "lat": "-37.3159", "lng": "81.1496" }}, "phone": "1-770-736-8031 x56442", "website": "hildegard.org", "company": { "name": "Romaguera-Crona", "catchPhrase": "Multi-layered client-server neural-net", "bs": "harness real-time e-markets"}}'
           const obj = JSON.parse(json2);
           window.ZaloPay.showLoading()
-        
-      
-          // const headers = { 'Content-Type': 'application/json' }
-          // fetch('https://jsonplaceholder.typicode.com/posts/1', { headers })
-          //     .then(response => response.json())
-          //     .then(data => {
-          //       let ticketData = obj
-          //       window.ZaloPay.hideLoading()
-          //       //context.insertTicket(ticketData)
-          //       context.insertTicket(mockData.data)
-          //       navigate('/')
-          //     })
-
           axios.post(Constant.SERVER_BASE_URL + '/api/checkIn', {
             endUserID: 2,
             parkingLotID: 4
           })
           .then(function (response) {
-            console.log("response: " + response);
             window.ZaloPay.hideLoading()
 
             context.insertTicket(mockNewTicket)
             navigate('/')
           })
           .catch(function (error) {
-            // console.log("error: " + error);
             window.ZaloPay.hideLoading()
             window.ZaloPay.showDialog({
               title: "QR response",
@@ -70,11 +55,6 @@ const NotFoundCard = () => {
 
   return (
     <Card sx={{ maxWidth: '80vw', height: '70vh', marginTop: '0px', borderRadius: '20px', minWidth: '80vw' }} variant="outlined">
-    {/* <CardContent>
-      <Typography gutterBottom variant="h5" component="div" align="center">
-        Thẻ Giữ Xe {ticketData.username}
-      </Typography>
-    </CardContent> */}
     <Box alignItems="center" justifyContent="center" display="flex">
       <CardMedia
         component="img"

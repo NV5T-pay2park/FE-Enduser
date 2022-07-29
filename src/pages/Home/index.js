@@ -35,8 +35,6 @@ const HomePage = () => {
         let userId
         try {
           const loginDataResponse = await LoginAPI.requestLogin(zaloPayID)
-          console.log("login")
-          console.log(loginDataResponse)
           userId = loginDataResponse.endUserID !== undefined ? loginDataResponse.endUserID : 1
         } catch (error) {
           userId = 4
@@ -45,22 +43,14 @@ const HomePage = () => {
           zlpId: zaloPayID,
           id: userId,
         })
-        console.log("userID: " + userId)
         const ticketListData = await TicketAPI.getTicketByEndUserId(userId)
-
-        console.log("home api response: ")
-        console.log(ticketListData)
         if (window.ZaloPay.isZaloPay) {
           window.ZaloPay.hideLoading();
         }
         tempList = ticketListData
         await context.setTicketList(ticketListData)
       }catch(err){
-        console.error("error: ")
         console.log(err);
-        // if (window.ZaloPay.isZaloPay) {
-        //   window.ZaloPay.hideLoading();
-        // }
         if (window.ZaloPay.isZaloPay) {
           window.ZaloPay.hideLoading();
         }
@@ -71,10 +61,7 @@ const HomePage = () => {
     getTickets();
   
   }, [])
-  // console.log(context.ticketList)
   ticketElements = Service.getCheckedNullList(context.ticketList).map(ticket =><SwiperSlide key={ticket.ticketID}><Ticket ticketData={ticket}/></SwiperSlide>)
-  console.log("first time" + isFirstTime.current)
-  // ticketElements = context.ticketList.map(ticket =><SwiperSlide key={ticket.id}><Ticket ticketData={ticket}/></SwiperSlide>)
   
   const notFoundElement = <SwiperSlide><NotFoundCard/></SwiperSlide>
   const emptyElement = <SwiperSlide><Box></Box></SwiperSlide>
@@ -95,19 +82,12 @@ const HomePage = () => {
           }
         </Swiper>
        
-            <Button test-id="button" size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/history')}>User ID: {context.userInfo.id}</Button>
+            <Box test-id="button" size='small' variant="text" sx={{color: 'white', align: 'center'}} >User ID: {context.userInfo.id}</Box>
 
             <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/history')}>Xem tất cả</Button>
 
 
-            <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/user')}>Thông tin cá nhân</Button>
-
-        {/* <Box textAlign='center' alignItems='center'>
-            <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/history')}>Xem tất cả</Button>
-        </Box>
-        <Box textAlign='center' alignItems='center'>
-            <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/user')}>Thông tin cá nhân</Button>
-        </Box> */}
+            {/* <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/user')}>Thông tin cá nhân</Button> */}
     </Container>
   )
 }

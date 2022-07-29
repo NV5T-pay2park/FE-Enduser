@@ -5,10 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 
 const Ticket = ({ticketData}) => {
-
-  //console.log(ticketData)
   const navigate = useNavigate()
-
   const navigateToCheckout = () => {
     navigate('/ticket/checkout', { state: ticketData})
   }
@@ -29,7 +26,6 @@ const Ticket = ({ticketData}) => {
 
               alt="qrcode"
             />
-            {/* <QrTicket data={ticketData}/> */}
         </Box>
         <CardContent>
             <Typography gutterBottom variant="h8" component="div" align='center' color='black'>

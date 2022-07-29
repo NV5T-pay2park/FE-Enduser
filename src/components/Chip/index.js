@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import Chip from '@mui/material/Chip';
-import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import PropTypes from 'prop-types';
+import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
+import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
-import DirectionsBikeIcon from '@mui/icons-material/DirectionsBike';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 
 FilterChip.propTypes = {
     handleChoose:  PropTypes.func,
@@ -15,35 +13,20 @@ function FilterChip({handleChoose})  {
 
     const [chooseBike, setChooseBike] = useState(true);
     const [chooseCar, setChooseCar] = useState(false);
-    const [chooseContainer, setChooseContainer] = useState(false);
-    const [chooseBicycle, setChooseBicycle] = useState(false);
 
     const onChange = () => {
         var tempFilter = []
-        if (chooseBicycle) 
-            tempFilter.push("0");
-
+        
         if (chooseBike)
             tempFilter.push("1");
 
         if (chooseCar)
             tempFilter.push("2");
 
-        if (chooseContainer)
-            tempFilter.push("3");
-
         handleChoose(tempFilter);
     }
 
-    useEffect(onChange, [chooseBicycle, chooseBike, chooseCar, chooseContainer]);
-
-    const handleOnClickBicycle = () => {
-        if (chooseBicycle) {
-            setChooseBicycle(false);
-            return;
-        }
-        setChooseBicycle(true);
-    }
+    useEffect(onChange, [chooseBike, chooseCar]);
 
     const handleOnClickBike = () => {
         if (chooseBike) { 
@@ -63,18 +46,8 @@ function FilterChip({handleChoose})  {
         setChooseCar(true);
     }
 
-     const handleOnClickContainer = () => {
-        if (chooseContainer) {
-            setChooseContainer(false);
-            return;            
-        }
-        setChooseContainer(true);
-    }
-
     return (
         <Stack direction= "column" spacing={0.5}>
-
-
             <Chip   label="Xe máy" 
                     icon={<TwoWheelerIcon />} 
                     variant={chooseBike ? "outlined" : "filled"} 
@@ -82,7 +55,6 @@ function FilterChip({handleChoose})  {
                     color={chooseBike ? "primary" : "default"}     
                     size="small"   
             />
-
             <Chip 
                     label="Xe ô tô" 
                     icon={<DirectionsCarIcon />} 
@@ -91,13 +63,8 @@ function FilterChip({handleChoose})  {
                     color={chooseCar ? "primary" : "default"}
                     size="small"
             />
-
-        
-            
         </Stack>
-
     )
-
 }
 
 export default FilterChip;

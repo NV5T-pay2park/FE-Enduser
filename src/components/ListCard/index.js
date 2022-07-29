@@ -1,13 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
 import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
 import Paper from '@mui/material/Paper';
-import Card from '../Card/index';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import ParkingCard from '../Card/ParkingCard';
 
@@ -45,7 +41,6 @@ function ListCard({ list, location }) {
                             disablePadding
                         >
                             <ListItemButton onClick={() => navigate('/search/detail', {state: {id: value.id, location: location}}) }  >
-                                {/* <Card value={value} ></Card> */}
                                 <ParkingCard value={value}/>
                             </ListItemButton>
                         </ListItem>

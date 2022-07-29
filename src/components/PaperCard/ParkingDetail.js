@@ -1,19 +1,16 @@
-import { Avatar, Button, Card, Stack, CardContent, CardMedia, Typography } from '@mui/material'
-import { Box } from '@mui/system'
-import React, { useEffect, useState } from 'react'
-import PropTypes from 'prop-types';
-import { useLocation, useParams } from 'react-router-dom';
-import {DataGarage} from '../../models/Garage';
-import Paper from '@mui/material/Paper';
-import { useNavigate } from 'react-router-dom';
-import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
-import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
-import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
 import AssistantDirectionOutlinedIcon from '@mui/icons-material/AssistantDirectionOutlined';
-import TablePrice from '../Table/TablePrice'
+import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
+import { Avatar, Button, Card, CardContent, Stack, Typography } from '@mui/material';
+import Paper from '@mui/material/Paper';
+import { Box } from '@mui/system';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import * as GarageAPI from '../../api/garageAPI';
 import * as Service from '../../services/index';
+import TablePrice from '../Table/TablePrice';
 
 ParkingDetail.propTypes = {
 };
@@ -36,7 +33,6 @@ function ParkingDetail() {
           setValue(tempData.data);
         } 
       } catch (err) {
-        console.log(err);
         setValue(Service.checkIfDetailParkingNull(null)); 
       }
       if (window.ZaloPay.isZaloPay) {

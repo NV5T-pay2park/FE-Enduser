@@ -205,12 +205,6 @@ export default function TablePrice() {
             dataKey: 'carbs',
             numeric: true,
           },
-        //   {
-        //     width: 120,
-        //     label: 'Protein\u00A0(g)',
-        //     dataKey: 'protein',
-        //     numeric: true,
-        //   },
         ]}
       />
     </Paper>
