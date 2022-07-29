@@ -1,9 +1,12 @@
+import {lazy, Suspense} from 'react'
+import loadable from '@loadable/component';
 import { Route, Routes } from 'react-router-dom';
+
 import BottomNavigationBar from './components/BottomNavigationBar/BottomNavigationBar';
 import ButtonAppBar from './components/BottomNavigationBar/ButtonAppBar';
-import HomePage from './pages/Home/index';
-import Search from './pages/Search/index';
-import QrPage from './pages/QrCode/index';
+// import HomePage from './pages/Home/index';
+// import Search from './pages/Search/index';
+// import QrPage from './pages/QrCode/index';
 import HistoryTicketPage from './pages/History/index';
 import { Box } from '@mui/material';
 import QrTicket from './features/Tickets/QrTicket';
@@ -14,6 +17,9 @@ import ParkingDetail from './components/PaperCard/ParkingDetail';
 import UserPages from './pages/User/index';
 import Markers from './pages/Map/markers';
 
+const HomePage = loadable(() => import('./pages/Home'))
+const QrPage = loadable(() => import('./pages/QrCode'))
+const Search = loadable(() => import('./pages/Search'))
 
 function App() {
   return (
@@ -21,6 +27,7 @@ function App() {
       {/* <ButtonAppBar /> */}
 
       <Routes>
+        
         <Route path='/' element={<HomePage />} />
         <Route path='/qr' element={<QrPage />} />
         <Route path='/search' element={<Search />} />
