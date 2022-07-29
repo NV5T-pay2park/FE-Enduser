@@ -100,7 +100,7 @@ const HomePage = () => {
           }
         </Swiper>
        
-            <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/history')}>User ID: {context.userInfo.id}</Button>
+            <Button test-id="button" size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/history')}>User ID: {context.userInfo.id}</Button>
 
             <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/history')}>Xem tất cả</Button>
 

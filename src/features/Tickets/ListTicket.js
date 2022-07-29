@@ -22,7 +22,7 @@ const ListTicket = ({status}) => {
     if (ticket.status === true) {
       return <SwipeItemListCard key={ticket.ticketID} ticket={ticket}/>
     } else {
-      return <ItemListCard key={ticket.ticketID} ticket={ticket} />
+      return <ItemListCard id-test="unpaid-card" key={ticket.ticketID} ticket={ticket} />
     }
   })
   
