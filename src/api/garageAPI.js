@@ -39,14 +39,17 @@ export const getParkingListSearch = async (str, district, location, vehicleType)
     
     if (str == null || str == undefined) str = "";
     if (vehicleType == null || vehicleType == undefined) vehicleType = [];
-    if (location == null || location == undefined) location = {lat: 0, lng: 0};
 
     if (vehicleType == []) {
         return {data: []};
     }
 
+    
+    const locationString = (location == null ? "": `${location.lat},${location.lng}`);
+    console.log(locationString)
     const vehicleString = vehicleType.filter(Boolean).join(",");
-    const request_url = Constant.SERVER_BASE_URL + `/api/searchAndFilterParking?stringSearch=${str}&vehicleTypes=${vehicleString}&district=${district}&coordinates=${location.lat},${location.lng}`;
+    const request_url = Constant.SERVER_BASE_URL + `/api/searchAndFilterParking?stringSearch=${str}&vehicleTypes=${vehicleString}&district=${district}&coordinates=${locationString}`;
+    console.log(request_url);
     const dataSearch = await fetch(request_url);
 
     if (!dataSearch.ok) {

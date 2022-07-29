@@ -58,11 +58,9 @@ function FilterChip({handleChoose})  {
      const handleOnClickCar = () => {
         if (chooseCar) {
             setChooseCar(false);
-            setChooseContainer(false);
             return;            
         }
         setChooseCar(true);
-        setChooseContainer(true);
     }
 
      const handleOnClickContainer = () => {

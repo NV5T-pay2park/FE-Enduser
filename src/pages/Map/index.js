@@ -27,7 +27,7 @@ function Map() {
   
   return ( 
   <LoadScript
-      googleMapsApiKey="AIzaSyCuIMJTEeifSs3ISPf2WOCsoiMjsuurP5w"
+      googleMapsApiKey="AIzaSyDH75bfzU1Vy1VqSOAPBrVZ_OUCOlnLE8E"
     >
       <GoogleMap
         mapContainerStyle={containerStyle}

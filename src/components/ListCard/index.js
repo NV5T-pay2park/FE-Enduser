@@ -19,7 +19,7 @@ ListCard.propTypes = {
 function ListCard({ list, location }) {
 
     var myStyle = {
-        height: 'calc(100vh - 106px)',
+        height: 'calc(100vh - 172px)',
         overflow: 'auto',
         bgcolor: '#f6f7f8',
     }

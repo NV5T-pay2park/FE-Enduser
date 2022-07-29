@@ -11,10 +11,12 @@ import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import { maxHeight } from '@mui/system';
 import * as Service from '../../services/index';
+import { Select, MenuItem } from '@mui/material';
+import LoadingIndicator from '../../components/LoadingIndicator';
 
 const Search = () => {
 
-  const [userLocation, setUserLocation] = useState({lat: 10.8782444, lng: 106.8062906}) ;
+  const [userLocation, setUserLocation] = useState(null);
   const [firstRender, setFirstRender] = useState(true);
   const [DataGarage, setDataGarage] = useState([]);
   const [DisplayDataGarage, setDisplayDataGarage] = useState([]);
@@ -24,23 +26,29 @@ const Search = () => {
   const [searchString, setSearchString] = useState("");
   const [listLocation, setListLocation] = useState([]);
 
+  function getCoordinates() {
+    return new Promise(function(resolve, reject) {
+      navigator.geolocation.getCurrentPosition(resolve, reject);
+    });
+  }
+
   const getUserLocation = async () => {
 
-      await navigator.geolocation.getCurrentPosition((location) => {
-        const temp = {
-          lat: location.coords.latitude,
-          lng: location.coords.longitude
-        }
-        if (firstRender) {
-          setUserLocation(temp);
-          setFirstRender(false);
-        }
-      })
+      const position = await getCoordinates(); 
+      let latitude = position.coords.latitude;
+      let longitude = position.coords.longitude;
+      const temp = {
+        lat: latitude,
+        lng: longitude,
+      }
+      console.log(temp);
+      setUserLocation(temp);
     }
   
 
   async function getData() {
     try {
+      console.log(userLocation)
       const temp = await Service.checkIfNullDataListParking(GarageAPI.getParkingListSearch("", district, userLocation , ["1"]));
       setDisplayDataGarage(temp.data);
       return temp.data;
@@ -51,17 +59,30 @@ const Search = () => {
   }
 
   async function getFirstRenderData() {
-      const listData = await Service.getCheckedNullList(getData());
+      const listData = await getData();
       const listTemp = ["Tất cả"].concat([... new Set(listData.map((item) => item.district))].sort());
-      const tempLocationList = Service.getCheckedNullList(listData.map((item) => item.location));
+      console.log(listData);
+      const tempLocationList = Service.getCheckedNullList(listData.map((item) => {
+        return ({  
+          lat: item.lat,
+          lng: item.ing,
+        })
+      }));
+      
       setDistrictList(listTemp);
       setListLocation(tempLocationList);
   }
 
   async function firstRenderData ()  {
-      await getUserLocation();  
       await getFirstRenderData();
   }
+
+  async function getUserLocationSync() {
+    await getUserLocation();
+    console.log(userLocation);
+  }
+
+  useEffect(() => {getUserLocationSync();}, [])
 
   useEffect(() => {
     if (window.ZaloPay.isZaloPay) {
@@ -74,8 +95,8 @@ const Search = () => {
       window.ZaloPay.hideLoading()
     }
 
+  }, [userLocation])
 
-  }, [])
 
   const handleFilter = async (vehicles) => {
     if (window.ZaloPay.isZaloPay) {
@@ -95,7 +116,8 @@ const Search = () => {
     }
  }
 
-  const handleDistrict = async (tempDistrict) => {
+  const handleDistrict = async (event) => {
+    var tempDistrict = event.target.value;
     if (window.ZaloPay.isZaloPay) {
       window.ZaloPay.showLoading();
     }
@@ -113,6 +135,7 @@ const Search = () => {
       setDisplayDataGarage([]);
       setDistrict("Tất cả");
     }
+  
    if (window.ZaloPay.isZaloPay) {
       window.ZaloPay.hideLoading();
     }
@@ -134,7 +157,7 @@ const Search = () => {
   const navigate = useNavigate();
 
   return (
-    <div style={{ flexDirection: 'row', height: 'calc(100vh - 0px)' }}>
+    <div style={{ flexDirection: 'row', height: 'calc(100vh - 70px)' }}>
 
     <Grid container spacing={0} mt={0.8}>
       <Grid item xs={8} ml={2}>
@@ -148,13 +171,16 @@ const Search = () => {
       </Grid>
      <Grid container spacing={0}>
         <Grid item xs={8} ml={2} mt={0.25} mb={1}>
-          <Autocomplete
+          <Select
             options={districtList}
             value={district}
-            onChange={(event, value) => handleDistrict(value)}
+            onChange={handleDistrict}
             sx={{}}
-            renderInput={(params) => <TextField {...params} label="Quận" />}
-          />
+            label="Quận"
+            style={{width: '100%'}}
+          >
+           {districtList.map((item) => <MenuItem value={item}>{item}</MenuItem>)} 
+          </Select>
         </Grid>
         <Grid item xs={3}  mt={0.25} mb={1} ml={1}>
           <FilterChip handleChoose={handleFilter}></FilterChip>

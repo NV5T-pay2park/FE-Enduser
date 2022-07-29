@@ -105,7 +105,10 @@ function ParkingDetail() {
                 variant="outlined" 
                 startIcon={<AssistantDirectionOutlinedIcon />} 
                 sx={{marginTop: 2, width: '90vw'}} 
-                onClick={() => {navigate('/googlemap', {state: {origin: userLocation, destination: value.location}});}}
+                onClick={() => {navigate('/googlemap', {state: {origin: userLocation, destination: {
+                  lat: value.lat,
+                  lng: value.ing,
+                }}});}}
             >
 
                 Hiển thị bản đồ
