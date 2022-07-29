@@ -1,5 +1,5 @@
-import { useState, createContext, useEffect, useLayoutEffect } from "react";
-import * as LoginAPI from './api/loginAPI'
+import { createContext, useState } from "react";
+import * as LoginAPI from './api/loginAPI';
 
 
 const AppContext = createContext()
@@ -76,4 +76,4 @@ function AppProvider({children}) {
     )
 }
 
-export {AppContext, AppProvider}
+export { AppContext, AppProvider };

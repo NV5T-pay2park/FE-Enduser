@@ -1,8 +1,7 @@
-import React from 'react'
-import { GoogleMap, LoadScript, Marker} from '@react-google-maps/api';
-import Locations from '../../models/Locations';
-import * as Service from '../../services/index';
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
+import * as Service from '../../services/index';
 
 const containerStyle = {
   width: '100%',

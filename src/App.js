@@ -1,9 +1,7 @@
-import {lazy, Suspense} from 'react'
-import loadable from '@loadable/component';
+import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import BottomNavigationBar from './components/BottomNavigationBar/BottomNavigationBar';
-import ButtonAppBar from './components/BottomNavigationBar/ButtonAppBar';
 // import HomePage from './pages/Home/index';
 // import Search from './pages/Search/index';
 // import QrPage from './pages/QrCode/index';

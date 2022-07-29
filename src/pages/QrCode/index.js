@@ -1,5 +1,4 @@
-import React, { useContext, useLayoutEffect, useRef } from 'react'
-import { useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 // import { QrReader } from 'react-qr-reader';
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../../AppContext';
@@ -7,12 +6,10 @@ import LoadingIndicator from '../../components/LoadingIndicator';
 
 
 // begin: test qr-camera-reader
-import QrReader from 'react-camera-qr'
 import { Button } from '@mui/material';
 import { Box } from '@mui/system';
-import axios from 'axios'
-import * as Constant from '../../config/config'
-import * as CheckInOutAPI from '../../api/checkInOutAPI'
+import QrReader from 'react-camera-qr';
+import * as CheckInOutAPI from '../../api/checkInOutAPI';
 
 // end: test qr-camera-reader
 const mockNewTicket = {

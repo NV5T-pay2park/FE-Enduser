@@ -1,22 +1,17 @@
-import React, { useContext, useEffect, useLayoutEffect, } from 'react'
-import Ticket from '../../features/Tickets/Ticket';
-import { useRef, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Box, Button, Container } from '@mui/material';
+import React, { useContext, useLayoutEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination } from "swiper";
-import { Box, Button, Container } from '@mui/material';
-import styles from './style.css';
+import { Swiper, SwiperSlide } from "swiper/react";
 import { AppContext } from '../../AppContext';
 import NotFoundCard from '../../components/NotFoundCard';
-import { useNavigate } from 'react-router-dom';
-
-import * as Constant from '../../config/config'
-import * as TicketAPI from '../../api/ticketAPI'
-import * as Service from '../../services/index'
-import * as LoginAPI from '../../api/loginAPI'
-import NotFoundSwipeCard from '../../components/NotFoundSwiperSlide/NotFoundSwipeCard';
-import EmptySwipeSlide from '../../components/NotFoundSwiperSlide/EmptySwipeSlide';
+import Ticket from '../../features/Tickets/Ticket';
+import styles from './style.css';
+import * as LoginAPI from '../../api/loginAPI';
+import * as TicketAPI from '../../api/ticketAPI';
+import * as Service from '../../services/index';
 
 const mockData = {"status":"OK","message":"Success","data":[{"ticketID":7,"checkInTime":"2022-07-18T14:27:45Z","amount":null,"licensePlate":"77C1-99794","vehicleType":"Xe mÃ¡y","endUserID":3,"endUserName":"Jenna1021 neccernpogrlinzi15","parkingLotID":5,"parkingLotName":"BÃ¬nh Chiá»ƒu","status":false},{"ticketID":16,"checkInTime":"2022-07-18T14:27:48Z","amount":null,"licensePlate":"77C1-10662","vehicleType":"Xe mÃ¡y","endUserID":3,"endUserName":"Jenna1021 neccernpogrlinzi15","parkingLotID":2,"parkingLotName":"Thá»§ ThiÃªm","status":false},{"ticketID":26,"checkInTime":"2022-07-26T00:24:02Z","amount":null,"licensePlate":"77C1-67567","vehicleType":"Xe mÃ¡y","endUserID":3,"endUserName":"Jenna1021 neccernpogrlinzi15","parkingLotID":4,"parkingLotName":"Báº¿n NghÃ©","status":false}]}
 const HomePage = () => {

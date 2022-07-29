@@ -1,6 +1,6 @@
-import {React, useState} from 'react'
-import { DirectionsRenderer, DirectionsService, GoogleMap, LoadScript} from '@react-google-maps/api';
-import { useLocation, useParams } from 'react-router-dom';
+import { DirectionsRenderer, DirectionsService, GoogleMap, LoadScript } from '@react-google-maps/api';
+import { React, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import * as Service from '../../services/index';
 
 const containerStyle = {

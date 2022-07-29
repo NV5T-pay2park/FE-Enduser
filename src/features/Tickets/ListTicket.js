@@ -1,11 +1,11 @@
-import { List } from '@mui/material'
-import React, { useContext } from 'react'
-import { AppContext } from '../../AppContext'
+import { List } from '@mui/material';
+import React, { useContext } from 'react';
 import 'react-swipe-to-delete-component/dist/swipe-to-delete.css';
-import SwipeItemListCard from './SwipeItemListCard';
+import { AppContext } from '../../AppContext';
 import ItemListCard from './ItemListCard';
+import SwipeItemListCard from './SwipeItemListCard';
 
-import * as Service from '../../services'
+import * as Service from '../../services';
 
 const ListTicket = ({status}) => {
 

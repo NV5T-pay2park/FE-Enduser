@@ -1,13 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { Button, Card, CardActions, CardContent, CardMedia, Container, Typography } from '@mui/material'
+import { Card, CardContent, Container, Typography } from '@mui/material'
 import { Box } from '@mui/system'
+import React, { useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import QrTicket from '../../features/Tickets/QrTicket'
-import axios from 'axios'
-import * as Constant from '../../config/config'
-import * as TicketAPI from '../../api/ticketAPI'
-import * as Service from '../../services/index'
 import * as CheckInOutAPI from '../../api/checkInOutAPI'
+import * as Constant from '../../config/config'
+import QrTicket from '../../features/Tickets/QrTicket'
 const TicketCheckout = () => {
 
   const location = useLocation();

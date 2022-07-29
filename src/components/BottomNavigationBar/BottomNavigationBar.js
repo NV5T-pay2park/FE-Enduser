@@ -62,7 +62,7 @@ const BottomNavigationBar = () => {
   return (
     <BottomNavigation
       showLabels
-      sx={{ width: '100%', position: 'sticky', bottom: 0 }}
+      sx={{ width: '100%', position: 'absolute', bottom: 0 }}
       value={value}
       onChange={(event, newValue) => {
         setValue(newValue);

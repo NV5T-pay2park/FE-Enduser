@@ -1,18 +1,13 @@
-import { Autocomplete, Button } from '@mui/material';
+import { Button, MenuItem, Select } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import * as GarageAPI from '../../api/garageAPI';
+import FilterChip from '../../components/Chip/index';
 import '../../components/ComboBox/index';
 import ComboBox from '../../components/ComboBox/index';
 import ListCard from '../../components/ListCard/index';
-import FilterChip from '../../components/Chip/index';
-import { Navigate, useNavigate } from 'react-router-dom';
-import * as GarageAPI from '../../api/garageAPI';
-import TextField from '@mui/material/TextField';
-import Stack from '@mui/material/Stack';
-import { maxHeight } from '@mui/system';
 import * as Service from '../../services/index';
-import { Select, MenuItem } from '@mui/material';
-import LoadingIndicator from '../../components/LoadingIndicator';
 
 const Search = () => {
 

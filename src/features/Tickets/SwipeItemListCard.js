@@ -1,9 +1,9 @@
-import { Avatar, ListItem, ListItemAvatar, Typography } from '@mui/material'
-import { Box } from '@mui/system'
-import React from 'react'
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Avatar, ListItem, ListItemAvatar, Typography } from '@mui/material';
+import { Box } from '@mui/system';
+import React from 'react';
 import SwipeToDelete from 'react-swipe-to-delete-component';
 import 'react-swipe-to-delete-component/dist/swipe-to-delete.css';
-import DeleteIcon from '@mui/icons-material/Delete';
 
 const SwipeItemListCard = ({ticket}) => {
 
