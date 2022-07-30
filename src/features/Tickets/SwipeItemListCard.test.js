@@ -1,6 +1,6 @@
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import { unmountComponentAtNode } from "react-dom";
-
+import { formatMoney } from '../../services';
 import SwipeItemListCard from './SwipeItemListCard';
 
 const mockTicket = {
@@ -23,7 +23,7 @@ test('test render paid card', async () => {
     const ticketName = screen.getByText(`Vé xe ${mockTicket.parkingLotName}`)
     const checkinTime = screen.getByText(/Giờ gửi/)
     const paymentStatus = screen.getByText("đã thanh toán")
-    const money = screen.getByText(`-${mockTicket.total}đ`)
+    const money = screen.getByText(`-10.000 ₫`)
     // const weatherList = await waitFor(() => screen.findAllByTestId("test-daily"))
     // const placeholder = screen.getByPlaceholderText(/Enter a city/i)
     // const cityName = screen.getByText(/Hue/i)

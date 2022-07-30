@@ -9,6 +9,7 @@ export const formatDateTime = (datetime) => {
 }
 
 export const getCheckedNullList = (list) => {
+    if (!Array.isArray(list)) return []
     if (!list?.length || list?.length <= 0) {
         return [];
     }
@@ -87,3 +88,8 @@ export const getIndexOfListLocation = (lst, idx) => {
     }
     return lst[idx];
 }
+
+export const formatMoney = (x) => {
+    return x.toLocaleString('vi', { style: 'currency', currency: 'VND' });
+}
+  
