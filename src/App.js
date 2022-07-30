@@ -31,7 +31,7 @@ function App() {
             path='/'
             element={
               <Suspense fallback={<></>}>
-                <HomePage />
+                <HomePage context={context}/>
               </Suspense>
             }
           />
@@ -100,7 +100,7 @@ function App() {
             }
           />
       </Routes>
-      <BottomNavigationBar />
+      <BottomNavigationBar userInfo={context.userInfo} insertTicket={context.insertTicket}/>
     </Box>
   );
 }

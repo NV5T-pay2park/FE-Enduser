@@ -9,14 +9,14 @@ import css from './bottom.css';
 
 import { useNavigate } from 'react-router-dom';
 import * as CheckInOutAPI from '../../api/checkInOutAPI';
-import { AppContext } from '../../AppContext';
+// import { AppContext } from '../../AppContext';
 
 const mockNewTicket = {"id":101,"checkInTime":"2022-07-18T07:27:48Z","checkOutTime":null,"licensePlates":"77C1-44094","vehicleType":{"id":1,"vehicleTypeName":"Xe máy","hibernateLazyInitializer":{}},"endUser":{"id":2,"firstName":"Partypooper009","lastName":"throwaway217217","gender":0,"phone":"0790529870","email":"throwaway217217@gmail.com"},"parkingLot":{"id":6,"parkingLotName":"Hiệp Phú","numberSlot":101,"numberSlotRemaining":101,"address":"Bình Chiểu, Thành phố Thủ Đức, TPHCM","status":0,"merchant":{"id":1,"name":"Thành phố Thủ Đức","represent":"Lee4an","email":"Lee4an@gmail.com","phone":"0906094163","hibernateLazyInitializer":{}},"lat":10.884166717529297,"ing":106.73027801513672,"timeOpen":5,"timeClose":22,"phoneNumber":"982347126","hibernateLazyInitializer":{}}}
 
-const BottomNavigationBar = () => {
+const BottomNavigationBar = ({userInfo, insertTicket}) => {
   const [value, setValue] = React.useState(0);
   const navigate = useNavigate();
-  const context = useContext(AppContext);
+  // const context = useContext(AppContext);
 
   const handleScanQR = async () => {
     if (window.ZaloPay.isZaloPay) {
@@ -34,13 +34,13 @@ const BottomNavigationBar = () => {
           try {
             parkingId = parseInt(parkingId)
             if (isNaN(parkingId) || parkingId < 0) parkingId = 12
-            const res = await CheckInOutAPI.requestCheckIn(context.userInfo.id, parkingId)
+            const res = await CheckInOutAPI.requestCheckIn(userInfo.id, parkingId)
             if (res.message === "Success") {
 
               const newTicket = res.data
               window.ZaloPay.hideLoading()
               if (newTicket.ticketID !== undefined) {
-                context.insertTicket(newTicket)
+                insertTicket(newTicket)
               }
             } else {
               window.ZaloPay.hideLoading()
