@@ -1,5 +1,6 @@
 import React from 'react'
 import { Avatar, Box, ListItem, ListItemAvatar, Typography } from '@mui/material'
+import { formatDateTime } from '../../services'
 
 const ItemListCard = ({ticket}) => {
   return (
@@ -10,7 +11,7 @@ const ItemListCard = ({ticket}) => {
         <Box sx={{ width: '100%', padding: 0, margin: 0}}>
             <Typography>Vé xe {ticket.parkingLotName}</Typography>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Box><Typography sx={{fontSize: 12}}>Giờ gửi: 15h32 01/06/2022</Typography></Box>
+                <Box><Typography sx={{fontSize: 12}}>Giờ gửi: {formatDateTime(ticket.checkInTime)}</Typography></Box>
                 <Box><Typography sx={{fontSize: 12, fontWeight: 'bold', color: 'red'}}>chưa thanh toán</Typography></Box>
             </Box>
         </Box>

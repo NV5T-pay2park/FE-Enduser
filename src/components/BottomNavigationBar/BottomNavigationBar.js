@@ -55,7 +55,7 @@ const BottomNavigationBar = ({userInfo, insertTicket}) => {
   }
 
   const navigateToSearch = () => {
-    () => navigate('/search')
+    navigate('/search')
   }
 
   return (

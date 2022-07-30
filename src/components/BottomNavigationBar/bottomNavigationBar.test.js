@@ -42,17 +42,9 @@ describe("test bottom navigation", () => {
     })
 
     test("test click button bottom", () => {
-        
-        // windowSpy.mockImplementation(() => ({
-        //     ZaloPay: {
-        //       isZaloPay: false
-        //     }
-        //   }));
         render(<BottomNavigationBar />)
-
         userEvent.click(screen.getByText("Tìm kiếm"));
-        // userEvent.click(screen.getByTestId("qr-page"));
-        // expect(BottomNavigationBar.handleScan).toHaveBeenCalledTimes(0);
+
     })
 
 
