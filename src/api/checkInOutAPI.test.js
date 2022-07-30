@@ -41,6 +41,25 @@ describe('test requestCheckIn', () => {
       )
       expect(checkinResponse).toBe(mockCheckinResponse)
     })
+
+    test('test requestCheckIn', async () => {
+      // highlight-start
+      const fetchMock = jest
+        .spyOn(global, 'fetch')
+        .mockImplementation(() =>
+        Promise.resolve({
+                    ok: false,
+                    json: () => Promise.resolve(mockCheckinResponse),
+                })
+        )
+      // highlight-end
+
+      const checkinResponse = await CheckInOutAPI.requestCheckIn(34, 17)
+      expect(fetchMock).toHaveBeenCalledWith(
+        Constant.SERVER_BASE_URL + '/api/checkIn', {"body": "{\"endUserID\":34,\"parkingLotID\":17}", "headers": {"Accept": "application/json, text/plain", "Content-Type": "application/json"}, "method": "POST"}
+      )
+      expect(checkinResponse).toEqual({})
+    })
 })
 
 const mockQueryPaymentResponse = {
@@ -71,5 +90,34 @@ describe('test getCheckoutPaymentData', () => {
         Constant.SERVER_BASE_URL + `/api/queryPaymentUrl?endUserId=4&ticketId=220728171709154`
       )
       expect(queryPaymentResponse).toBe(mockQueryPaymentResponse)
+    })
+
+    test('test getCheckoutPaymentData fail', async () => {
+      
+      const responseMock = Error(`No payment data`);
+      // highlight-start
+      const fetchMock = jest
+        .spyOn(global, 'fetch')
+        .mockImplementation(() =>
+        Promise.resolve({
+                    ok: false,
+                    json: () => Promise.resolve(mockQueryPaymentResponse),
+                })
+        )
+      // highlight-end
+      try {
+        const queryPaymentResponse = await CheckInOutAPI.getCheckoutPaymentData(4, 220728171709154)
+        expect(fetchMock).toHaveBeenCalledWith(
+          Constant.SERVER_BASE_URL + `/api/queryPaymentUrl?endUserId=4&ticketId=220728171709154`
+        )
+      } catch (err) {
+        expect(fetchMock).toHaveBeenCalledWith(
+          Constant.SERVER_BASE_URL + `/api/queryPaymentUrl?endUserId=4&ticketId=220728171709154`
+        )
+        expect(err).toEqual(responseMock)
+      }
+      
+      
+      
     })
 })

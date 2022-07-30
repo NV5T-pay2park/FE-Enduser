@@ -7,10 +7,10 @@ import SwipeItemListCard from './SwipeItemListCard';
 
 import * as Service from '../../services';
 
-const ListTicket = ({status}) => {
+const ListTicket = ({list, status}) => {
 
-  const context = useContext(AppContext)
-  const filterTickets = Service.getCheckedNullList(context.ticketList).filter((ticket) => { 
+  // const context = useContext(AppContext)
+  const filterTickets = Service.getCheckedNullList(list).filter((ticket) => { 
     return ticket.status === status
   })
   const tickets = Service.getCheckedNullList(filterTickets).map(ticket => {

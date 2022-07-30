@@ -1,8 +1,9 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useContext } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import BottomNavigationBar from './components/BottomNavigationBar/BottomNavigationBar';
 import { Box } from '@mui/material';
+import { AppContext } from './AppContext';
 
 
 
@@ -18,6 +19,9 @@ const QrTicket = lazy(() => import('./features/Tickets/QrTicket'))
 
 
 function App() {
+
+  const context = useContext(AppContext)
+
   return (
     <Box>
       {/* <ButtonAppBar /> */}
@@ -51,7 +55,7 @@ function App() {
             path='/history'
             element={
               <Suspense fallback={<>...</>}>
-                <HistoryTicketPage />
+                <HistoryTicketPage ticketList={context.ticketList}/>
               </Suspense>
             }
           />
