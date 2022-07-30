@@ -31,7 +31,6 @@ function FilterChip({handleChoose})  {
     const handleOnClickBike = () => {
         if (chooseBike) { 
             setChooseBike(false);
-            
             return;            
         }
         setChooseBike(true);
