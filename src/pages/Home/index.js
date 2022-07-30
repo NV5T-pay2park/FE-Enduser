@@ -61,7 +61,10 @@ const HomePage = ({context}) => {
     getTickets();
   
   }, [])
-  ticketElements = Service.getCheckedNullList(context.ticketList).map(ticket =><SwiperSlide key={ticket.ticketID}><Ticket ticketData={ticket}/></SwiperSlide>)
+  const unpaidTickets = Service.getCheckedNullList(context.ticketList).filter((ticket) => { 
+    return ticket.status === false
+  })
+  ticketElements = Service.getCheckedNullList(unpaidTickets).map(ticket =><SwiperSlide key={ticket.ticketID}><Ticket ticketData={ticket}/></SwiperSlide>)
   
   const notFoundElement = <SwiperSlide><NotFoundCard userInfo={context.userInfo} insertTicket={context.insertTicket}/></SwiperSlide>
   const emptyElement = <SwiperSlide><Box></Box></SwiperSlide>
@@ -82,11 +85,16 @@ const HomePage = ({context}) => {
           }
         </Swiper>
        
-            <Box test-id="button" size='small' variant="text" sx={{color: 'white', align: 'center'}} >User ID: {context.userInfo.id}</Box>
+            {/* <Box test-id="button" size='small' variant="text" sx={{color: 'white', align: 'center'}} >User ID: {context.userInfo.id}</Box>
 
-            <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/history')}>Xem tất cả</Button>
+            <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/history')}>Xem tất cả</Button> */}
 
-
+            <Box textAlign='center' alignItems='center'>
+                <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/history')}>Xem tất cả</Button>
+            </Box>
+            <Box textAlign='center' alignItems='center'>
+                <Button size='small' variant="text" sx={{color: 'white', align: 'center'}}>Thông tin cá nhân - id: {context.userInfo.id}</Button>
+            </Box>
             {/* <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/user')}>Thông tin cá nhân</Button> */}
     </Container>
   )
