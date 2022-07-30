@@ -4,13 +4,13 @@ import React, { useContext, useState } from 'react'
 import { AppContext } from '../../AppContext'
 import ListTicket from '../../features/Tickets/ListTicket'
 
-const HistoryTicketPage = () => {
+const HistoryTicketPage = ({ticketList}) => {
   const [value, setValue] = useState('1');
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  const context = useContext(AppContext)
+  // const context = useContext(AppContext)
 
   return (
     <div style={ {flexDirection: 'row', maxHeight: 'calc(100vh - 56px)' }}>
@@ -24,10 +24,10 @@ const HistoryTicketPage = () => {
           </TabList>
         </Box>
         <TabPanel value="1" sx={{ bgcolor: '#f6f7f8', height: 'calc(100vh - 104px)'}}>
-            <ListTicket list={context.ticketList} status={false}/>
+            <ListTicket list={ticketList} status={false}/>
         </TabPanel>
         <TabPanel value="2" sx={{ bgcolor: '#f6f7f8', height: 'calc(100vh - 104px)'}}>
-            <ListTicket list={context.ticketList} status={true}/>
+            <ListTicket list={ticketList} status={true}/>
         </TabPanel>
       </TabContext>  
     {/* </Box> */}
