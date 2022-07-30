@@ -19,14 +19,14 @@ const HistoryTicketPage = ({ticketList}) => {
       <TabContext value={value}>
         <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
           <TabList onChange={handleChange} aria-label="lab API tabs example" centered variant="fullWidth">
-            <Tab label='Chưa thanh toán'  value='1'/>
-            <Tab label='Đã thanh toán'  value='2'/>
+            <Tab data-testid='tab1' label='Chưa thanh toán'  value='1'/>
+            <Tab data-testid='tab2' label='Đã thanh toán'  value='2'/>
           </TabList>
         </Box>
         <TabPanel value="1" sx={{ bgcolor: '#f6f7f8', height: 'calc(100vh - 104px)'}}>
             <ListTicket list={ticketList} status={false}/>
         </TabPanel>
-        <TabPanel value="2" sx={{ bgcolor: '#f6f7f8', height: 'calc(100vh - 104px)'}}>
+        <TabPanel  value="2" sx={{ bgcolor: '#f6f7f8', height: 'calc(100vh - 104px)'}}>
             <ListTicket list={ticketList} status={true}/>
         </TabPanel>
       </TabContext>  

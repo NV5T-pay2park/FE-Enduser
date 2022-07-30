@@ -1,6 +1,6 @@
 import React from "react";
-import { render } from '@testing-library/react';
-
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import HistoryTicketPage from "./index";
 
 const mockList = [
@@ -47,6 +47,15 @@ const mockList = [
 describe("test render list ticket", () => {
     test("test render list ticket", () => {
         render(<HistoryTicketPage ticketList={mockList}/>)
+    })
+
+    test("test render list ticket", () => {
+        render(<HistoryTicketPage ticketList={mockList}/>)
+
+        // userEvent.click(screen.getByText("Vé"));
+        userEvent.click(screen.getByTestId("tab2"));
+        userEvent.click(screen.getByTestId("tab2"));
+        // expect(BottomNavigationBar.handleScan).toHaveBeenCalledTimes(0);
     })
 
 })
