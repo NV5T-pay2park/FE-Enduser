@@ -1,6 +1,7 @@
 import { TabContext, TabList, TabPanel } from '@mui/lab'
 import { Box, Tab } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { AppContext } from '../../AppContext'
 import ListTicket from '../../features/Tickets/ListTicket'
 
 const HistoryTicketPage = () => {
@@ -8,6 +9,8 @@ const HistoryTicketPage = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  const context = useContext(AppContext)
 
   return (
     <div style={ {flexDirection: 'row', maxHeight: 'calc(100vh - 56px)' }}>
@@ -21,10 +24,10 @@ const HistoryTicketPage = () => {
           </TabList>
         </Box>
         <TabPanel value="1" sx={{ bgcolor: '#f6f7f8', height: 'calc(100vh - 104px)'}}>
-            <ListTicket status={false}/>
+            <ListTicket list={context.ticketList} status={false}/>
         </TabPanel>
         <TabPanel value="2" sx={{ bgcolor: '#f6f7f8', height: 'calc(100vh - 104px)'}}>
-            <ListTicket status={true}/>
+            <ListTicket list={context.ticketList} status={true}/>
         </TabPanel>
       </TabContext>  
     {/* </Box> */}

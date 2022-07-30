@@ -23,7 +23,7 @@ test('test render paid card', async () => {
     const ticketName = screen.getByText(`Vé xe ${mockTicket.parkingLotName}`)
     const checkinTime = screen.getByText(/Giờ gửi/)
     const paymentStatus = screen.getByText("đã thanh toán")
-    const money = screen.getByText(`-10.000 ₫`)
+    const money = screen.getByText(`-10000 đ`)
     // const weatherList = await waitFor(() => screen.findAllByTestId("test-daily"))
     // const placeholder = screen.getByPlaceholderText(/Enter a city/i)
     // const cityName = screen.getByText(/Hue/i)
