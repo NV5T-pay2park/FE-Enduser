@@ -6,7 +6,7 @@ export const getTicketByEndUserId = async (id) => {
         return []
     }
     const ticketListDataJSON = await apiResponseData.json()
-    const ticketsData = ticketListDataJSON.data
+    const ticketsData = ticketListDataJSON?.data
     if (ticketsData === undefined || ticketsData === "") return []
     return ticketsData
 }

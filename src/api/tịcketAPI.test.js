@@ -61,7 +61,7 @@ const mockData = {
 // })
 
 describe('withFetch', () => {
-    test('works', async () => {
+    test('get ticket successfully', async () => {
       // highlight-start
       const fetchMock = jest
         .spyOn(global, 'fetch')
@@ -81,4 +81,69 @@ describe('withFetch', () => {
       expect(Array.isArray(ticketList)).toEqual(true)
       expect(ticketList.length).toEqual(2)
     })
-  })
+
+    test('get ticket fail', async () => {
+      // highlight-start
+      const fetchMock = jest
+        .spyOn(global, 'fetch')
+        .mockImplementation(() =>
+        Promise.resolve({
+                    ok: false,
+                    json: () => Promise.resolve(mockData),
+                })
+        )
+      // highlight-end
+  
+      const ticketList = await ticketAPI.getTicketByEndUserId(4)
+      expect(fetchMock).toHaveBeenCalledWith(
+        Constant.SERVER_BASE_URL + `/api/getTicketByEndUserId?endUserID=4`
+      )
+  
+      expect(Array.isArray(ticketList)).toEqual(true)
+      expect(ticketList.length).toEqual(0)
+    })
+
+    test('get ticket undefine', async () => {
+      // highlight-start
+      const fetchMock = jest
+        .spyOn(global, 'fetch')
+        .mockImplementation(() =>
+        Promise.resolve({
+                    ok: true,
+                    json: () => Promise.resolve(undefined),
+                })
+        )
+      // highlight-end
+  
+      const ticketList = await ticketAPI.getTicketByEndUserId(4)
+      expect(fetchMock).toHaveBeenCalledWith(
+        Constant.SERVER_BASE_URL + `/api/getTicketByEndUserId?endUserID=4`
+      )
+  
+      expect(Array.isArray(ticketList)).toEqual(true)
+      expect(ticketList.length).toEqual(0)
+    })
+  
+
+    test('get ticket empty', async () => {
+      // highlight-start
+      const fetchMock = jest
+        .spyOn(global, 'fetch')
+        .mockImplementation(() =>
+        Promise.resolve({
+                    ok: true,
+                    json: () => Promise.resolve(""),
+                })
+        )
+      // highlight-end
+
+      const ticketList = await ticketAPI.getTicketByEndUserId(4)
+      expect(fetchMock).toHaveBeenCalledWith(
+        Constant.SERVER_BASE_URL + `/api/getTicketByEndUserId?endUserID=4`
+      )
+
+      expect(Array.isArray(ticketList)).toEqual(true)
+      expect(ticketList.length).toEqual(0)
+    })
+
+})
