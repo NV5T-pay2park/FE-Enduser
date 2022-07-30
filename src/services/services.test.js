@@ -43,6 +43,13 @@ describe('Test check null array', () => {
         expect(checkedArray.length).toEqual(3)
         expect(checkedArray[2].name).toBe("tan")
     });
+
+    it('should return array', () => {
+      const mockData = []
+      const checkedArray = Service.getCheckedNullList(mockData)
+      expect(Array.isArray(checkedArray)).toEqual(true)
+      expect(checkedArray.length).toEqual(0)
+  });
     
 });
 
@@ -82,5 +89,29 @@ describe('Test get ZaloPay id', () => {
         const zaloPayID = await Service.getZaloPayID()
         expect(zaloPayID).toBe('aptx4869');
     });
+});
+
+// test format datetime
+describe('Test format datetime', () => {
+  it('test return correct format', async () => {
+      expect(Service.formatDateTime("29/07/2022 09:49:34")).toEqual("29/07/2022 09:49")
+  });
+
+  it('test return correct format', async () => {
+    expect(Service.formatDateTime("29/07/2022 01:57:09")).toEqual("29/07/2022 01:57")
+  });
+
+  it('test return default when datetime is undefined', async () => {
+    expect(Service.formatDateTime(undefined)).toEqual("18/07/2022 14:27")
+  });
+
+  it('test return default when datetime is null', async () => {
+    expect(Service.formatDateTime(null)).toEqual("18/07/2022 14:27")
+  });
+
+  it('test return default when datetime is empty', async () => {
+    expect(Service.formatDateTime("")).toEqual("18/07/2022 14:27")
+  });
+
 });
   

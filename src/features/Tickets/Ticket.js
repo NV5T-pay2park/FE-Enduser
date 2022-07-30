@@ -2,7 +2,7 @@ import { Button, Card, CardContent, CardMedia, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-
+import { formatDateTime } from '../../services'
 
 const Ticket = ({ticketData}) => {
   const navigate = useNavigate()
@@ -35,7 +35,7 @@ const Ticket = ({ticketData}) => {
               Loại xe: {ticketData.vehicleType}
             </Typography> 
             <Typography variant="h7" color="text.secondary">
-              Giờ vào: {ticketData.checkInTime}
+              Giờ vào: {formatDateTime(ticketData.checkInTime)}
             </Typography>
         </CardContent>
         <Box alignItems="center" justifyContent="center" display="flex">

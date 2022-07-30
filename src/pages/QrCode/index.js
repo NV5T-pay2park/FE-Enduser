@@ -76,10 +76,7 @@ const QrPage = () => {
               facingMode={facingMode}
               />
           <Box textAlign='center' alignItems='center'>
-            <Button onClick={handleSwitchCam}>Switch Cam</Button>
-          </Box>
-          <Box textAlign='center' alignItems='center'>
-            <Button onClick={() => navigate('/test-qr')}>Test qr-scanner lib</Button>
+            <Button onClick={handleSwitchCam}>Đổi camera</Button>
           </Box>
           <Box>{JSON.stringify(scanResult)}</Box>     
       </div>
@@ -89,7 +86,7 @@ const QrPage = () => {
   return (
     <div style={{ backgroundColor: 'white', height: 'calc(100vh - 56px)', justifyContent: 'center', justifyItems: 'center', alignItems: 'center'}}>
       { showLoading && <LoadingIndicator />}
-      {!window.ZaloPay.isZaloPay ? showManualQr() : () => {navigate('/')}}
+      {!window.ZaloPay?.isZaloPay ? showManualQr() : () => {navigate('/')}}
     </div>
   )
 }

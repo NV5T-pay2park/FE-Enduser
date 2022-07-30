@@ -71,9 +71,6 @@ class MuiVirtualizedTable extends React.PureComponent {
         variant="body"
         style={{ height: rowHeight, fontSize: '12px' }}
         align={
-        //   (columnIndex != null && columns[columnIndex].numeric) || false
-        //     ? 'right'
-        //     : 'left'
             'left'
         }
       >
