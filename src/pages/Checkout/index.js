@@ -35,25 +35,19 @@ const TicketCheckout = () => {
         const zpTransToken = paymentData.zpTransToken
         if (zpTransToken !== undefined && zpTransToken !== "") {
             stopPingRequest()
-            window.ZaloPay.payOrder({
+            const res = await window.ZaloPay.payOrder({
               appid: Constant.APP_ID,
               zptranstoken: zpTransToken,
-            }, cb)    
+            })    
+            if (res?.code === 1) {
+              navigate('/')
+            } else {
+              navigate('/search')
+            }
         }
         // kích hoạt quá trình thanh toán đối với trường hợp hoá đơn >= 2 KB
         var cb = function (data) {
-          if (typeof data === "object") {
-            if (data.error === 1) {
-              alert("Thanh toán đơn hàng thành công");
-              navigate("/")
-              // Merchant Server gọi truy vấn trạng thái đơn hàng để lấy kết quả thanh toán.
-            } else if (data.error === 4) {
-              alert("Người dùng huỷ việc thanh toán đơn hàng");
-            } else {
-              alert("Thanh toán đơn hàng thất bại với mã lỗi " + data.errorCode);
-              // Khi thanh toán thất bại, có thể xem nguyên nhân chi tiết trong bảng mã lỗi
-            }
-          }
+          
         };
       } catch (err) {
         console.log(err)
