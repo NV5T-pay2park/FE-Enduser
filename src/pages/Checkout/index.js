@@ -38,12 +38,19 @@ const TicketCheckout = () => {
             const res = await window.ZaloPay.payOrder({
               appid: Constant.APP_ID,
               zptranstoken: zpTransToken,
-            })    
-            if (res?.code === 1) {
-              navigate('/')
-            } else {
-              navigate('/search')
-            }
+            }).then(result => {
+                if (result?.code === 1) {
+                  navigate('/')
+                } else {
+                  navigate('/history')
+                }
+            })  
+
+            // if (res?.code === 1) {
+            //   navigate('/')
+            // } else {
+            //   navigate('/search')
+            // }
         }
         // kích hoạt quá trình thanh toán đối với trường hợp hoá đơn >= 2 KB
         var cb = function (data) {
