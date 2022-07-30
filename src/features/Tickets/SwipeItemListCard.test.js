@@ -20,17 +20,12 @@ const mockTicket = {
 test('test render paid card', async () => {
     render(<SwipeItemListCard ticket={mockTicket} />);
 
-    const ticketName = screen.getByText(`Vé xe ${mockTicket.parkingLotName}`)
+    const ticketName = screen.getByText(`Nhà xe ${mockTicket.parkingLotName}`)
     const checkinTime = screen.getByText(/Giờ gửi/)
     const paymentStatus = screen.getByText("đã thanh toán")
     const money = screen.getByText(`-10000 đ`)
-    // const weatherList = await waitFor(() => screen.findAllByTestId("test-daily"))
-    // const placeholder = screen.getByPlaceholderText(/Enter a city/i)
-    // const cityName = screen.getByText(/Hue/i)
-    // expect(weatherList).toHaveLength(6);
     expect(ticketName).toBeInTheDocument();
     expect(checkinTime).toBeInTheDocument();
     expect(paymentStatus).toBeInTheDocument();
     expect(money).toBeInTheDocument();
-    // expect(cityName).toBeInTheDocument();
   });

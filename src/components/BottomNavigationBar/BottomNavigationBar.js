@@ -54,6 +54,10 @@ const BottomNavigationBar = ({userInfo, insertTicket}) => {
       })
   }
 
+  const navigateToSearch = () => {
+    navigate('/search')
+  }
+
   return (
     <BottomNavigation
       showLabels
@@ -64,8 +68,8 @@ const BottomNavigationBar = ({userInfo, insertTicket}) => {
       }}
     >
       <BottomNavigationAction label="Vé" icon={<BookOnlineIcon />} onClick={() => navigate('/')} />
-      <BottomNavigationAction icon={<QrCodeScannerIcon />} onClick={handleScanQR} className={css.qr} />
-      <BottomNavigationAction label="Tìm kiếm" icon={<LocationSearchingOutlinedIcon />} onClick={() => navigate('/search')} />
+      <BottomNavigationAction data-testid="qr-page" icon={<QrCodeScannerIcon />} onClick={handleScanQR} className={css.qr} />
+      <BottomNavigationAction label="Tìm kiếm" icon={<LocationSearchingOutlinedIcon />} onClick={navigateToSearch} />
     </BottomNavigation>
 
   )
