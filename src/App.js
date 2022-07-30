@@ -23,7 +23,9 @@ function App() {
   const context = useContext(AppContext)
   const configZaloPay = () => {
     if (window.ZaloPay.isZaloPay) {
+      var cb = () => {
 
+      }
       window.ZaloPay.setProperty(
         {
           navigation : {
@@ -32,9 +34,7 @@ function App() {
             pullToRefresh: true
           }
         }, cb);
-        var cb = () => {
-
-        }
+        
         
     }
   }
