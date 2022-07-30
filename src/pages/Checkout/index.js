@@ -39,12 +39,14 @@ const TicketCheckout = () => {
               appid: Constant.APP_ID,
               zptranstoken: zpTransToken,
             }).then(result => {
-                if (result?.code === 1) {
-                  navigate('/')
-                } else {
-                  navigate('/history')
-                }
-            })  
+              ZaloPay.showDialog({
+                title: "Hello",
+                message: "Result" + JSON.stringify(result),
+                button: "OK"
+              });
+            })
+            
+           
 
             // if (res?.code === 1) {
             //   navigate('/')

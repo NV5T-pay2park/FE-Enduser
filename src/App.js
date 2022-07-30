@@ -21,7 +21,20 @@ const QrTicket = lazy(() => import('./features/Tickets/QrTicket'))
 function App() {
 
   const context = useContext(AppContext)
+  const configZaloPay = () => {
+    if (window.ZaloPay.isZaloPay) {
 
+      window.ZaloPay.setProperty(
+        {
+          navigation : {
+            backgroundColor: "#c7c7cc",
+            titleColor: "#000000",
+            pullToRefresh: true
+          }
+        }, cb);
+        
+    }
+  }
   return (
     <Box>
       {/* <ButtonAppBar /> */}
