@@ -30,7 +30,7 @@ function App() {
         <Route
             path='/'
             element={
-              <Suspense fallback={<>...</>}>
+              <Suspense fallback={<></>}>
                 <HomePage />
               </Suspense>
             }
@@ -38,7 +38,7 @@ function App() {
         <Route
             path='/qr'
             element={
-              <Suspense fallback={<>...</>}>
+              <Suspense fallback={<></>}>
                 <QrPage />
               </Suspense>
             }
@@ -46,7 +46,7 @@ function App() {
         <Route
             path='/search'
             element={
-              <Suspense fallback={<>...</>}>
+              <Suspense fallback={<></>}>
                 <Search />
               </Suspense>
             }
@@ -54,7 +54,7 @@ function App() {
         <Route
             path='/history'
             element={
-              <Suspense fallback={<>...</>}>
+              <Suspense fallback={<></>}>
                 <HistoryTicketPage ticketList={context.ticketList}/>
               </Suspense>
             }
@@ -62,7 +62,7 @@ function App() {
         <Route
             path='/qrimg'
             element={
-              <Suspense fallback={<>...</>}>
+              <Suspense fallback={<></>}>
                 <QrTicket />
               </Suspense>
             }
@@ -70,7 +70,7 @@ function App() {
         <Route
             path='/search/detail'
             element={
-              <Suspense fallback={<>...</>}>
+              <Suspense fallback={<></>}>
                 <ParkingDetail />
               </Suspense>
             }
@@ -78,7 +78,7 @@ function App() {
         <Route
             path='/googlemap'
             element={
-              <Suspense fallback={<>...</>}>
+              <Suspense fallback={<></>}>
                 <Map />
               </Suspense>
             }
@@ -86,7 +86,7 @@ function App() {
         <Route
             path='/ticket/checkout'
             element={
-              <Suspense fallback={<>...</>}>
+              <Suspense fallback={<></>}>
                 <TicketCheckout />
               </Suspense>
             }
@@ -94,7 +94,7 @@ function App() {
         <Route
             path='/markers'
             element={
-              <Suspense fallback={<>...</>}>
+              <Suspense fallback={<></>}>
                 <Markers />
               </Suspense>
             }
