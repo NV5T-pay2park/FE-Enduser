@@ -20,7 +20,7 @@ const mockTicket = {
 test('test render not payment card', async () => {
     render(<ItemListCard ticket={mockTicket} />);
 
-    const ticketName = screen.getByText(`Vé xe ${mockTicket.parkingLotName}`)
+    const ticketName = screen.getByText(`Nhà xe ${mockTicket.parkingLotName}`)
     const checkinTime = screen.getByText(/Giờ gửi/)
     const paymentStatus = screen.getByText("chưa thanh toán")
     // const weatherList = await waitFor(() => screen.findAllByTestId("test-daily"))
