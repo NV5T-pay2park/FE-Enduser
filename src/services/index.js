@@ -82,12 +82,6 @@ export const checkIfDetailParkingNull = (obj) => {
     return obj;
 }
 
-export const getIndexOfListLocation = (lst, idx) => {
-    if (idx >= lst.length) {
-        return checkIfLocationNull(null);
-    }
-    return lst[idx];
-}
 
 export const formatMoney = (x) => {
     return x.toLocaleString('vi', { style: 'currency', currency: 'VND' });
