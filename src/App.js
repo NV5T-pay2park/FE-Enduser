@@ -32,9 +32,13 @@ function App() {
             pullToRefresh: true
           }
         }, cb);
+        var cb = () => {
+
+        }
         
     }
   }
+  configZaloPay()
   return (
     <Box>
       {/* <ButtonAppBar /> */}

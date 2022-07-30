@@ -35,18 +35,16 @@ const TicketCheckout = () => {
         const zpTransToken = paymentData.zpTransToken
         if (zpTransToken !== undefined && zpTransToken !== "") {
             stopPingRequest()
+            var cb = function (data) {
+          
+            };
+
             const res = await window.ZaloPay.payOrder({
               appid: Constant.APP_ID,
               zptranstoken: zpTransToken,
-            }).then(result => {
-              ZaloPay.showDialog({
-                title: "Hello",
-                message: "Result" + JSON.stringify(result),
-                button: "OK"
-              });
-            })
+            }, cb)
             
-           
+            
 
             // if (res?.code === 1) {
             //   navigate('/')
@@ -55,9 +53,7 @@ const TicketCheckout = () => {
             // }
         }
         // kích hoạt quá trình thanh toán đối với trường hợp hoá đơn >= 2 KB
-        var cb = function (data) {
-          
-        };
+        
       } catch (err) {
         console.log(err)
       }
