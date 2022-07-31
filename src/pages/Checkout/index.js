@@ -29,25 +29,26 @@ const TicketCheckout = () => {
       const tempTicket = await TicketAPI.getTicketByID(ticketData.ticketID)
       if (tempTicket.status === true) {
         console("checkout thanhf coong")
-        stopPingCheckStatusRequest()
+        
         window.ZaloPay.showDialog({
           title: "Hello",
           message: "Checkout success",
           button: "OK"
         });
+        stopPingCheckStatusRequest()
         // navigate("/")
       }
     } catch (err) {
         console.log(err)
     }
     if (prevCount.current <= 1) {
-      stopPingCheckStatusRequest()
+      
       window.ZaloPay.showDialog({
         title: "Hello",
         message: "Time out",
         button: "OK"
       });
-    
+      stopPingCheckStatusRequest()
       navigate("/")
     }
     console("chua thanh toan")
@@ -78,7 +79,7 @@ const TicketCheckout = () => {
             intervalCheckPaymentID.current = setInterval(() => {
               checkDidPayment()                // ping request
               setCountdown(prev => prev - 1)
-            }, 1000);
+            }, 3000);
             timeoutCheckPaymentID.current = setTimeout(() => {
               clearInterval(intervalCheckPaymentID.pingStatus);
               navigate('/')
