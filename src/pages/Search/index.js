@@ -13,7 +13,7 @@ const Search = () => {
 
   const ZaloPay = Service.ZaloPay(window.ZaloPay);
 
-  const [userLocation, setUserLocation] = useState(null);
+  const [userLocation, setUserLocation] = useState({lat: 10.8782444, lng: 106.8062906});
   const [DisplayDataGarage, setDisplayDataGarage] = useState([]);
   const [vehicleType, setVehicleType] = useState(["1"]);
   const [district, setDistrict] = useState("Tất cả")
@@ -29,14 +29,18 @@ const Search = () => {
   }
 
   const getUserLocation = async () => {
-    const position = await getCoordinates(); 
-    let latitude = position.coords.latitude;
-    let longitude = position.coords.longitude;
-    const temp = {
-      lat: latitude,
-      lng: longitude,
+    if (userLocation == null) {
+      const position = await getCoordinates(); 
+      let latitude = position.coords.latitude;
+      let longitude = position.coords.longitude;
+      const temp = {
+        lat: latitude,
+        lng: longitude,
+      }
+      return temp;
     }
-    return temp;
+    return null;
+
   }
 
   async function getData(location) {
@@ -51,7 +55,7 @@ const Search = () => {
     const tempLocationList = Service.getCheckedNullList(listData.map((item) => {
       return ({  
         lat: item.lat,
-        lng: item.ing,
+        lng: item.lng,
       })
     }));
     
@@ -67,10 +71,13 @@ const Search = () => {
         ZaloPay.showLoading()
       }
 
+      setIsFirstRender(false);
       const location = await getUserLocation();
       getFirstRenderData(location);
-      setUserLocation(location);
-      setIsFirstRender(false);
+      if (location != null) {
+        setUserLocation(location);
+      }
+      
 
       if (ZaloPay.isZaloPay) {
         ZaloPay.hideLoading()
@@ -80,9 +87,6 @@ const Search = () => {
   }
 
   firstLoading();
-
-  
-
 
   const handleFilter = async (vehicles) => {
     if (ZaloPay.isZaloPay) {

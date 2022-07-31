@@ -102,7 +102,7 @@ function ParkingDetail() {
                 sx={{marginTop: 2, width: '90vw'}} 
                 onClick={() => {navigate('/googlemap', {state: {origin: userLocation, destination: {
                   lat: value.lat,
-                  lng: value.ing,
+                  lng: value.lng,
                 }}});}}
             >
 
