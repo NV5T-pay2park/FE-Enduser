@@ -20,60 +20,68 @@ const Search = () => {
   const [districtList, setDistrictList] = useState([]);
   const [searchString, setSearchString] = useState("");
   const [listLocation, setListLocation] = useState([]);
+  const [isFirstRender, setIsFirstRender] = useState(true);
 
-  useEffect(() => {
-
-    function getCoordinates() {
+  function getCoordinates() {
     return new Promise(function(resolve, reject) {
-        navigator.geolocation.getCurrentPosition(resolve, reject);
-      });
-    }
+      navigator.geolocation.getCurrentPosition(resolve, reject);
+    });
+  }
 
-    const getUserLocation = async () => {
-      const position = await getCoordinates(); 
-      let latitude = position.coords.latitude;
-      let longitude = position.coords.longitude;
-      const temp = {
-        lat: latitude,
-        lng: longitude,
-      }
-      setUserLocation(temp);
+  const getUserLocation = async () => {
+    const position = await getCoordinates(); 
+    let latitude = position.coords.latitude;
+    let longitude = position.coords.longitude;
+    const temp = {
+      lat: latitude,
+      lng: longitude,
     }
+    return temp;
+  }
 
-    async function getData() {
-      const temp = await Service.checkIfNullDataListParking(GarageAPI.getParkingListSearch("", district, userLocation , ["1"]));
-      setDisplayDataGarage(temp.data);
-      return temp.data;
-    }
+  async function getData(location) {
+    const temp = await Service.checkIfNullDataListParking(GarageAPI.getParkingListSearch("", district, location , ["1"]));
+    setDisplayDataGarage(temp.data);
+    return temp.data;
+  }
 
-    async function getFirstRenderData() {
-      const listData = await getData();
-      const listTemp = ["Tất cả"].concat([... new Set(listData.map((item) => item.district))].sort());
-      console.log(listData);
-      const tempLocationList = Service.getCheckedNullList(listData.map((item) => {
-        return ({  
-          lat: item.lat,
-          lng: item.ing,
-        })
-      }));
-      
-      setDistrictList(listTemp);
-      setListLocation(tempLocationList);
-    }
+  async function getFirstRenderData(location) {
+    const listData = await getData(location);
+    const listTemp = ["Tất cả"].concat([... new Set(listData.map((item) => item.district))].sort());
+    const tempLocationList = Service.getCheckedNullList(listData.map((item) => {
+      return ({  
+        lat: item.lat,
+        lng: item.ing,
+      })
+    }));
     
-    if (ZaloPay.isZaloPay) {
-      ZaloPay.showLoading()
+    setDistrictList(listTemp);
+    setListLocation(tempLocationList);
+  }
+
+  const firstLoading = async () => {
+    if (isFirstRender) {
+
+      
+      if (ZaloPay.isZaloPay) {
+        ZaloPay.showLoading()
+      }
+
+      const location = await getUserLocation();
+      getFirstRenderData(location);
+      setUserLocation(location);
+      setIsFirstRender(false);
+
+      if (ZaloPay.isZaloPay) {
+        ZaloPay.hideLoading()
+      }
+
     }
+  }
 
-    getUserLocation();
-    getFirstRenderData();
+  firstLoading();
 
-
-    if (ZaloPay.isZaloPay) {
-      ZaloPay.hideLoading()
-    }
-
-  }, [])
+  
 
 
   const handleFilter = async (vehicles) => {
