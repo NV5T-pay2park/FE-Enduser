@@ -24,6 +24,13 @@ function ParkingDetail() {
   const id = Service.checkIfStringNull(loc.state.id);
   const userLocation = Service.checkIfLocationNull(loc.state.location);
   const [value, setValue] = useState({});
+
+  const getTime = (s) => {
+    if (s == null) {
+      return ""
+    }
+    return s.toString().substr(0, 5)
+  }
   
   useEffect(() => {
     async function getDetailData() {
@@ -74,21 +81,13 @@ function ParkingDetail() {
                   <Typography fontSize={14} component="div">
                       {value.status === 0 ? <text style={{color:'green', fontWeight: 'bold'}}> Còn chỗ</text> : <text style={{color: 'red', fontWeight: 'bold'}}> Hết chỗ</text> }
                   </Typography>
-                  <Typography fontSize={14} component="div" marginLeft={1} >{value.timeOpen}:00 AM - {value.timeClose}:00 PM</Typography>
+                  <Typography fontSize={14} component="div" marginLeft={1} >{getTime(value.timeOpen)} AM - {getTime(value.timeClose)} PM</Typography>
                 </Stack>
                 <Stack direction="row" marginTop={1}>
                   <LocalPhoneOutlinedIcon sx={{color: '#4286F6', marginRight: "12px"}}/>
-                  <Typography fontSize={14} component="div">0{value.phoneNumber}</Typography>
+                  <Typography fontSize={14} component="div">{value.phoneNumber}</Typography>
                 </Stack>
-                {/* <Typography variant="h7" component="div" paragraph>
-                  <b> Mô tả: </b> {v.discription}
-                </Typography>
-                <Typography variant='h7' component="div" paragraph>
-                  <b> Điều khoản sử dụng: </b>
-                </Typography>
-                <Typography variant="h7" component="div" paragraph> 
-                  <b> Hướng dẫn sử dụng: </b>
-                </Typography> */}
+              
 
                 <TablePrice />
 

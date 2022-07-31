@@ -33,13 +33,12 @@ function ListCard({ list, location }) {
     // 
     return (
         <Paper style={myStyle}>
-            <List sx={{ width: '100%', maxWidth: 1000, bgcolor: '#f6f7f8' }}>
+            <List sx={{ width: '100%', bgcolor: '#f6f7f8' }}>
                 {list.map((value) => {
                     const labelId = `checkbox-list-secondary-label-${value.id}`;
                     return (
                         <ListItem key={value.id}
-                            disablePadding
-                        >
+                            disablePadding>
                             <ListItemButton onClick={() => navigate('/search/detail', {state: {id: value.id, location: location}}) }  >
                                 <ParkingCard value={value}/>
                             </ListItemButton>

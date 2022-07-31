@@ -95,6 +95,7 @@ export const ZaloPay = (obj) => {
             }
             showLoading() {}
             hideLoading() {}
+            setProperty() {}
         }
 
         let zalopay = new mockZaloPay();

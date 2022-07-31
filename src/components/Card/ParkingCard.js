@@ -12,6 +12,8 @@ const ParkingCard = ({ value }) => {
     }
 
     const address = getAddress(value);
+    const timeOpen = value.timeOpen.toString().substr(0, 5);
+    const timeClose = value.timeClose.toString().substr(0, 5);
 
   return (
     <Card sx={{ display: 'flex', width: '100%', }}>
@@ -37,10 +39,10 @@ const ParkingCard = ({ value }) => {
                 {(address.length <= 35) ? address : address.substr(0, 35) + "..."}
                 </Typography>
                 <Typography fontSize={10} component="div">
-                    {value.timeMoving} phút • {value.distance} km • 0{value.phoneNumber}
+                    {value.timeMoving} phút • {value.distance} km • {value.phoneNumber}
                 </Typography>
                 <Typography fontSize={10} component="div">
-                    Giờ mở cửa: {value.timeOpen}:00 AM - {value.timeClose}:00 PM
+                    Giờ mở cửa: {timeOpen} AM - {timeClose} PM
                 </Typography>
             </CardContent>
         </Box>
