@@ -22,7 +22,11 @@ const TicketCheckout = () => {
   const prevCount = useRef()
 
   const checkDidPayment = async () => {
-
+    window.ZaloPay.showDialog({
+      title: "Hello",
+      message: "test show diaglog",
+      button: "OK"
+    });
     console.log("call check did payment")
     try {
 
