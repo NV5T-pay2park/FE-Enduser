@@ -11,7 +11,7 @@ const mockCheckinResponse = {
         "ticketID": 2207291359421734,
         "checkInTime": "2022-07-29T13:59:42Z",
         "checkOutTime": null,
-        "total": null,
+        "amount": null,
         "licensePlate": "34C1-35597",
         "vehicleType": "Xe máy",
         "endUserID": 34,
