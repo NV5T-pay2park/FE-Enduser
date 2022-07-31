@@ -35,15 +35,13 @@ const TicketCheckout = () => {
         const zpTransToken = paymentData.zpTransToken
         if (zpTransToken !== undefined && zpTransToken !== "") {
             stopPingRequest()
-            const res = await window.ZaloPay.payOrder({
+            window.ZaloPay.payOrder({
               appid: Constant.APP_ID,
               zptranstoken: zpTransToken,
-            }, cb)   
+            })   
+
+            
         }
-        // kích hoạt quá trình thanh toán đối với trường hợp hoá đơn >= 2 KB
-        var cb = function (data) {
-          
-        };
       } catch (err) {
         console.log(err)
       }

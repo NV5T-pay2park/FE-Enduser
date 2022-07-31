@@ -90,11 +90,11 @@ const HomePage = ({context}) => {
             <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/history')}>Xem tất cả</Button> */}
 
             <Box textAlign='center' alignItems='center'>
-                <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/history')}>Xem tất cả</Button>
+                <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/history')}>Xem tất cả: {context.userInfo.id}</Button>
             </Box>
-            <Box textAlign='center' alignItems='center'>
+            {/* <Box textAlign='center' alignItems='center'>
                 <Button size='small' variant="text" sx={{color: 'white', align: 'center'}}>Thông tin cá nhân - id: {context.userInfo.id}</Button>
-            </Box>
+            </Box> */}
             {/* <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/user')}>Thông tin cá nhân</Button> */}
     </Container>
   )
