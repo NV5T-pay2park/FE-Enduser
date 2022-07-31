@@ -7,7 +7,7 @@ const mockTicket = {
     "ticketID": 8,
     "checkInTime": "2022-07-18T14:27:46Z",
     "checkOutTime": null,
-    "total": 10000,
+    "amount": 10000,
     "licensePlate": "77C1-86249",
     "vehicleType": "Xe máy",
     "endUserID": 6,
