@@ -6,6 +6,7 @@ import { Button } from '@mui/material';
 import { Box } from '@mui/system';
 import QrReader from 'react-camera-qr';
 import * as CheckInOutAPI from '../../api/checkInOutAPI';
+import * as Service from '../../services/index';
 
 const mockNewTicket = {
   "ticketID": 26,
@@ -20,7 +21,7 @@ const mockNewTicket = {
   "status": false
 }
 const QrPage = () => {
-
+  const ZaloPay = Service.ZaloPay(window.ZaloPay);
   const context = useContext(AppContext)
   const navigate = useNavigate();
   const [facingMode, setFacingMode] = useState("user")
@@ -86,7 +87,7 @@ const QrPage = () => {
   return (
     <div style={{ backgroundColor: 'white', height: 'calc(100vh - 56px)', justifyContent: 'center', justifyItems: 'center', alignItems: 'center'}}>
       { showLoading && <LoadingIndicator />}
-      {!window.ZaloPay?.isZaloPay ? showManualQr() : () => {navigate('/')}}
+      {!ZaloPay?.isZaloPay ? showManualQr() : () => {navigate('/')}}
     </div>
   )
 }
