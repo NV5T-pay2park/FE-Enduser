@@ -12,10 +12,13 @@ import * as GarageAPI from '../../api/garageAPI';
 import * as Service from '../../services/index';
 import TablePrice from '../Table/TablePrice';
 
+
 ParkingDetail.propTypes = {
 };
 
 function ParkingDetail() {
+
+  const ZaloPay = Service.ZaloPay(window.ZaloPay);
 
   const loc = useLocation();
   const id = Service.checkIfStringNull(loc.state.id);
@@ -24,19 +27,15 @@ function ParkingDetail() {
   
   useEffect(() => {
     async function getDetailData() {
-      if (window.ZaloPay.isZaloPay) {
-        window.ZaloPay.showLoading()
+      if (ZaloPay.isZaloPay) {
+        ZaloPay.showLoading()
       }
-      try {
-        const tempData = await Service.checkIfDetailParkingNull(GarageAPI.getDetailGarage(id, userLocation));
-        if (tempData.status == "OK") {
-          setValue(tempData.data);
-        } 
-      } catch (err) {
-        setValue(Service.checkIfDetailParkingNull(null)); 
-      }
-      if (window.ZaloPay.isZaloPay) {
-        window.ZaloPay.hideLoading()
+      
+      const tempData = await Service.checkIfDetailParkingNull(GarageAPI.getDetailGarage(id, userLocation));
+      setValue(tempData.data);
+
+      if (ZaloPay.isZaloPay) {
+        ZaloPay.hideLoading()
       }
      
     }

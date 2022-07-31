@@ -23,7 +23,8 @@ function Map() {
         setDirection(response);
       }
   }
-
+  
+  Direction(null);
   
   return ( 
   <LoadScript
