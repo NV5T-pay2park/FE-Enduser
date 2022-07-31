@@ -1,9 +1,10 @@
-import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
-import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
-import Chip from '@mui/material/Chip';
-import Stack from '@mui/material/Stack';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
+
+const DirectionsCarIcon = React.lazy(() => import('@mui/icons-material/DirectionsCar'));
+const TwoWheelerIcon = React.lazy(() => import('@mui/icons-material/TwoWheeler'))
+const Chip = React.lazy(() => import('@mui/material/Chip'))
+const Stack = React.lazy(() => import('@mui/material/Stack'))
 
 FilterChip.propTypes = {
     handleChoose:  PropTypes.func,
