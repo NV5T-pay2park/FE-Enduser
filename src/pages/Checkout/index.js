@@ -35,7 +35,7 @@ const TicketCheckout = () => {
           message: "Checkout success",
           button: "OK"
         });
-        navigate("/")
+        // navigate("/")
       }
     } catch (err) {
         console.log(err)
