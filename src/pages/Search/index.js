@@ -21,14 +21,15 @@ const Search = () => {
   const [searchString, setSearchString] = useState("");
   const [listLocation, setListLocation] = useState([]);
 
-  function getCoordinates() {
+  useEffect(() => {
+
+    function getCoordinates() {
     return new Promise(function(resolve, reject) {
-      navigator.geolocation.getCurrentPosition(resolve, reject);
-    });
-  }
+        navigator.geolocation.getCurrentPosition(resolve, reject);
+      });
+    }
 
-  const getUserLocation = async () => {
-
+    const getUserLocation = async () => {
       const position = await getCoordinates(); 
       let latitude = position.coords.latitude;
       let longitude = position.coords.longitude;
@@ -38,19 +39,14 @@ const Search = () => {
       }
       setUserLocation(temp);
     }
-  
 
-  async function getData() {
-    try {
+    async function getData() {
       const temp = await Service.checkIfNullDataListParking(GarageAPI.getParkingListSearch("", district, userLocation , ["1"]));
       setDisplayDataGarage(temp.data);
       return temp.data;
-    } catch(err) {
-      return [];
     }
-  }
 
-  async function getFirstRenderData() {
+    async function getFirstRenderData() {
       const listData = await getData();
       const listTemp = ["Tất cả"].concat([... new Set(listData.map((item) => item.district))].sort());
       console.log(listData);
@@ -63,44 +59,30 @@ const Search = () => {
       
       setDistrictList(listTemp);
       setListLocation(tempLocationList);
-  }
-
-  async function firstRenderData ()  {
-      await getFirstRenderData();
-  }
-
-  async function getUserLocationSync() {
-    await getUserLocation();
-  }
-
-  useEffect(() => {getUserLocationSync();}, [])
-
-  useEffect(() => {
+    }
+    
     if (ZaloPay.isZaloPay) {
       ZaloPay.showLoading()
     }
 
-    firstRenderData();
+    getUserLocation();
+    getFirstRenderData();
+
 
     if (ZaloPay.isZaloPay) {
       ZaloPay.hideLoading()
     }
 
-  }, [userLocation])
+  }, [])
 
 
   const handleFilter = async (vehicles) => {
     if (ZaloPay.isZaloPay) {
         ZaloPay.showLoading()
     }
-    try {
       const tempData = await Service.checkIfNullDataListParking(GarageAPI.getParkingListSearch(searchString, district, userLocation, vehicles));
       setDisplayDataGarage(tempData.data);
       setVehicleType(vehicles);
-    } catch (err) {
-      setDisplayDataGarage([]);
-      setVehicleType(["1"]);
-    }
     if (ZaloPay.isZaloPay) {
       ZaloPay.hideLoading()
     }
@@ -112,35 +94,19 @@ const Search = () => {
       ZaloPay.showLoading();
     }
    
-    try {
-      if (tempDistrict == null) {
-        tempDistrict = "Tất cả";
-      }
-    
       const tempData = await Service.checkIfNullDataListParking(GarageAPI.getParkingListSearch(searchString, tempDistrict, userLocation, vehicleType));
       setDisplayDataGarage(tempData.data);
       setDistrict(tempDistrict);
-    } catch (err) {
-      setDisplayDataGarage([]);
-      setDistrict("Tất cả");
-    }
-  
+   
    if (ZaloPay.isZaloPay) {
       ZaloPay.hideLoading();
     }
   }
 
   const handleSearch = async (str) => {
-   
-    try {
       const tempData = await Service.checkIfNullDataListParking(GarageAPI.getParkingListSearch(str, district, userLocation, vehicleType));
       setDisplayDataGarage(tempData.data);
       setSearchString(str);
-    } catch(err) {
-      console.log(err);
-      setDisplayDataGarage([]);
-      setSearchString("");
-    }
   }
 
   const navigate = useNavigate();

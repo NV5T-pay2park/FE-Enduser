@@ -1,6 +1,6 @@
 import React from "react";
-import { render } from '@testing-library/react';
-
+import { fireEvent, render, screen } from '@testing-library/react';
+import userEvent from "@testing-library/user-event";
 import NotFoundCard from "./index";
 
 const mockUserID = 1
@@ -18,6 +18,7 @@ jest.mock('react-router-dom', () => ({
 describe("test render list ticket", () => {
     test("test render list ticket", () => {
         render(<NotFoundCard userInfo={mockUserID} insertTicket={mockInsertTicket}/>)
+        fireEvent.click(screen.getByRole('button'));
     })
 
 
