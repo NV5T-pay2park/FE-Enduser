@@ -115,3 +115,83 @@ describe('Test format datetime', () => {
 
 });
   
+describe('Test check if Object Null', () => {
+  it('test null object', async () => {
+    expect(Service.checkIfObjectNull(null)).toEqual({});
+  });
+  it('test not null object', async() => {
+    expect(Service.checkIfObjectNull({})).toEqual({});
+  });
+})
+
+describe('Test check if Location null', () => {
+  it('test object location null', async () => {
+    const mockData = {
+      lat: 0, 
+      lng: 0,
+    }
+    expect(Service.checkIfLocationNull(null)).toEqual(mockData);
+  });
+  it('test object location not null', async () => {
+    const mockData = {
+      lat: 1,
+      lng: 1,
+    };
+    expect(Service.checkIfLocationNull(mockData)).toEqual(mockData);
+  });
+})
+
+describe("Test check if String null", () => {
+  it('test string null', async () => {
+    expect(Service.checkIfStringNull(null)).toEqual("");
+  });
+  it('test string not null', async () => {
+    expect(Service.checkIfStringNull("test")).toEqual("test");
+  });
+})
+
+describe("Test check if null data list parking", () => {
+  it('test null data list', async () => {
+    expect(Service.checkIfNullDataListParking(null)).toEqual({
+      data: []
+    });
+  });
+  it('test if data list not null', async () => {
+    expect(Service.checkIfNullDataListParking({})).toEqual({});
+  }); 
+})
+
+describe('test check if detail parking null', () => { 
+    it('test if object null', async() => {
+      const mockData = {
+        parkingLotName: "",
+        timeMoving: 0, 
+        distance: 0, 
+        street: "", 
+        ward: "", 
+        city: "",
+        timeOpen: "",
+        timeClose: "",
+        phoneNumber: "",
+        status: "",
+        location: {
+            lat: 0, 
+            lng: 0,
+        }
+      }
+      expect(Service.checkIfDetailParkingNull(null)).toEqual(mockData);
+    });
+    it('test if object not null', async () => {
+      expect(Service.checkIfDetailParkingNull({})).toEqual({});
+    })
+ });
+
+ describe("test mock zalopay", () => {
+   test("mock zalopay null", async() => {
+        expect(Service.ZaloPay(null).isZaloPay).toEqual(true);
+   });
+   test("mock zalopay not null", async() => {
+     expect(Service.ZaloPay({})).toEqual({});
+   })
+ })
+ 

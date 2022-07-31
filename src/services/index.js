@@ -82,14 +82,23 @@ export const checkIfDetailParkingNull = (obj) => {
     return obj;
 }
 
-export const getIndexOfListLocation = (lst, idx) => {
-    if (idx >= lst.length) {
-        return checkIfLocationNull(null);
-    }
-    return lst[idx];
-}
 
 export const formatMoney = (x) => {
     return x.toLocaleString('vi', { style: 'currency', currency: 'VND' });
 }
-  
+
+export const ZaloPay = (obj) => {
+    if (obj == null || obj == undefined) {
+        class mockZaloPay{
+            constructor() {
+                this.isZaloPay = true;
+            }
+            showLoading() {}
+            hideLoading() {}
+        }
+
+        let zalopay = new mockZaloPay();
+        return zalopay;
+    }
+    return obj;
+}

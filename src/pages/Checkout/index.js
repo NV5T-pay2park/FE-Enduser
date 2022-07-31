@@ -35,10 +35,9 @@ const TicketCheckout = () => {
         const zpTransToken = paymentData.zpTransToken
         if (zpTransToken !== undefined && zpTransToken !== "") {
             stopPingRequest()
-            window.ZaloPay.payOrder({
+            const res = await window.ZaloPay.payOrder({
               appid: Constant.APP_ID,
               zptranstoken: zpTransToken,
-
             }, '/')   
             if (window.ZaloPay.isZaloPay) {
               window.ZaloPay.showDialog({
@@ -48,7 +47,6 @@ const TicketCheckout = () => {
               });
             }
         }
-
       } catch (err) {
         console.log(err)
       }
