@@ -11,7 +11,7 @@ const TicketCheckout = () => {
   const location = useLocation();
   const ticketData = location.state
 
-  const [countdown, setCountdown] = useState(15)
+  const [countdown, setCountdown] = useState(30)
 
   const navigate = useNavigate();
 
@@ -20,13 +20,21 @@ const TicketCheckout = () => {
   const prevCount = useRef()
 
   const checkDidPayment = async () => {
-    const tempTicket = await TicketAPI.getTicketByID(ticketData.ticketID)
-    if (tempTicket.status === true) {
-      console("checkout thanhf coong")
-      navigate("/")
+    console.log("call check did payment")
+    try {
+
+      const tempTicket = await TicketAPI.getTicketByID(ticketData.ticketID)
+      if (tempTicket.status === true) {
+        console("checkout thanhf coong")
+        stopPingRequest()
+        navigate("/")
+      }
+    } catch (err) {
+        console.log(err)
     }
     console("chua thanh toan")
   }
+  checkDidPayment()
 
   const fetchPaymentCheckout = async () => {
       let x = Math.floor((Math.random() * 1000) + 200);
@@ -72,7 +80,7 @@ const TicketCheckout = () => {
     timeoutID.current = setTimeout(() => {
       clearInterval(intervalID.current);
       navigate('/')
-    }, 60000);
+    }, 30000);
     return () => {
       clearInterval(intervalID.current)
       clearTimeout(timeoutID.current);
