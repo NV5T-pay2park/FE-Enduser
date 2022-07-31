@@ -3,6 +3,7 @@ import { Box } from '@mui/system'
 import React, { useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import * as CheckInOutAPI from '../../api/checkInOutAPI'
+import * as TicketAPI from '../../api/ticketAPI'
 import * as Constant from '../../config/config'
 import QrTicket from '../../features/Tickets/QrTicket'
 const TicketCheckout = () => {
@@ -17,6 +18,15 @@ const TicketCheckout = () => {
   const intervalID = useRef()
   const timeoutID = useRef()
   const prevCount = useRef()
+
+  const checkDidPayment = async () => {
+    const tempTicket = await TicketAPI.getTicketByID(ticketData.ticketID)
+    if (tempTicket.status === true) {
+      console("checkout thanhf coong")
+      navigate("/")
+    }
+    console("chua thanh toan")
+  }
 
   const fetchPaymentCheckout = async () => {
       let x = Math.floor((Math.random() * 1000) + 200);
@@ -40,6 +50,7 @@ const TicketCheckout = () => {
               zptranstoken: zpTransToken,
             })   
 
+
             
         }
       } catch (err) {
@@ -61,7 +72,7 @@ const TicketCheckout = () => {
     timeoutID.current = setTimeout(() => {
       clearInterval(intervalID.current);
       navigate('/')
-    }, 15000);
+    }, 60000);
     return () => {
       clearInterval(intervalID.current)
       clearTimeout(timeoutID.current);
