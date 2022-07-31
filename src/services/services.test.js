@@ -186,4 +186,12 @@ describe('test check if detail parking null', () => {
     })
  });
 
+ describe("test mock zalopay", () => {
+   test("mock zalopay null", async() => {
+        expect(Service.ZaloPay(null).isZaloPay).toEqual(true);
+   });
+   test("mock zalopay not null", async() => {
+     expect(Service.ZaloPay({})).toEqual({});
+   })
+ })
  

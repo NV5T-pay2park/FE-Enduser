@@ -86,4 +86,19 @@ export const checkIfDetailParkingNull = (obj) => {
 export const formatMoney = (x) => {
     return x.toLocaleString('vi', { style: 'currency', currency: 'VND' });
 }
-  
+
+export const ZaloPay = (obj) => {
+    if (obj == null || obj == undefined) {
+        class mockZaloPay{
+            constructor() {
+                this.isZaloPay = true;
+            }
+            showLoading() {}
+            hideLoading() {}
+        }
+
+        let zalopay = new mockZaloPay();
+        return zalopay;
+    }
+    return obj;
+}

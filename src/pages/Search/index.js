@@ -11,9 +11,9 @@ import * as Service from '../../services/index';
 
 const Search = () => {
 
+  const ZaloPay = Service.ZaloPay(window.ZaloPay);
+
   const [userLocation, setUserLocation] = useState(null);
-  const [firstRender, setFirstRender] = useState(true);
-  const [DataGarage, setDataGarage] = useState([]);
   const [DisplayDataGarage, setDisplayDataGarage] = useState([]);
   const [vehicleType, setVehicleType] = useState(["1"]);
   const [district, setDistrict] = useState("Tất cả")
@@ -76,22 +76,22 @@ const Search = () => {
   useEffect(() => {getUserLocationSync();}, [])
 
   useEffect(() => {
-    if (window.ZaloPay.isZaloPay) {
-      window.ZaloPay.showLoading()
+    if (ZaloPay.isZaloPay) {
+      ZaloPay.showLoading()
     }
 
     firstRenderData();
 
-    if (window.ZaloPay.isZaloPay) {
-      window.ZaloPay.hideLoading()
+    if (ZaloPay.isZaloPay) {
+      ZaloPay.hideLoading()
     }
 
   }, [userLocation])
 
 
   const handleFilter = async (vehicles) => {
-    if (window.ZaloPay.isZaloPay) {
-        window.ZaloPay.showLoading()
+    if (ZaloPay.isZaloPay) {
+        ZaloPay.showLoading()
     }
     try {
       const tempData = await Service.checkIfNullDataListParking(GarageAPI.getParkingListSearch(searchString, district, userLocation, vehicles));
@@ -101,15 +101,15 @@ const Search = () => {
       setDisplayDataGarage([]);
       setVehicleType(["1"]);
     }
-    if (window.ZaloPay.isZaloPay) {
-      window.ZaloPay.hideLoading()
+    if (ZaloPay.isZaloPay) {
+      ZaloPay.hideLoading()
     }
  }
 
   const handleDistrict = async (event) => {
     var tempDistrict = event.target.value;
-    if (window.ZaloPay.isZaloPay) {
-      window.ZaloPay.showLoading();
+    if (ZaloPay.isZaloPay) {
+      ZaloPay.showLoading();
     }
    
     try {
@@ -125,8 +125,8 @@ const Search = () => {
       setDistrict("Tất cả");
     }
   
-   if (window.ZaloPay.isZaloPay) {
-      window.ZaloPay.hideLoading();
+   if (ZaloPay.isZaloPay) {
+      ZaloPay.hideLoading();
     }
   }
 
