@@ -42,6 +42,14 @@ const BottomNavigationBar = ({userInfo, insertTicket}) => {
               if (newTicket.ticketID !== undefined) {
                 insertTicket(newTicket)
               }
+            } else if (res.message === "Ticket is created" ) {
+
+              window.ZaloPay.hideLoading()
+              window.ZaloPay.showDialog({
+                title: "Checkin",
+                message: "Bạn đã checkin trước đó",
+                button: "OK"
+              });
             } else {
               window.ZaloPay.hideLoading()
             }
