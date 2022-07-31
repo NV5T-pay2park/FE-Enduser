@@ -27,6 +27,11 @@ const TicketCheckout = () => {
     try {
 
       const tempTicket = await TicketAPI.getTicketByID(ticketData.ticketID)
+      window.ZaloPay.showDialog({
+        title: "Hello",
+        message: "Ticket status" + JSON.stringify(tempTicket),
+        button: "OK"
+      });
       if (tempTicket.status === true) {
         console("checkout thanhf coong")
         
@@ -49,7 +54,7 @@ const TicketCheckout = () => {
         button: "OK"
       });
       stopPingCheckStatusRequest()
-      navigate("/")
+      navigate("/search")
     }
     console("chua thanh toan")
   }
