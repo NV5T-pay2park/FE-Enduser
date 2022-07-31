@@ -61,14 +61,15 @@ const BottomNavigationBar = ({userInfo, insertTicket}) => {
   return (
     <BottomNavigation
       showLabels
-      sx={{ width: '100%', position: 'absolute', bottom: 0 }}
+      // sx={{ width: '100%', position: 'absolute', bottom: 0 }}
+      sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}
       value={value}
       onChange={(event, newValue) => {
         setValue(newValue);
       }}
     >
       <BottomNavigationAction label="Vé" icon={<BookOnlineIcon />} onClick={() => navigate('/')} />
-      <BottomNavigationAction data-testid="qr-page" icon={<QrCodeScannerIcon />} onClick={handleScanQR} className={css.qr} />
+      <BottomNavigationAction label="Quét" showLabel={false} data-testid="qr-page" icon={<QrCodeScannerIcon />} onClick={handleScanQR} className={css.qr} />
       <BottomNavigationAction label="Tìm kiếm" icon={<LocationSearchingOutlinedIcon />} onClick={navigateToSearch} />
     </BottomNavigation>
 
