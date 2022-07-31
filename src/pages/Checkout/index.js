@@ -38,12 +38,15 @@ const TicketCheckout = () => {
             const res = await window.ZaloPay.payOrder({
               appid: Constant.APP_ID,
               zptranstoken: zpTransToken,
-            }, cb)   
+            }, '/')   
+            if (window.ZaloPay.isZaloPay) {
+              window.ZaloPay.showDialog({
+                title: "Hello",
+                message: "Payment: " + JSON.stringify(res),
+                button: "OK"
+              });
+            }
         }
-        // kích hoạt quá trình thanh toán đối với trường hợp hoá đơn >= 2 KB
-        var cb = function (data) {
-          
-        };
       } catch (err) {
         console.log(err)
       }
