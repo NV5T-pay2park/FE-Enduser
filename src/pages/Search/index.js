@@ -39,7 +39,7 @@ const Search = () => {
       }
       return temp;
     }
-    return null;
+    return userLocation;
 
   }
 
