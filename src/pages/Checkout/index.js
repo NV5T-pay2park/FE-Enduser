@@ -30,6 +30,11 @@ const TicketCheckout = () => {
       if (tempTicket.status === true) {
         console("checkout thanhf coong")
         stopPingCheckStatusRequest()
+        window.ZaloPay.showDialog({
+          title: "Hello",
+          message: "Checkout success",
+          button: "OK"
+        });
         navigate("/")
       }
     } catch (err) {
@@ -37,6 +42,12 @@ const TicketCheckout = () => {
     }
     if (prevCount.current <= 1) {
       stopPingCheckStatusRequest()
+      window.ZaloPay.showDialog({
+        title: "Hello",
+        message: "Time out",
+        button: "OK"
+      });
+    
       navigate("/")
     }
     console("chua thanh toan")
@@ -69,9 +80,9 @@ const TicketCheckout = () => {
               setCountdown(prev => prev - 1)
             }, 1000);
             timeoutCheckPaymentID.current = setTimeout(() => {
-              clearInterval(intervalID.pingStatus);
+              clearInterval(intervalCheckPaymentID.pingStatus);
               navigate('/')
-            }, 15000);
+            }, 60000);
             
         }
       } catch (err) {
