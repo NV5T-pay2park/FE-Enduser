@@ -17,24 +17,31 @@ const TicketCheckout = () => {
 
   const intervalID = useRef()
   const timeoutID = useRef()
+  const intervalCheckPaymentID = useRef()
+  const timeoutCheckPaymentID = useRef()
   const prevCount = useRef()
 
   const checkDidPayment = async () => {
+
     console.log("call check did payment")
     try {
 
       const tempTicket = await TicketAPI.getTicketByID(ticketData.ticketID)
       if (tempTicket.status === true) {
         console("checkout thanhf coong")
-        stopPingRequest()
+        stopPingCheckStatusRequest()
         navigate("/")
       }
     } catch (err) {
         console.log(err)
     }
+    if (prevCount.current <= 1) {
+      stopPingCheckStatusRequest()
+      navigate("/")
+    }
     console("chua thanh toan")
   }
-  checkDidPayment()
+  // checkDidPayment()
 
   const fetchPaymentCheckout = async () => {
       let x = Math.floor((Math.random() * 1000) + 200);
@@ -57,8 +64,14 @@ const TicketCheckout = () => {
               appid: Constant.APP_ID,
               zptranstoken: zpTransToken,
             })   
-
-
+            intervalCheckPaymentID.current = setInterval(() => {
+              checkDidPayment()                // ping request
+              setCountdown(prev => prev - 1)
+            }, 1000);
+            timeoutCheckPaymentID.current = setTimeout(() => {
+              clearInterval(intervalID.pingStatus);
+              navigate('/')
+            }, 15000);
             
         }
       } catch (err) {
@@ -69,6 +82,12 @@ const TicketCheckout = () => {
   const stopPingRequest = () => {
     clearInterval(intervalID.current)
     clearTimeout(timeoutID.current);
+    // navigate('/')
+  }
+
+  const stopPingCheckStatusRequest = () => {
+    clearInterval(intervalCheckPaymentID.current)
+    clearTimeout(timeoutCheckPaymentID.current);
     // navigate('/')
   }
 
