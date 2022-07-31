@@ -11,7 +11,7 @@ const TicketCheckout = () => {
   const location = useLocation();
   const ticketData = location.state
 
-  const [countdown, setCountdown] = useState(30)
+  const [countdown, setCountdown] = useState(90)
 
   const navigate = useNavigate();
 
@@ -35,7 +35,7 @@ const TicketCheckout = () => {
           message: "Checkout success",
           button: "OK"
         });
-        navigate("/")
+        // navigate("/")
       }
     } catch (err) {
         console.log(err)
@@ -110,7 +110,7 @@ const TicketCheckout = () => {
     timeoutID.current = setTimeout(() => {
       clearInterval(intervalID.current);
       navigate('/')
-    }, 30000);
+    }, 90000);
     return () => {
       clearInterval(intervalID.current)
       clearTimeout(timeoutID.current);
