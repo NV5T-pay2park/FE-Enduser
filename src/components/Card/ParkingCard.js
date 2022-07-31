@@ -1,12 +1,10 @@
 import { Box, Card } from '@mui/material';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import React from 'react';
 
 const ParkingCard = ({ value }) => {
-  const theme = useTheme();
     const getAddress = (value) => {
         return `${value.street}, ${value.ward}, ${value.district}`
     }
@@ -20,7 +18,7 @@ const ParkingCard = ({ value }) => {
         <CardMedia
             component="img"
             sx={{ width: 100, height: 100, margin: 0.5 }}
-            // image="./toro_cry_rmbg.png"
+
             image="./toro_cry.webp"
 
             alt="parking"

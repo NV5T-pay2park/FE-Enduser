@@ -24,18 +24,11 @@ function ListCard({ list, location }) {
     if (list === null || list === undefined)
         list = [] 
 
-    const getState = (v) => {
-        return {
-            id: v.id,
-            location: location,
-        }
-    }
     // 
     return (
         <Paper style={myStyle}>
             <List sx={{ width: '100%', bgcolor: '#f6f7f8' }}>
                 {list.map((value) => {
-                    const labelId = `checkbox-list-secondary-label-${value.id}`;
                     return (
                         <ListItem key={value.id}
                             disablePadding>
