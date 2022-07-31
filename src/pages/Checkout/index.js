@@ -11,7 +11,7 @@ const TicketCheckout = () => {
   const location = useLocation();
   const ticketData = location.state
 
-  const [countdown, setCountdown] = useState(90)
+  const [countdown, setCountdown] = useState(120)
 
   const navigate = useNavigate();
 
@@ -22,11 +22,20 @@ const TicketCheckout = () => {
   const prevCount = useRef()
 
   const checkDidPayment = async () => {
-
+    window.ZaloPay.showDialog({
+      title: "Hello",
+      message: "test show diaglog",
+      button: "OK"
+    });
     console.log("call check did payment")
     try {
 
       const tempTicket = await TicketAPI.getTicketByID(ticketData.ticketID)
+      window.ZaloPay.showDialog({
+        title: "Hello",
+        message: "Ticket status" + JSON.stringify(tempTicket),
+        button: "OK"
+      });
       if (tempTicket.status === true) {
         console("checkout thanhf coong")
         
@@ -49,7 +58,7 @@ const TicketCheckout = () => {
         button: "OK"
       });
       stopPingCheckStatusRequest()
-      navigate("/")
+      navigate("/search")
     }
     console("chua thanh toan")
   }
@@ -79,11 +88,11 @@ const TicketCheckout = () => {
             intervalCheckPaymentID.current = setInterval(() => {
               checkDidPayment()                // ping request
               setCountdown(prev => prev - 1)
-            }, 3000);
+            }, 1000);
             timeoutCheckPaymentID.current = setTimeout(() => {
               clearInterval(intervalCheckPaymentID.pingStatus);
               navigate('/')
-            }, 60000);
+            }, 120000);
             
         }
       } catch (err) {
@@ -111,7 +120,7 @@ const TicketCheckout = () => {
     timeoutID.current = setTimeout(() => {
       clearInterval(intervalID.current);
       navigate('/')
-    }, 90000);
+    }, 120000);
     return () => {
       clearInterval(intervalID.current)
       clearTimeout(timeoutID.current);
