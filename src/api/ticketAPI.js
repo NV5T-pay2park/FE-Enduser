@@ -26,7 +26,7 @@ export const getTicketByEndUserId = async (id) => {
 }
 
 export const getTicketByID = async (ticketID) => {
-    const apiResponseData = await fetch(Constant.SERVER_BASE_URL + `getTicketById?ticketId=${ticketID}`)
+    const apiResponseData = await fetch(Constant.SERVER_BASE_URL + `/api/getTicketById?ticketId=${ticketID}`)
     if(!apiResponseData.ok){
         throw new Error("cannot get ticket info");
     }
