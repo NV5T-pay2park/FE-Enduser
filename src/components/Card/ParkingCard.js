@@ -12,13 +12,15 @@ const ParkingCard = ({ value }) => {
     const address = getAddress(value);
     const timeOpen = value.timeOpen.toString().substr(0, 5);
     const timeClose = value.timeClose.toString().substr(0, 5);
-
+    const imageUrl = Service.getCheckedNullList(value?.images).length ? value.images[0].url : "./toro-claim.webp"
+ 
   return (
     <Card sx={{ display: 'flex', width: '100%', }}>
         <CardMedia
             component="img"
             sx={{ width: 80, height: 100, margin: 0.5, objectFit: "contain" }}
-            image="./toro-claim.webp"
+            // image="./toro-claim.webp"
+            image={imageUrl}
             alt="parking"
         />
         <Box sx={{padding: 0, height: 110}}>
