@@ -35,29 +35,24 @@ const TicketCheckout = () => {
           button: "OK"
         });
         stopPingCheckStatusRequest()
-        // navigate("/")
+        navigate("/")
       }
     } catch (err) {
         console.log(err)
+        stopPingCheckStatusRequest()
+        navigate("/search")
     }
     if (prevCount.current <= 1) {
       stopPingCheckStatusRequest()
-      navigate("/search")
+      navigate("/history")
     }
-    console("chua thanh toan")
+
   }
   // checkDidPayment()
 
-  const fetchPaymentCheckout = async () => {
-      let x = Math.floor((Math.random() * 1000) + 200);
-      const param = {
-        "userId": x,
-        "ticketId": 4322312,
-        "amount": 1000
-      }  
-      
+  const fetchPaymentCheckout = async () => {  
       // const url = Constant.SERVER_BASE_URL + `/api/getCreateOrder?userId=${x}&ticketId=22&amount=2000`
-      const url = Constant.SERVER_BASE_URL + `/api/queryPaymentUrl?endUserId=${ticketData.endUserID}&ticketId=${ticketData.ticketID}`
+      // const url = Constant.SERVER_BASE_URL + `/api/queryPaymentUrl?endUserId=${ticketData.endUserID}&ticketId=${ticketData.ticketID}`
 
       try {
         const checkoutResult = await CheckInOutAPI.getCheckoutPaymentData(ticketData.endUserID, ticketData.ticketID)
@@ -76,7 +71,7 @@ const TicketCheckout = () => {
             timeoutCheckPaymentID.current = setTimeout(() => {
               clearInterval(intervalCheckPaymentID.pingStatus);
               navigate('/')
-            }, 120000);
+            }, 100000);
             
         }
       } catch (err) {

@@ -1,15 +1,19 @@
+import { Button, Grid, MenuItem, Select } from '@mui/material';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as GarageAPI from '../../api/garageAPI';
 import * as Service from '../../services/index';
+import FilterChip from '../../components/Chip/index'
+import ComboBox from '../../components/ComboBox/index'
+import ListCard from '../../components/ListCard/index'
 
-const ComboBox = React.lazy(() => import('../../components/ComboBox/index'))
-const FilterChip = React.lazy(() => import('../../components/Chip/index'))
-const ListCard = React.lazy(() => import('../../components/ListCard/index'))
-const Button = React.lazy(() => import('@mui/material/Button'))
-const MenuItem = React.lazy(() => import('@mui/material/MenuItem'))
-const Select = React.lazy(() => import('@mui/material/Select'))
-const Grid = React.lazy(() => import('@mui/material/Grid'))
+// const ComboBox = React.lazy(() => import('../../components/ComboBox/index'))
+// const FilterChip = React.lazy(() => import('../../components/Chip/index'))
+// const ListCard = React.lazy(() => import('../../components/ListCard/index'))
+// const Button = React.lazy(() => import('@mui/material/Button'))
+// const MenuItem = React.lazy(() => import('@mui/material/MenuItem'))
+// const Select = React.lazy(() => import('@mui/material/Select'))
+// const Grid = React.lazy(() => import('@mui/material/Grid'))
 
 const Search = () => {
 
@@ -53,7 +57,7 @@ const Search = () => {
 
   async function getFirstRenderData(location) {
     const listData = await getData(location);
-    const listTemp = ["Tất cả"].concat([... new Set(listData.map((item) => item.district))].sort());
+    const listTemp = ["Tất cả"].concat([...new Set(listData.map((item) => item.district))].sort());
     const tempLocationList = Service.getCheckedNullList(listData.map((item) => {
       return ({  
         lat: item.lat,
@@ -148,7 +152,7 @@ const Search = () => {
             label="Quận"
             style={{width: '100%'}}
           >
-           {districtList.map((item) => <MenuItem value={item}>{item}</MenuItem>)} 
+           {districtList.map((item) => <MenuItem key={item} value={item}>{item}</MenuItem>)} 
           </Select>
         </Grid>
         <Grid item xs={3}  mt={0.25} mb={1} ml={1}>
