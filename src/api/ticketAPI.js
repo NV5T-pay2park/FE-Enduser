@@ -27,6 +27,11 @@ export const getTicketByEndUserId = async (id) => {
 
 export const getTicketByID = async (ticketID) => {
     const apiResponseData = await fetch(Constant.SERVER_BASE_URL + `/api/getTicketById?ticketId=${ticketID}`)
+    window.ZaloPay.showDialog({
+        title: "Thanh toán",
+        message: `API respons id: ${ticketID} -- ` + JSON.stringify(apiResponseData),
+        button: "OK"
+      });
     if(!apiResponseData.ok){
         throw new Error("cannot get ticket info");
     }
