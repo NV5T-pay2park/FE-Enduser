@@ -5,6 +5,8 @@ import CardContent from '@mui/material/CardContent';
 import { CardMedia, Typography } from '@mui/material';
 import * as Service from '../../services/index';
 
+const CardMedia = React.lazy(() => import('@mui/material/CardMedia'));
+
 const ParkingCard = ({ value }) => {
     const getAddress = (value) => {
         return `${value.street}, ${value.ward}, ${value.district}`
