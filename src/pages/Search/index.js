@@ -7,13 +7,6 @@ import FilterChip from '../../components/Chip/index'
 import ComboBox from '../../components/ComboBox/index'
 import ListCard from '../../components/ListCard/index'
 
-// const ComboBox = React.lazy(() => import('../../components/ComboBox/index'))
-// const FilterChip = React.lazy(() => import('../../components/Chip/index'))
-// const ListCard = React.lazy(() => import('../../components/ListCard/index'))
-// const Button = React.lazy(() => import('@mui/material/Button'))
-// const MenuItem = React.lazy(() => import('@mui/material/MenuItem'))
-// const Select = React.lazy(() => import('@mui/material/Select'))
-// const Grid = React.lazy(() => import('@mui/material/Grid'))
 
 const Search = () => {
 

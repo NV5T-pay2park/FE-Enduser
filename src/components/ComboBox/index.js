@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
+import Stack from '@mui/material/Stack';
+import { TextField } from '@mui/material';
 
-const Stack = React.lazy(() => import('@mui/material/Stack'))
-const TextField = React.lazy(() => import('@mui/material/TextField'))
 
 ComboBox.propTypes = {
     listName: PropTypes.array,
