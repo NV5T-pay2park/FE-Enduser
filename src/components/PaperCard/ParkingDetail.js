@@ -3,7 +3,7 @@ import AssistantDirectionOutlinedIcon from '@mui/icons-material/AssistantDirecti
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
-import { Avatar, Button, Card, CardContent, Stack, Typography } from '@mui/material';
+import { Avatar, Button, Card, CardContent, CardMedia, Stack, Typography } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
@@ -57,14 +57,21 @@ function ParkingDetail() {
         <Stack alignItems="center">
             <Card sx={{ width: '100%', height: '80vh', marginTop: '0px', borderRadius: '0px', overflow: 'auto',}} variant="outlined">
               <CardContent>
-                <Typography gutterBottom fontSize={20} component="div" align="center" color={"#24272B"}>
+                <Typography gutterBottom fontSize={20} fontWeight="bold" component="div" align="center" color={"#24272B"}>
                   Thông tin chi tiết
                 </Typography>
               </CardContent>
               <Box alignItems="center" justifyContent="center" display="flex">
-                <Avatar sx={{ width: 80, height: 80 }} src={imgUrl}>
+                <Avatar sx={{ width: 120, height: 120 }} src={imgUrl}>
                       </Avatar>
               </Box>
+              {/* <CardMedia
+                component="img"
+                height="140"
+                objectFit="contain"
+                image={imgUrl}
+                alt="green iguana"
+              /> */}
               <CardContent style={{ lineHeight: "28px" }}>
                 <Typography gutterBottom fontSize={24} component="div" align='center' >
                   <b>{value.parkingLotName}</b> 
