@@ -12,6 +12,7 @@ import styles from './style.css';
 import * as LoginAPI from '../../api/loginAPI';
 import * as TicketAPI from '../../api/ticketAPI';
 import * as Service from '../../services/index';
+import * as Constant from '../../config/config'
 const mockData = {"status":"OK","message":"Success","data":[{"ticketID":7,"checkInTime":"2022-07-18T14:27:45Z","amount":null,"licensePlate":"77C1-99794","vehicleType":"Xe mÃ¡y","endUserID":3,"endUserName":"Jenna1021 neccernpogrlinzi15","parkingLotID":5,"parkingLotName":"BÃ¬nh Chiá»ƒu","status":false},{"ticketID":16,"checkInTime":"2022-07-18T14:27:48Z","amount":null,"licensePlate":"77C1-10662","vehicleType":"Xe mÃ¡y","endUserID":3,"endUserName":"Jenna1021 neccernpogrlinzi15","parkingLotID":2,"parkingLotName":"Thá»§ ThiÃªm","status":false},{"ticketID":26,"checkInTime":"2022-07-26T00:24:02Z","amount":null,"licensePlate":"77C1-67567","vehicleType":"Xe mÃ¡y","endUserID":3,"endUserName":"Jenna1021 neccernpogrlinzi15","parkingLotID":4,"parkingLotName":"Báº¿n NghÃ©","status":false}]}
 const HomePage = ({context}) => {
 
@@ -19,6 +20,19 @@ const HomePage = ({context}) => {
   const navigate = useNavigate()
   const isFirstTime = useRef(true)
   let ticketElements
+
+  const testCallTicketAPIFalse = async () => {
+    console.log("call test api")
+    // const ticket = await TicketAPI.getTicketByID("2207291418121760")
+    const ticket = await TicketAPI.getTicketByEndUserId(33)
+    console.log(ticket);
+  }
+
+  const testCallTicketAPITrue = async () => {
+    console.log("call test api")
+    const ticket = await TicketAPI.getTicketByID("2207290149341033")
+    console.log(ticket);
+  }
 
   useLayoutEffect(() => {
     isFirstTime.current = false
@@ -94,6 +108,9 @@ const HomePage = ({context}) => {
             {/* <Box textAlign='center' alignItems='center'>
                 <Button size='small' variant="text" sx={{color: 'white', align: 'center'}}>Thông tin cá nhân - id: {context.userInfo.id}</Button>
             </Box> */}
+            <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={testCallTicketAPIFalse}>test call detail ticket false</Button>
+            <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={testCallTicketAPITrue}>test call detail ticket true</Button>
+    
     </Container>
   )
 }

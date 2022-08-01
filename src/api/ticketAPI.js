@@ -28,9 +28,9 @@ export const getTicketByEndUserId = async (id) => {
 export const getTicketByID = async (ticketID) => {
     const url = Constant.SERVER_BASE_URL + `/api/getTicketById?ticketId=${ticketID}`
     const apiResponseData = await fetch(url)
-    if(!apiResponseData.ok){
-        throw new Error("cannot get ticket info");
-    }
+    // if(!apiResponseData.ok){
+    //     throw new Error("cannot get ticket info");
+    // }
     const ticketDataJSON = await apiResponseData.json()
     const ticketData = ticketDataJSON?.data
     if (ticketData === null || ticketData === undefined || ticketData === "") return mockTicket
