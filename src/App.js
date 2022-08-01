@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import BottomNavigationBar from './components/BottomNavigationBar/BottomNavigationBar';
 import { Box } from '@mui/material';
 import { AppContext } from './AppContext';
+import * as Service from './services';
 
 
 
@@ -20,13 +21,14 @@ const QrTicket = lazy(() => import('./features/Tickets/QrTicket'))
 
 function App() {
 
+  const ZaloPay = Service.ZaloPay(window.ZaloPay)
   const context = useContext(AppContext)
   const configZaloPay = () => {
-    if (window.ZaloPay.isZaloPay) {
+    if (ZaloPay.isZaloPay) {
       var cb = () => {
 
       }
-      window.ZaloPay.setProperty(
+      ZaloPay.setProperty(
         {
           navigation : {
             backgroundColor: "#c7c7cc",

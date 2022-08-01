@@ -1,13 +1,15 @@
-import { Button, MenuItem, Select } from '@mui/material';
-import Grid from '@mui/material/Grid';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as GarageAPI from '../../api/garageAPI';
-import FilterChip from '../../components/Chip/index';
-import '../../components/ComboBox/index';
-import ComboBox from '../../components/ComboBox/index';
-import ListCard from '../../components/ListCard/index';
 import * as Service from '../../services/index';
+
+const ComboBox = React.lazy(() => import('../../components/ComboBox/index'))
+const FilterChip = React.lazy(() => import('../../components/Chip/index'))
+const ListCard = React.lazy(() => import('../../components/ListCard/index'))
+const Button = React.lazy(() => import('@mui/material/Button'))
+const MenuItem = React.lazy(() => import('@mui/material/MenuItem'))
+const Select = React.lazy(() => import('@mui/material/Select'))
+const Grid = React.lazy(() => import('@mui/material/Grid'))
 
 const Search = () => {
 
@@ -39,7 +41,7 @@ const Search = () => {
       }
       return temp;
     }
-    return null;
+    return userLocation;
 
   }
 

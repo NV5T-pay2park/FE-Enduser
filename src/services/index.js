@@ -52,7 +52,7 @@ export const checkIfStringNull = (str) => {
 }
 
 export const checkIfNullDataListParking = (obj) => {
-    if (obj == null || obj == undefined) {
+    if (obj === null || obj === undefined) {
         return {
             data: []
         }
@@ -61,7 +61,7 @@ export const checkIfNullDataListParking = (obj) => {
 }
 
 export const checkIfDetailParkingNull = (obj) => {
-    if (obj == null || obj == undefined) {
+    if (obj === null || obj === undefined) {
         return {
             parkingLotName: "",
             timeMoving: 0, 
@@ -88,13 +88,14 @@ export const formatMoney = (x) => {
 }
 
 export const ZaloPay = (obj) => {
-    if (obj == null || obj == undefined) {
+    if (obj === null || obj === undefined) {
         class mockZaloPay{
             constructor() {
                 this.isZaloPay = true;
             }
             showLoading() {}
             hideLoading() {}
+            setProperty() {}
         }
 
         let zalopay = new mockZaloPay();

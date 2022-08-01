@@ -1,11 +1,12 @@
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import Paper from '@mui/material/Paper';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import ParkingCard from '../Card/ParkingCard';
+
+const List = React.lazy(() => import('@mui/material/List'))
+const ListItem = React.lazy(() => import('@mui/material/ListItem'))
+const ListItemButton = React.lazy(() => import('@mui/material/ListItemButton'))
+const Paper = React.lazy(() => import('@mui/material/Paper'))
+const ParkingCard = React.lazy(() => import('../Card/ParkingCard'))
 
 ListCard.propTypes = {
     list: PropTypes.array,
@@ -24,22 +25,14 @@ function ListCard({ list, location }) {
     if (list === null || list === undefined)
         list = [] 
 
-    const getState = (v) => {
-        return {
-            id: v.id,
-            location: location,
-        }
-    }
     // 
     return (
         <Paper style={myStyle}>
-            <List sx={{ width: '100%', maxWidth: 1000, bgcolor: '#f6f7f8' }}>
+            <List sx={{ width: '100%', bgcolor: '#f6f7f8' }}>
                 {list.map((value) => {
-                    const labelId = `checkbox-list-secondary-label-${value.id}`;
                     return (
                         <ListItem key={value.id}
-                            disablePadding
-                        >
+                            disablePadding>
                             <ListItemButton onClick={() => navigate('/search/detail', {state: {id: value.id, location: location}}) }  >
                                 <ParkingCard value={value}/>
                             </ListItemButton>

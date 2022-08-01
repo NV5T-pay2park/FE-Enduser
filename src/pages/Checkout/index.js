@@ -22,26 +22,16 @@ const TicketCheckout = () => {
   const prevCount = useRef()
 
   const checkDidPayment = async () => {
-    window.ZaloPay.showDialog({
-      title: "Hello",
-      message: "test show diaglog",
-      button: "OK"
-    });
     console.log("call check did payment")
     try {
 
       const tempTicket = await TicketAPI.getTicketByID(ticketData.ticketID)
-      window.ZaloPay.showDialog({
-        title: "Hello",
-        message: "Ticket status" + JSON.stringify(tempTicket),
-        button: "OK"
-      });
       if (tempTicket.status === true) {
         console("checkout thanhf coong")
         
         window.ZaloPay.showDialog({
-          title: "Hello",
-          message: "Checkout success",
+          title: "Thanh toán",
+          message: "Thanh toán thành công",
           button: "OK"
         });
         stopPingCheckStatusRequest()
@@ -51,12 +41,6 @@ const TicketCheckout = () => {
         console.log(err)
     }
     if (prevCount.current <= 1) {
-      
-      window.ZaloPay.showDialog({
-        title: "Hello",
-        message: "Time out",
-        button: "OK"
-      });
       stopPingCheckStatusRequest()
       navigate("/search")
     }

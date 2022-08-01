@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import BottomNavigationBar from './BottomNavigationBar';
 import { BottomNavigation } from '@mui/material';
@@ -36,14 +36,15 @@ describe("test bottom navigation", () => {
         //   }));
         render(<BottomNavigationBar />)
 
-        userEvent.click(screen.getByText("Vé"));
+        fireEvent.click(screen.getByText("Vé"));
+        fireEvent.click(screen.getByText("Quét"));
+        fireEvent.click(screen.getByText("Tìm kiếm"));
         // userEvent.click(screen.getByTestId("qr-page"));
-        expect(BottomNavigationBar.handleScan).toHaveBeenCalledTimes(0);
     })
 
     test("test click button bottom", () => {
         render(<BottomNavigationBar />)
-        userEvent.click(screen.getByText("Tìm kiếm"));
+        fireEvent.click(screen.getByText("Tìm kiếm"));
 
     })
 

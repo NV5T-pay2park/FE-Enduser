@@ -1,24 +1,26 @@
-import { Box, Card } from '@mui/material';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import { useTheme } from '@mui/material/styles';
-import Typography from '@mui/material/Typography';
 import React from 'react';
 
+const Box = React.lazy(() => import('@mui/material/Box'));
+const Card = React.lazy(() => import('@mui/material/Card'));
+const CardContent = React.lazy(() => import('@mui/material/CardContent'))
+const CardMedia = React.lazy(() => import('@mui/material/CardMedia'));
+const Typography = React.lazy(() => import('@mui/material/Typography'));
+
 const ParkingCard = ({ value }) => {
-  const theme = useTheme();
     const getAddress = (value) => {
         return `${value.street}, ${value.ward}, ${value.district}`
     }
 
     const address = getAddress(value);
+    const timeOpen = value.timeOpen.toString().substr(0, 5);
+    const timeClose = value.timeClose.toString().substr(0, 5);
 
   return (
     <Card sx={{ display: 'flex', width: '100%', }}>
         <CardMedia
             component="img"
             sx={{ width: 100, height: 100, margin: 0.5 }}
-            // image="./toro_cry_rmbg.png"
+
             image="./toro_cry.webp"
 
             alt="parking"
@@ -37,10 +39,10 @@ const ParkingCard = ({ value }) => {
                 {(address.length <= 35) ? address : address.substr(0, 35) + "..."}
                 </Typography>
                 <Typography fontSize={10} component="div">
-                    {value.timeMoving} phút • {value.distance} km • 0{value.phoneNumber}
+                    {value.timeMoving} phút • {value.distance} km • {value.phoneNumber}
                 </Typography>
                 <Typography fontSize={10} component="div">
-                    Giờ mở cửa: {value.timeOpen}:00 AM - {value.timeClose}:00 PM
+                    Giờ mở cửa: {timeOpen} AM - {timeClose} PM
                 </Typography>
             </CardContent>
         </Box>

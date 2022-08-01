@@ -10,7 +10,7 @@ const QrTicket = ({data}) => {
 
   const json = JSON.stringify(ticketJSON)
 
-
+  
   
   
   return (

@@ -1,5 +1,6 @@
 import React from 'react'
-import { render } from '@testing-library/react'
+import { fireEvent, screen, render } from '@testing-library/react'
+import userEvent from '@testing-library/user-event';
 
 import QrPage from '.'
 
@@ -13,5 +14,6 @@ jest.mock('react-router-dom', () => ({
 describe("test QrPage", () => {
     test("test render", () => {
         render(<QrPage/>)
+        
     })
 })
