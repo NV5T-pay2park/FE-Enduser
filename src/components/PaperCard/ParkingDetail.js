@@ -49,6 +49,8 @@ function ParkingDetail() {
     getDetailData();
   }, [])
 
+  const imgUrl = Service.getCheckedNullList(value?.images).length ? value.images[0].url : './toro-claim.webp'
+  console.log(imgUrl)
   const navigate = useNavigate();
   return (
     <Paper style={ {height: 'calc(100vh - 56px)', display: 'flex', justifyContent: 'center', backgroundColor: '#f6f7f8'}}>
@@ -60,7 +62,7 @@ function ParkingDetail() {
                 </Typography>
               </CardContent>
               <Box alignItems="center" justifyContent="center" display="flex">
-                <Avatar sx={{ width: 80, height: 80 }}>
+                <Avatar sx={{ width: 80, height: 80 }} src={imgUrl}>
                       </Avatar>
               </Box>
               <CardContent style={{ lineHeight: "28px" }}>
