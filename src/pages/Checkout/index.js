@@ -40,6 +40,11 @@ const TicketCheckout = () => {
     } catch (err) {
         console.log(err)
         stopPingCheckStatusRequest()
+        window.ZaloPay.showDialog({
+          title: "Thanh toán",
+          message: "Lỗi: " + JSON.stringify(err),
+          button: "OK"
+        });
         navigate("/search")
     }
     if (prevCount.current <= 1) {
