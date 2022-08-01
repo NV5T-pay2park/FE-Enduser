@@ -23,7 +23,7 @@ const TicketCheckout = () => {
 
   const checkDidPayment = async () => {
     console.log("call check did payment")
-    try {
+    // try {
 
       const tempTicket = await TicketAPI.getTicketByID(ticketData.ticketID)
       if (tempTicket.status === true) {
@@ -37,16 +37,16 @@ const TicketCheckout = () => {
         
         navigate("/")
       }
-    } catch (err) {
-        console.log(err)
-        stopPingCheckStatusRequest()
-        window.ZaloPay.showDialog({
-          title: "Thanh toán",
-          message: "Lỗi: " + JSON.stringify(err),
-          button: "OK"
-        });
-        navigate("/search")
-    }
+    // } catch (err) {
+    //     console.log(err)
+    //     stopPingCheckStatusRequest()
+    //     window.ZaloPay.showDialog({
+    //       title: "Thanh toán",
+    //       message: "Lỗi: " + JSON.stringify(err),
+    //       button: "OK"
+    //     });
+    //     navigate("/search")
+    // }
     if (prevCount.current <= 1) {
       stopPingCheckStatusRequest()
       navigate("/history")
