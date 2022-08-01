@@ -39,12 +39,14 @@ const TicketCheckout = () => {
       }
     } catch (err) {
         console.log(err)
+        stopPingCheckStatusRequest()
+        navigate("/search")
     }
     if (prevCount.current <= 1) {
       stopPingCheckStatusRequest()
       navigate("/history")
     }
-    console("chua thanh toan")
+
   }
   // checkDidPayment()
 
