@@ -12,7 +12,7 @@ const Search = () => {
 
   const ZaloPay = Service.ZaloPay(window.ZaloPay);
 
-  const [userLocation, setUserLocation] = useState({lat: 10.8782444, lng: 106.8062906});
+  const [userLocation, setUserLocation] = useState({lat: 10.75833859950882, lng: 106.74563506930951});
   const [DisplayDataGarage, setDisplayDataGarage] = useState([]);
   const [vehicleType, setVehicleType] = useState(["1"]);
   const [district, setDistrict] = useState("Tất cả")

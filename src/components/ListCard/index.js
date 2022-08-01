@@ -1,12 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
-const List = React.lazy(() => import('@mui/material/List'))
-const ListItem = React.lazy(() => import('@mui/material/ListItem'))
-const ListItemButton = React.lazy(() => import('@mui/material/ListItemButton'))
-const Paper = React.lazy(() => import('@mui/material/Paper'))
-const ParkingCard = React.lazy(() => import('../Card/ParkingCard'))
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import { ListItemButton, Paper } from '@mui/material';
+import ParkingCard from '../Card/ParkingCard';
 
 ListCard.propTypes = {
     list: PropTypes.array,
