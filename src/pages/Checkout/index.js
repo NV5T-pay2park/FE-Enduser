@@ -35,7 +35,7 @@ const TicketCheckout = () => {
           button: "OK"
         });
         stopPingCheckStatusRequest()
-        // navigate("/")
+        navigate("/")
       }
     } catch (err) {
         console.log(err)
