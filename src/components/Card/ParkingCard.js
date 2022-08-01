@@ -19,10 +19,8 @@ const ParkingCard = ({ value }) => {
     <Card sx={{ display: 'flex', width: '100%', }}>
         <CardMedia
             component="img"
-            sx={{ width: 100, height: 100, margin: 0.5 }}
-
-            image="./toro_cry.webp"
-
+            sx={{ width: 80, height: 100, margin: 0.5, objectFit: "contain" }}
+            image="./toro-claim.webp"
             alt="parking"
         />
         <Box sx={{padding: 0, height: 110}}>

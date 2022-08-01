@@ -154,9 +154,9 @@ const VirtualizedTable = styled(MuiVirtualizedTable)(styles);
 // ---
 
 const sample = [
-  ['Xe máy', 159, 6.0, 24, 4.0],
-  ['Xe 4-7 chỗ', 237, 9.0, 37, 4.3],
-  ['Xe 8+ chỗ', 262, 16.0, 24, 6.0],
+  ['Xe máy', 5000, 3000, 2000, 4.0],
+  ['Xe 4-7 chỗ', 10000, 8000, 5000, 4.3],
+  ['Xe 8+ chỗ', 15000, 12000, 10000, 6.0],
   ['Cupcake', 305, 3.7, 67, 4.3],
   ['Gingerbread', 356, 16.0, 49, 3.9],
 ];
@@ -192,7 +192,7 @@ export default function TablePrice() {
           },
           {
             width: 120,
-            label: '4h tiếp theo',
+            label: '4h kế',
             dataKey: 'fat',
             numeric: true,
           },

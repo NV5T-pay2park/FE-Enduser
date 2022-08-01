@@ -103,14 +103,14 @@ const HomePage = ({context}) => {
             <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/history')}>Xem tất cả</Button> */}
 
             <Box textAlign='center' alignItems='center'>
-                <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/history')}>Xem tất cả: {context.userInfo.id}</Button>
+                <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/history')}>Xem tất cả</Button>
             </Box>
             {/* <Box textAlign='center' alignItems='center'>
                 <Button size='small' variant="text" sx={{color: 'white', align: 'center'}}>Thông tin cá nhân - id: {context.userInfo.id}</Button>
             </Box> */}
-            <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={testCallTicketAPIFalse}>test call detail ticket false</Button>
+            {/* <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={testCallTicketAPIFalse}>test call detail ticket false</Button>
             <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={testCallTicketAPITrue}>test call detail ticket true</Button>
-    
+     */}
     </Container>
   )
 }

@@ -49,7 +49,7 @@ const TicketCheckout = () => {
     // }
     if (prevCount.current <= 1) {
       stopPingCheckStatusRequest()
-      navigate("/history")
+      navigate("/")
     }
 
   }
@@ -76,7 +76,7 @@ const TicketCheckout = () => {
             timeoutCheckPaymentID.current = setTimeout(() => {
               clearInterval(intervalCheckPaymentID.pingStatus);
               navigate('/')
-            }, 100000);
+            }, 90000);
             
         }
       } catch (err) {
