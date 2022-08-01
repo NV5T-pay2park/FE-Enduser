@@ -1,10 +1,8 @@
 import React from 'react';
-
-const Box = React.lazy(() => import('@mui/material/Box'));
-const Card = React.lazy(() => import('@mui/material/Card'));
-const CardContent = React.lazy(() => import('@mui/material/CardContent'))
-const CardMedia = React.lazy(() => import('@mui/material/CardMedia'));
-const Typography = React.lazy(() => import('@mui/material/Typography'));
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import { CardMedia, Typography } from '@mui/material';
 
 const ParkingCard = ({ value }) => {
     const getAddress = (value) => {
