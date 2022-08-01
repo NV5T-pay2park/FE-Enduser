@@ -26,17 +26,13 @@ export const getTicketByEndUserId = async (id) => {
 }
 
 export const getTicketByID = async (ticketID) => {
-    // const apiResponseData = await fetch(Constant.SERVER_BASE_URL + `/api/getTicketById?ticketId=${ticketID}`)
-    // window.ZaloPay.showDialog({
-    //     title: "Thanh toán",
-    //     message: `API respons id: ${ticketID} -- ` + JSON.stringify(apiResponseData),
-    //     button: "OK"
-    //   });
-    // if(!apiResponseData.ok){
-    //     throw new Error("cannot get ticket info");
-    // }
-    // const ticketDataJSON = await apiResponseData.json()
-    // const ticketData = ticketDataJSON?.data
-    // if (ticketData === null || ticketData === undefined || ticketData === "") return mockTicket
-    return mockTicket
+    const url = Constant.SERVER_BASE_URL + `/api/getTicketById?ticketId=${ticketID}`
+    const apiResponseData = await fetch(url)
+    if(!apiResponseData.ok){
+        throw new Error("cannot get ticket info");
+    }
+    const ticketDataJSON = await apiResponseData.json()
+    const ticketData = ticketDataJSON?.data
+    if (ticketData === null || ticketData === undefined || ticketData === "") return mockTicket
+    return ticketData
 }

@@ -28,13 +28,13 @@ const TicketCheckout = () => {
       const tempTicket = await TicketAPI.getTicketByID(ticketData.ticketID)
       if (tempTicket.status === true) {
         console("checkout thanhf coong")
-        
+        stopPingCheckStatusRequest()
         window.ZaloPay.showDialog({
           title: "Thanh toán",
           message: "Thanh toán thành công",
           button: "OK"
         });
-        stopPingCheckStatusRequest()
+        
         navigate("/")
       }
     } catch (err) {

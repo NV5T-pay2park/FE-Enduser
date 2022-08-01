@@ -12,7 +12,6 @@ import styles from './style.css';
 import * as LoginAPI from '../../api/loginAPI';
 import * as TicketAPI from '../../api/ticketAPI';
 import * as Service from '../../services/index';
-
 const mockData = {"status":"OK","message":"Success","data":[{"ticketID":7,"checkInTime":"2022-07-18T14:27:45Z","amount":null,"licensePlate":"77C1-99794","vehicleType":"Xe mÃ¡y","endUserID":3,"endUserName":"Jenna1021 neccernpogrlinzi15","parkingLotID":5,"parkingLotName":"BÃ¬nh Chiá»ƒu","status":false},{"ticketID":16,"checkInTime":"2022-07-18T14:27:48Z","amount":null,"licensePlate":"77C1-10662","vehicleType":"Xe mÃ¡y","endUserID":3,"endUserName":"Jenna1021 neccernpogrlinzi15","parkingLotID":2,"parkingLotName":"Thá»§ ThiÃªm","status":false},{"ticketID":26,"checkInTime":"2022-07-26T00:24:02Z","amount":null,"licensePlate":"77C1-67567","vehicleType":"Xe mÃ¡y","endUserID":3,"endUserName":"Jenna1021 neccernpogrlinzi15","parkingLotID":4,"parkingLotName":"Báº¿n NghÃ©","status":false}]}
 const HomePage = ({context}) => {
 
@@ -95,7 +94,6 @@ const HomePage = ({context}) => {
             {/* <Box textAlign='center' alignItems='center'>
                 <Button size='small' variant="text" sx={{color: 'white', align: 'center'}}>Thông tin cá nhân - id: {context.userInfo.id}</Button>
             </Box> */}
-            {/* <Button size='small' variant="text" sx={{color: 'white', align: 'center'}} onClick={() => navigate('/user')}>Thông tin cá nhân</Button> */}
     </Container>
   )
 }
