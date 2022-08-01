@@ -20,8 +20,8 @@ const Ticket = ({ticketData}) => {
         <Box alignItems="center" justifyContent="center" display="flex">
             <CardMedia
               component="img"
-              sx={{height: 140, width: 140}}
-              image="./toro_cry.webp"
+              sx={{height: 156, width: 120}}
+              image="./toro15.webp"
               alt="qrcode"
             />
         </Box>
