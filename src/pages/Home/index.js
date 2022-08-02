@@ -92,7 +92,7 @@ const HomePage = ({context}) => {
           }}
           modules={[Pagination]}
         >
-          { isFirstTime.current && context.ticketList.length === 0 ? emptyElement : context.ticketList.length === 0 ?
+          { isFirstTime.current && context.ticketList.length === 0 ? emptyElement : unpaidTickets.length === 0 ?
             notFoundElement :
             ticketElements
           }
