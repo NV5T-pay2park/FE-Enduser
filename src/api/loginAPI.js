@@ -1,4 +1,5 @@
 import * as Constant from '../config/config'
+import { faker } from '@faker-js/faker';
 
 const mockData = {
     "status": "OK",
@@ -9,7 +10,10 @@ const mockData = {
 }
 
 export const requestLogin = async (zlpID) => {
-    const apiResponseData = await fetch(Constant.SERVER_BASE_URL + `/api/loginenduser?zlpId=${zlpID}`)
+    const firstName = faker.name.firstName()
+    const lastName = faker.name.lastName()
+    const url = Constant.SERVER_BASE_URL + `/api/loginenduser?zlpId=${zlpID}&firstName=${firstName}&lastName=${lastName}`
+    const apiResponseData = await fetch(url)
     if(!apiResponseData.ok){
         const message = `No payment data`;
         // throw new Error(message);
