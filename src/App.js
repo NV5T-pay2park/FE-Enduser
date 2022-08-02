@@ -31,8 +31,6 @@ function App() {
       ZaloPay.setProperty(
         {
           navigation : {
-            backgroundColor: "#c7c7cc",
-            titleColor: "#000000",
             pullToRefresh: true
           }
         }, cb);
