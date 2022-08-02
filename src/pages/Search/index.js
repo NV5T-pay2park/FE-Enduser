@@ -5,7 +5,8 @@ import * as GarageAPI from '../../api/garageAPI';
 import * as Service from '../../services/index';
 import FilterChip from '../../components/Chip/index'
 import ComboBox from '../../components/ComboBox/index'
-import ListCard from '../../components/ListCard/index'
+
+const ListCard = React.lazy(() => import('../../components/ListCard/index'))
 
 
 const Search = () => {
