@@ -23,9 +23,9 @@ describe('test login api', () => {
         )
       // highlight-end
 
-      const loginResponse = await LoginAPI.requestLogin("93jfkd092f2fs4")
+      const loginResponse = await LoginAPI.requestLogin("93jfkd09f2fs4", "toan", "nguyen")
       expect(fetchMock).toHaveBeenCalledWith(
-        Constant.SERVER_BASE_URL + "/api/loginenduser?zlpId=93jfkd092f2fs4"
+        Constant.SERVER_BASE_URL + "/api/loginenduser?zlpId=93jfkd09f2fs4&firstName=toan&lastName=nguyen"
       )
       expect(loginResponse).toBe(mockLoginResponse.data)
     })
@@ -45,9 +45,9 @@ describe('test login api', () => {
         )
       // highlight-end
 
-      const loginResponse = await LoginAPI.requestLogin("93jfkd092f2fs4")
+      const loginResponse = await LoginAPI.requestLogin("93jfkd09f2fs4", "toan", "nguyen")
       expect(fetchMock).toHaveBeenCalledWith(
-        Constant.SERVER_BASE_URL + "/api/loginenduser?zlpId=93jfkd092f2fs4"
+        Constant.SERVER_BASE_URL + "/api/loginenduser?zlpId=93jfkd09f2fs4&firstName=toan&lastName=nguyen"
       )
       expect(loginResponse).toEqual(tempUser)
     })
