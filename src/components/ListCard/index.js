@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
-import React, { Suspense } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import { ListItemButton, Paper, Skeleton } from '@mui/material';
+import { ListItemButton, Paper  } from '@mui/material';
+import ParkingCard from '../Card/ParkingCard';
 
-const ParkingCard = React.lazy(() => import('../Card/ParkingCard'))
 
 ListCard.propTypes = {
     list: PropTypes.array,
@@ -33,9 +33,9 @@ function ListCard({ list, location }) {
                         <ListItem key={value.id}
                             disablePadding>
                             <ListItemButton onClick={() => navigate('/search/detail', {state: {id: value.id, location: location}}) }  >
-                                <Suspense fallback={<Skeleton variant="rectangular" />}>
+                                
                                     <ParkingCard value={value}/>
-                                </Suspense>
+                                
                             </ListItemButton>
                         </ListItem>
                     )
