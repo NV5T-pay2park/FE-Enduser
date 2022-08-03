@@ -33,7 +33,7 @@ function ListCard({ list, location }) {
                         <ListItem key={value.id}
                             disablePadding>
                             <ListItemButton onClick={() => navigate('/search/detail', {state: {id: value.id, location: location}}) }  >
-                                <Suspense fallback={<Skeleton />}>
+                                <Suspense fallback={<Skeleton variant="rectangular" />}>
                                     <ParkingCard value={value}/>
                                 </Suspense>
                             </ListItemButton>
