@@ -4,7 +4,8 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import { Typography } from '@mui/material';
 import * as Service from '../../services/index';
-import { CardMedia } from '@mui/material';
+
+const CardMedia = React.lazy(() => import('@mui/material/CardMedia'))
 
 const ParkingCard = ({ value }) => {
     const getAddress = (value) => {
